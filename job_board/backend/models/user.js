@@ -11,36 +11,42 @@ const UserSchema = new mongoose.Schema({
         unique: true,
         required: true,
         trim: true,
-        validate(value) {
-            if (!validator.isEmail(value)) {
-                throw new Error('Email is invalid.')
-            }
-        }
     },
     password: {
         type: String,
         required: true,
         minlength: 8,
         trim: true,
-        validate(value) {
-            if (value.toLowerCase().includes('password')) {
-                throw new Error('You cannot have "password" as you password.')
-            }
-        }
     },
     age: {
         type: Number,
-        validate(value) {
-            if (value < 16) {
-                throw new Error('You must be over 16 to join our platform.')
-            }
-        }
     }
 });
 
 const User = mongoose.model('User', UserSchema);
 
+async function find() {
+    return User.find({});
+}
+
+async function findByEmail(email) {
+    return User.findOne({ email });
+}
+
+async function deleteByEmail(email) {
+    return User.findOneAndDelete({ email });
+}
+
+async function updateByEmail(email, values) {
+    return User.findOneAndUpdate({ email }, values, { new: true });
+}
+
 module.exports = {
     User,
     UserSchema,
+    find,
+    findByEmail,
+    create,
+    deleteByEmail,
+    updateByEmail
 };
