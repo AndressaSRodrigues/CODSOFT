@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+    role: {
+        type: String,
+        enum: ['person', 'company']
+    },
     name: {
         type: String,
         required: true,
@@ -46,7 +50,6 @@ module.exports = {
     UserSchema,
     find,
     findByEmail,
-    create,
     deleteByEmail,
     updateByEmail
 };
