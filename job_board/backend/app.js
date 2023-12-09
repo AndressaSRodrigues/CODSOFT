@@ -10,8 +10,8 @@ const app = express();
 
 app.use(express.json());
 
-userRoutes(app);
 authRoutes(app);
+userRoutes(app);
 
 app.listen(port, () => {
     console.log('Server listening on port', port)
