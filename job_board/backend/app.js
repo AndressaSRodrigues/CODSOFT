@@ -2,16 +2,23 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('./config');
+const pkg = require('./package.json');
 const userRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
+const jobsRoutes = require('./routes/jobs');
 
-const { port, dbUrl } = config;
+const { port, dbUrl, secretKey } = config;
 const app = express();
 
+app.set('config', config);
+app.set('pkg', pkg);
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 authRoutes(app);
 userRoutes(app);
+jobsRoutes(app);
 
 app.listen(port, () => {
     console.log('Server listening on port', port)
