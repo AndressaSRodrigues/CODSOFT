@@ -43,6 +43,10 @@ async function findById(id) {
     return Job.findById({ _id: id });
 }
 
+async function findByCompany(query = {}) {
+    return Job.find(query).populate('createdBy').exec();
+}
+
 async function create(job) {
     return Job.create(job);
 }
@@ -58,6 +62,7 @@ async function updateById(id, values) {
 module.exports = {
     Job,
     find,
+    findByCompany,
     findById,
     create,
     deleteById,
