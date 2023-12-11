@@ -1,5 +1,5 @@
 const { getJobs, createJob } = require('../controllers/jobs');
-const { isCompany } = require('../middleware/jobs');
+const { isCompany } = require('../middleware/userRole');
 
 module.exports = (app) => {
     app.get('/jobs', getJobs);

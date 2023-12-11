@@ -5,6 +5,10 @@ const JobSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    company: {
+        type: String,
+        required: true,
+    },
     level: {
         type: String,
         required: true,
@@ -47,6 +51,7 @@ async function updateById(id, values) {
 }
 
 module.exports = {
+    Job,
     find,
     findById,
     create,
