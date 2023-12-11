@@ -14,6 +14,15 @@ const JobSchema = new mongoose.Schema({
         required: true,
         enum: ['internship', 'junior', 'mid', 'senior']
     },
+    location: {
+        type: String,
+        required: true
+    },
+    modality: {
+        type: String,
+        enum: ['remote', 'hybrid', 'office'],
+        required: true
+    },
     description: {
         type: String,
         required: true
@@ -43,8 +52,8 @@ async function findById(id) {
     return Job.findById({ _id: id });
 }
 
-async function findByCompany(query = {}) {
-    return Job.find(query).populate('createdBy').exec();
+async function findByQuery(query = {}) {
+    return Job.find(query).exec();
 }
 
 async function create(job) {
@@ -62,7 +71,7 @@ async function updateById(id, values) {
 module.exports = {
     Job,
     find,
-    findByCompany,
+    findByQuery,
     findById,
     create,
     deleteById,
