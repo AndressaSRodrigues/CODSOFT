@@ -5,7 +5,7 @@ const { secretKey } = require('../config');
 
 const registerUser = async (req, res, next) => {
     try {
-        const { role, name, email, password, age } = req.body;
+        const { role, name, email, password } = req.body;
 
         const isUserRegistered = await findByEmail(email)
         if (isUserRegistered) {
@@ -19,7 +19,6 @@ const registerUser = async (req, res, next) => {
             name,
             email,
             password: hashedPassword,
-            age
         });
 
         await newUser.save();

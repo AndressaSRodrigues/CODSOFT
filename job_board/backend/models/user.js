@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
     role: {
         type: String,
+        required: true,
         enum: ['person', 'company']
     },
     name: {
@@ -22,9 +23,6 @@ const UserSchema = new mongoose.Schema({
         minlength: 8,
         trim: true,
     },
-    age: {
-        type: Number,
-    }
 });
 
 const User = mongoose.model('User', UserSchema);
