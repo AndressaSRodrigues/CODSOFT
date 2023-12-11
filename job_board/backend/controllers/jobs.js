@@ -1,10 +1,15 @@
-const { Job, create } = require("../models/jobs");
+const { Job, find, create } = require("../models/jobs");
 
-const getJobs = (req, res) => {
-    res.send('List of jobs');
+const getJobs = async (req, res) => {
+    try {
+        const jobs = await find();
+        return res.status(200).json(jobs);
+    } catch (error) {
+        return res.status(500).json({ message: `${error}` });
+    }
 };
 
-const createJob = async (req, res, next) => {
+const createJob = async (req, res) => {
     try {
         const {
             title,
