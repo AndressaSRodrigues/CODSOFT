@@ -17,7 +17,7 @@ const createJob = async (req, res) => {
             level,
             description,
             salary,
-            startDate
+            startDate,
         } = req.body;
 
         const newJob = new Job({
@@ -26,11 +26,12 @@ const createJob = async (req, res) => {
             level,
             description,
             salary,
-            startDate
+            startDate,
+            createdBy: req.user.userId
         });
 
         await create(newJob);
-        return res.status(201).json({ message: 'Job successfully posted.' });
+        return res.status(201).json({ message: 'Job successfully posted.', newJob });
     } catch (error) {
         return res.status(500).json({ message: `${error}` });
     }
