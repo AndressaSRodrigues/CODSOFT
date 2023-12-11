@@ -1,4 +1,4 @@
-const { Job, find, create } = require("../models/jobs");
+const { Job, find, create, findByCompany } = require("../models/jobs");
 
 const getJobs = async (req, res) => {
     try {
@@ -37,4 +37,14 @@ const createJob = async (req, res) => {
     }
 };
 
-module.exports = { getJobs, createJob };
+const getJobsByCompany = async (req, res) => {
+    try {
+        const companyId = req.params.id;
+        const jobs = await findByCompany({ createdBy: companyId });
+        return res.status(200).json(jobs)
+    } catch (error) {
+        return res.status(500).json({ message: `${error}` });
+    }
+}
+
+module.exports = { getJobs, createJob, getJobsByCompany };
