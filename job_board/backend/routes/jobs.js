@@ -1,4 +1,4 @@
-const { getJobs, createJob, getJobsByCompany, getJobById, deleteJob } = require('../controllers/jobs');
+const { getJobs, createJob, getJobsByCompany, getJobById, deleteJob, updateJob } = require('../controllers/jobs');
 const { isCompany } = require('../middleware/userRole');
 
 module.exports = (app) => {
@@ -7,4 +7,5 @@ module.exports = (app) => {
     app.get('/jobs/:company', getJobsByCompany);
     app.get('/job/:id', getJobById); {/* different route to avoid conflict */}
     app.delete('/job/:id', isCompany, deleteJob);
+    app.patch('/job/:id', isCompany, updateJob);
 };
