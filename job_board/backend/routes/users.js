@@ -1,5 +1,5 @@
 const { deleteUser, updateUser, getUser } = require("../controllers/users");
-const isOwnUser = require("../middleware/checkUserLoggedIn");
+const isOwnUser = require("../middleware/checkUserEmail");
 
 module.exports = (app) => {
     app.get('/user/:email', isOwnUser, getUser);
