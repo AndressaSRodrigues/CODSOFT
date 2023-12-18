@@ -1,15 +1,10 @@
 const jwt = require('jsonwebtoken');
 const { secretKey } = require('../config');
 const { findById } = require('../models/jobs');
+const { extractToken } = require('../utils/token');
 
 const isOwnJob = async (req, res, next) => {
-    const token = req.header('Authorization');
-
-    if (!token || !token.startsWith('Bearer ')) {
-        return res.status(401).json({ message: 'Unauthorized: Invalid token format.' });
-    }
-
-    const tokenValue = token.split(' ')[1];
+    const tokenValue = extractToken(req);
 
     try {
         const { userId } = jwt.verify(tokenValue, secretKey);

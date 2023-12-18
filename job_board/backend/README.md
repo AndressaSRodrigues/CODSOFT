@@ -66,7 +66,7 @@ The Job Search API is a backend service designed for a job search website. It fa
 
 ### Users Schema
 
-**Required information to create a user**
+1. **Required information to create a user**
     - Name
     - Role (person or company)
     - Email
@@ -74,7 +74,7 @@ The Job Search API is a backend service designed for a job search website. It fa
 
 ### Jobs Schema
 
-**Required information to create a job**
+1. **Required information to create a job**
     - Title
     - Company
     - Level (internship, junior, mid, senior)
