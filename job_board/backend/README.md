@@ -49,16 +49,16 @@ The Job Search API is a backend service designed for a job search website. It fa
     - **Description:** Retrieves a specific job listing by its ID.
 
 4. **Get Jobs by Company**
-    - **Endpoint:** GET /jobs/:company
+    - **Endpoint:** `GET /jobs/:company`
     - **Description:** Retrieves job listings created by a specific company.
 
 5. **Delete a Job**
-    - **Endpoint:** DELETE /job/:id
+    - **Endpoint:** `DELETE /job/:id`
     - **Description:** Deletes a specific job listing by its ID (requires company role).
     - **Middleware:** `isOwnJob`
 
 6. **Update a Job**
-    - **Endpoint:** PATCH /job/:id
+    - **Endpoint:** `PATCH /job/:id`
     - **Description:** Updates a specific job listing by its ID (requires company role).
     - **Middleware:** `isOwnJob`
 
@@ -66,7 +66,7 @@ The Job Search API is a backend service designed for a job search website. It fa
 
 ### Users Schema
 
-1. **Required information to create a user**
+**Required information to create a user**
     - Name
     - Role (person or company)
     - Email
@@ -74,7 +74,7 @@ The Job Search API is a backend service designed for a job search website. It fa
 
 ### Jobs Schema
 
-1. **Required information to create a job**
+**Required information to create a job**
     - Title
     - Company
     - Level (internship, junior, mid, senior)
