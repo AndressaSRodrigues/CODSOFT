@@ -1,15 +1,10 @@
 const jwt = require('jsonwebtoken');
 const { secretKey } = require('../config');
+const { extractToken } = require('../utils/token');
 
 const checkUserRole = (allowedRole) => {
     return (req, res, next) => {
-        const token = req.header('Authorization');
-
-        if (!token || !token.startsWith('Bearer ')) {
-            return res.status(401).json({ message: 'Unauthorized: Invalid token format.' });
-        }
-
-        const tokenValue = token.split(' ')[1];
+        const tokenValue = extractToken(req);
 
         try {
             const decoded = jwt.verify(tokenValue, secretKey);
@@ -27,8 +22,7 @@ const checkUserRole = (allowedRole) => {
                 return res.status(403).json({ message: 'Forbidden: Unauthorized access.' });
             }
         } catch (error) {
-            console.error('Token verification error:', error);
-            return res.status(401).json({ message: 'Unauthorized: Invalid token.' });
+            return res.status(500).json({ message: `${error}` });
         }
     };
 };
