@@ -1,5 +1,6 @@
-module.exports = (app, next) => {
-    app.get('/users', (req, res) => {
-        res.send('Hello, users route!')
-    });
+const { deleteUser } = require("../controllers/users");
+const isOwnUser = require("../middleware/checkUserLoggedIn");
+
+module.exports = (app) => {
+    app.delete('/user/:email', isOwnUser, deleteUser);
 };
