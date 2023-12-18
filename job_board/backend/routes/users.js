@@ -1,7 +1,8 @@
-const { deleteUser, updateUser } = require("../controllers/users");
-const isOwnUser = require("../middleware/checkUserLoggedIn");
+const { deleteUser, updateUser, getUser } = require("../controllers/users");
+const isOwnUser = require("../middleware/checkUserEmail");
 
 module.exports = (app) => {
+    app.get('/user/:email', isOwnUser, getUser);
     app.delete('/user/:email', isOwnUser, deleteUser);
-    app.patch('/user/update/:email', isOwnUser, updateUser);
+    app.patch('/user/:email', isOwnUser, updateUser);
 };

@@ -1,5 +1,19 @@
 const bcrypt = require('bcrypt');
-const { deleteByEmail, updateByEmail } = require('../models/user');
+const { deleteByEmail, updateByEmail, findByEmail } = require('../models/user');
+
+const getUser = async (req, res) => {
+    const { email } = req.params;
+
+    try {
+        const user = await findByEmail(email);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
+        return res.status(200).json(user);
+    } catch (error) {
+        return res.status(500).json({ message: `${error}` });
+    }
+};
 
 const deleteUser = async (req, res) => {
     const { email } = req.params;
@@ -35,5 +49,6 @@ const updateUser = async (req, res) => {
 
 module.exports = {
     deleteUser,
-    updateUser
+    updateUser,
+    getUser
 };
