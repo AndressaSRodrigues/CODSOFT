@@ -1,4 +1,4 @@
-const { Job, find, create, findByQuery, findById } = require("../models/jobs");
+const { Job, find, create, findByQuery, findById, deleteById } = require("../models/jobs");
 
 const getJobs = async (req, res) => {
     try {
@@ -63,4 +63,18 @@ const getJobsByCompany = async (req, res) => {
     }
 };
 
-module.exports = { getJobs, createJob, getJobsByCompany, getJobById };
+const deleteJob = async (req, res) => {
+    try {
+        const jobId = req.params.id;
+        const deleteJobById = await deleteById(jobId);
+
+        if(!deleteJobById) {
+            return res.status(404).json({ message: 'Job not found.' });
+        }
+        return res.status(200).json({ message: 'Job deleted.'})
+    } catch (error) {
+        return res.status(500).json({ message: `${error}` });
+    }
+};
+
+module.exports = { getJobs, createJob, getJobsByCompany, getJobById, deleteJob };
