@@ -11,12 +11,10 @@ function JobDetailsActions() {
         <>
             <div className="w-fit h-fit bg-neutral-100 flex flex-col justify-center rounded-md shadow-md p-4 gap-4">
                 <button
-                    className={buttonStyle}>Apply
-                    <SendIcon />
+                    className={buttonStyle}>Apply  <SendIcon />
                 </button>
                 <button className={buttonStyle} >
-                    Save
-                    <BookmarkAddedIcon />
+                    Save  <BookmarkAddedIcon />
                 </button>
                 <Link to={'/'}>
                     <button
