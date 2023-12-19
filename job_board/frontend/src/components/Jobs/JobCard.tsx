@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { JobCardProps } from "../interfaces/JobCardProps"
+import { JobCardProps } from "../../interfaces/JobCardProps"
 
 function JobCard({ _id, title, level, company, location, salary }: JobCardProps) {
     return (

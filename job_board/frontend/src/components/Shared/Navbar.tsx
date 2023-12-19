@@ -1,5 +1,5 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Icon from '../assets/NavIcon.png';
+import Icon from '../../assets/NavIcon.png';
 import { useState } from 'react';
 import NavbarMenu from './NavbarMenu';
 

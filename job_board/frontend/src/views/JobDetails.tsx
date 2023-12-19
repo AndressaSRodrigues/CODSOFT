@@ -1,6 +1,6 @@
-import JobDetailsInfo from "../components/JobDetailsInfo";
-import Navbar from "../components/Navbar"
-import JobDetailsActions from "../components/JobDetailsActions";
+import JobDetailsInfo from "../components/Jobs/JobDetailsInfo";
+import Navbar from "../components/Shared/Navbar"
+import JobDetailsActions from "../components/Jobs/JobDetailsActions";
 
 function JobDetails() {
     return (

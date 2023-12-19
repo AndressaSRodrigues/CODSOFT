@@ -1,5 +1,5 @@
-import { JobDetailsProps } from "../interfaces/JobDetailsProps"
-import { getJobDetails } from "../services/jobs";
+import { JobDetailsProps } from "../../interfaces/JobDetailsProps"
+import { getJobDetails } from "../../services/jobs";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react"
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
