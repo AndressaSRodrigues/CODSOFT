@@ -7,19 +7,23 @@ import JobDetails from "./views/JobDetails";
 import Login from "./views/Login";
 import DashboardPerson from "./views/DashboardPerson";
 import DashboardCompany from "./views/DashboardCompany";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="create-account" element={<CreateAccount />} />
-        <Route path="dashboard/p" element={<DashboardPerson />} />
-        <Route path="dashboard/c" element={<DashboardCompany />} />
-        <Route path="job/:id" element={<JobDetails />} />
-      </Routes>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="create-account" element={<CreateAccount />} />
+          <Route path="dashboard/p" element={<DashboardPerson />} />
+          <Route path="dashboard/c" element={<DashboardCompany />} />
+          <Route path="job/:id" element={<JobDetails />} />
+        </Routes>
+      </ThemeProvider>
+    </AuthProvider>
+
   )
 }
 

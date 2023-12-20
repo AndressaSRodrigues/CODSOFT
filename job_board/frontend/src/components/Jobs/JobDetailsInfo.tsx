@@ -2,6 +2,7 @@ import { JobDetailsProps } from "../../interfaces/JobDetailsProps"
 import { getJobDetails } from "../../services/jobs";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react"
+import { useAuth } from "../../context/AuthContext";
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ApartmentIcon from '@mui/icons-material/Apartment';
@@ -14,11 +15,14 @@ function JobDetailsInfo() {
 
     const id = useParams<{ id?: string }>()?.id || "";
 
+    const { token } = useAuth();
+
     useEffect(() => {
         const fetchJobDetails = async () => {
             try {
                 const jobDetails = await getJobDetails(id);
                 setJob(jobDetails);
+                console.log(token)
             } catch (error) {
                 console.error(error);
             }

@@ -1,6 +1,11 @@
+import CreateJob from "../components/JobsManagement/CreateJob"
+
 function DashboardCompany() {
   return (
-    <div>DashboardCompany</div>
+    <>
+    <h1>Dashboard</h1>
+    <CreateJob />
+    </>
   )
 }
 

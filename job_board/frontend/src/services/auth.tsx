@@ -16,14 +16,14 @@ export const userLogin = async (email: string, password: string): Promise<UserLo
         .then((response) => {
             if (!response.ok) {
                 return response.json().then((data) => {
-                  throw new Error(data.error);
+                    throw new Error(data.error);
                 });
-              }
+            }
             return response.json() as Promise<UserLoginProps>;
         })
         .catch(() => {
             throw new Error();
-        }); 
+        });
 };
 
 export const userRegister = async (role: string, name: string, email: string, password: string): Promise<UserLoginProps> => {
@@ -42,14 +42,13 @@ export const userRegister = async (role: string, name: string, email: string, pa
         .then((response) => {
             if (!response.ok) {
                 return response.json().then((data) => {
-                  throw new Error(data.error);
+                    throw new Error(data.error);
                 });
-              }
+            }
             return response.json() as Promise<UserLoginProps>;
         })
         .catch((error) => {
             console.error('Registration error:', error);
             throw new Error('An error occurred during registration.');
         });
-         
 };

@@ -1,5 +1,4 @@
 export interface JobDetailsProps {
-    _id: string | undefined,
     title: string;
     level: string;
     company: string;
