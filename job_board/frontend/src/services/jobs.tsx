@@ -59,7 +59,7 @@ export const postNewJob = async (
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
-        },        
+        },
         body: JSON.stringify({
             title: title,
             level: level,
@@ -82,5 +82,25 @@ export const postNewJob = async (
         .catch((error) => {
             console.error(error)
             throw new Error('Unable to post job');
+        });
+};
+
+export const getJobsByUser = (userId: string): Promise<JobCardProps[]> => {
+    return fetch(`${URL}jobs/${userId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then((data) => {
+                    throw new Error(data.error);
+                });
+            }
+            return response.json() as Promise<JobCardProps[]>;
+        })
+        .catch(() => {
+            throw new Error();
         });
 };

@@ -15,12 +15,16 @@ type FormData = {
     startDate: string,
 };
 
-function CreateJob() {
+type CreateJobProps = {
+    onJobCreated: () => void;
+  };
+
+function CreateJob({ onJobCreated }: CreateJobProps ) {
     const { token } = useAuth();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
-    const { handleSubmit, control } = useForm<FormData>({
+    const { handleSubmit, control, reset } = useForm<FormData>({
         defaultValues: {
             title: '',
             company: '',
@@ -55,9 +59,9 @@ function CreateJob() {
     const onSubmit = async (data: FormData) => {
         try {
             setIsLoading(true);
-            const response = await postNewJob(token, data.title, data.level, data.company, data.location, data.salary, data.description, data.modality, data.startDate);
-            console.log(token)
-            console.log(response)
+            await postNewJob(token, data.title, data.level, data.company, data.location, data.salary, data.description, data.modality, data.startDate);
+            reset();
+            onJobCreated();
         } catch (error) {
             const errorMessage = error instanceof Error
                 ? `${error.message}.`

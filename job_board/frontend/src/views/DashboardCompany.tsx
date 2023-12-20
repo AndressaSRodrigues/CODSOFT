@@ -1,19 +1,28 @@
+import { useState } from "react";
 import CreateJob from "../components/JobsManagement/CreateJob"
+import JobsByUser from "../components/JobsManagement/JobsByUser";
 import Navbar from "../components/Shared/Navbar"
 import PostAddIcon from '@mui/icons-material/PostAdd'
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 
 function DashboardCompany() {
+  const [isJobCreated, setIsJobCreated] = useState<boolean>(false);
+
+  const handleJobCreated = () => {
+    setIsJobCreated(true);
+  };
+
   return (
     <>
       <Navbar />
-      <div className="h-full flex flex-col items-center justify-center my-12 lg:flex lg:flex-row lg:justify-start lg:mx-32">
+      <div className="flex flex-col items-start m-12 gap-4 lg:flex lg:flex-row lg:items-start lg:m-16 lg:mx-52">
         <div>
           <h1 className="text-primary text-2xl font-bold mb-6"><PostAddIcon /> New Job</h1>
-          <CreateJob />
+          <CreateJob onJobCreated={handleJobCreated} />
         </div>
-        <div>
+        <div className="mt-8 lg:ml-32 lg:mt-0">
           <h1 className="text-primary text-2xl font-bold mb-6"><SettingsSuggestIcon /> Manage Jobs</h1>
+          <JobsByUser isJobCreated={isJobCreated} />
         </div>
       </div>
     </>
