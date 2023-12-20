@@ -1,6 +1,7 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Icon from '../../assets/NavIcon.png';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import NavbarMenu from './NavbarMenu';
 
 function Navbar() {
@@ -20,6 +21,7 @@ function Navbar() {
                 </div>
                 <div onClick={toggleMenu} className='cursor-pointer'>
                     <AccountCircleIcon />
+                    <Link to={'/login'} className='mx-4'>Log In</Link>
                 </div>
             </div>
             {isMenuOpen &&
