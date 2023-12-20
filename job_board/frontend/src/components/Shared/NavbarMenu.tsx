@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext"
 
 function NavbarMenu() {
-  const { userId, userRole } = useAuth();
+  const { userId, userRole, setUserRole } = useAuth();
 
   const logOut = (): void => {
     localStorage.removeItem('token');
@@ -10,6 +11,15 @@ function NavbarMenu() {
     localStorage.removeItem('userRole');
     localStorage.removeItem('userName');
   };
+
+  useEffect(() => {
+    const storedUserRole = localStorage.getItem('userRole');
+
+    if (storedUserRole !== userRole) {
+      setUserRole(storedUserRole || '');
+    }
+
+  }, [userRole, setUserRole])
 
   return (
     <>
