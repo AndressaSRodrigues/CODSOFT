@@ -18,7 +18,7 @@ type FormData = {
     startDate: string,
 };
 
-function EditJobForm () {
+function EditJobForm() {
     const { token } = useAuth();
     const { id } = useParams();
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -59,7 +59,10 @@ function EditJobForm () {
     const onSubmit = async (data: FormData) => {
         try {
             setIsLoading(true);
-            await updateJob(token, id, data);
+            const filteredData = Object.fromEntries(
+                Object.entries(data).filter(([_, value]) => value !== '')
+            );
+            await updateJob(token, id, filteredData);
             navigateTo('/dashboard/c');
         } catch (error) {
             const errorMessage = error instanceof Error
@@ -72,9 +75,9 @@ function EditJobForm () {
     };
 
     return (
-        <>  
-        <h1 className="text-primary text-2xl font-bold mb-4">Update Job Information <AutoAwesomeIcon /></h1>
-        <span className="text-neutral-600">You're not required to fill in every field.<br />Update only the necessary information.</span>
+        <>
+            <h1 className="text-primary text-2xl font-bold mb-4">Update Job Information <AutoAwesomeIcon /></h1>
+            <span className="text-neutral-600">You're not required to fill in every field.<br />Update only the necessary information.</span>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
                 <FormControl>
                     <Stack spacing={2} className='w-72 lg:w-96'>
