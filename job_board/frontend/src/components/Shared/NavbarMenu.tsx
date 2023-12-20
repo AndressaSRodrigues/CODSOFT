@@ -10,6 +10,7 @@ function NavbarMenu() {
     localStorage.removeItem('userId');
     localStorage.removeItem('userRole');
     localStorage.removeItem('userName');
+    console.log('Logged out')
   };
 
   useEffect(() => {

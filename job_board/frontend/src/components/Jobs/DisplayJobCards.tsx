@@ -10,11 +10,13 @@ function DisplayJobCards() {
         getJobs()
             .then((data) => {
                 setJobs(data);
+                console.log('Displaying Jobs Data')
             })
             .catch((error) => {
                 console.error(error);
             })
-    })
+    }, [])
+    
     return (
         <>
             <div className='flex flex-col text-left m-4 lg:m-4'>

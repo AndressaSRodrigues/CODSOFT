@@ -19,7 +19,6 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
         try {
             const allJobsByUser = await getJobsByUser(userId);
             setJobs(allJobsByUser);
-            console.log(allJobsByUser)
         } catch (error) {
             console.error(error);
         }
