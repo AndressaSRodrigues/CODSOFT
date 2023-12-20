@@ -15,9 +15,9 @@ function Navbar() {
         <>
             <div className='w-full h-12 flex flex-row items-center justify-between bg-primary text-white p-2'>
                 <div className='flex flex-row text-sm'>
-                    <img src={Icon} alt='HireHub Icon' width='40vw' />
-                    <a href='' className='mt-2 mx-4'>Jobs</a>
-                    <a href='/create-account' className='mt-2 mx-4'>Create Account</a>
+                    <Link to={'/'}><img src={Icon} alt='HireHub Icon' width='40vw' /></Link>
+                    <Link to={'/all-jobs'} className='mt-2 mx-4'>Jobs</Link>
+                    <Link to={'/create-account'} className='mt-2 mx-4'>Create Account</Link>
                 </div>
                 <div onClick={toggleMenu} className='cursor-pointer'>
                     <AccountCircleIcon />

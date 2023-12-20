@@ -83,7 +83,7 @@ function CreateJob() {
                         {renderTextField("startDate", "Start date")}
                         <span>{errorMessage}</span>
                         <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
-                            {isLoading ? 'Posting...' : 'Login'}
+                            {isLoading ? 'Posting...' : 'Post'}
                         </Button>
                     </Stack>
                 </FormControl>
