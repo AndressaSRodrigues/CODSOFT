@@ -7,4 +7,5 @@ export interface JobDetailsProps {
     description: string;
     modality: string;
     startDate: string;
+    companyEmail: string;
 }

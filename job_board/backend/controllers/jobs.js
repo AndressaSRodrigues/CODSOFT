@@ -31,7 +31,8 @@ const createJob = async (req, res) => {
             description,
             salary,
             startDate,
-            createdBy: req.user.userId
+            createdBy: req.user.userId,
+            companyEmail: req.user.email,
         });
 
         await create(newJob);
