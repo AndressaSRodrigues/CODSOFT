@@ -10,7 +10,6 @@ function DisplayJobCards() {
         getJobs()
             .then((data) => {
                 setJobs(data);
-                console.log('Displaying Jobs Data')
             })
             .catch((error) => {
                 console.error(error);
