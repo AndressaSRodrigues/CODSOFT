@@ -5,6 +5,8 @@ import Home from "./views/Home";
 import CreateAccount from "./views/CreateAccount";
 import JobDetails from "./views/JobDetails";
 import Login from "./views/Login";
+import DashboardPerson from "./views/DashboardPerson";
+import DashboardCompany from "./views/DashboardCompany";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="create-account" element={<CreateAccount />} />
+        <Route path="dashboard/p" element={<DashboardPerson />} />
+        <Route path="dashboard/c" element={<DashboardCompany />} />
         <Route path="job/:id" element={<JobDetails />} />
       </Routes>
     </ThemeProvider>
