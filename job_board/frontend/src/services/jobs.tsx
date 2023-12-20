@@ -93,12 +93,23 @@ export const getJobsByUser = (userId: string): Promise<JobCardProps[]> => {
         },
     })
         .then((response) => {
-            if (!response.ok) {
-                return response.json().then((data) => {
-                    throw new Error(data.error);
-                });
-            }
             return response.json() as Promise<JobCardProps[]>;
+        })
+        .catch(() => {
+            throw new Error();
+        });
+};
+
+export const deleteJobById = (token: string, jobId: string | undefined): Promise<JobCardProps[]> => {
+    return fetch(`${URL}job/${jobId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    })
+        .then((response) => {
+            return response.json();
         })
         .catch(() => {
             throw new Error();
