@@ -37,7 +37,7 @@ const createJob = async (req, res) => {
         await create(newJob);
         return res.status(201).json({ message: 'Job successfully posted.', newJob });
     } catch (error) {
-        return res.status(500).json({ message: `${error}` });
+        return res.status(500).json({ message: `ta aqui a porra do erro ${error}`  });
     }
 };
 
@@ -51,7 +51,6 @@ const getJobById = async (req, res) => {
         return res.status(500).json({ message: `${error}` });
     }
 };
-
 
 const getJobsByCompany = async (req, res) => {
     try {

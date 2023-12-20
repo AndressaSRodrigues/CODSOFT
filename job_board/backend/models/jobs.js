@@ -12,7 +12,7 @@ const JobSchema = new mongoose.Schema({
     level: {
         type: String,
         required: true,
-        enum: ['internship', 'junior', 'mid', 'senior']
+        enum: ['Internship', 'Junior', 'Mid', 'Senior']
     },
     location: {
         type: String,
@@ -20,7 +20,7 @@ const JobSchema = new mongoose.Schema({
     },
     modality: {
         type: String,
-        enum: ['remote', 'hybrid', 'office'],
+        enum: ['Remote', 'Hybrid', 'Office'],
         required: true
     },
     description: {
