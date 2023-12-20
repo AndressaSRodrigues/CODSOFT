@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { deleteJobById } from "../../services/jobs"
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import AutorenewIcon from '@mui/icons-material/Autorenew'
 
 type JobsByUserProps = {
     isJobCreated: boolean;
@@ -19,7 +20,6 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
         try {
             const allJobsByUser = await getJobsByUser(userId);
             setJobs(allJobsByUser);
-            console.log(allJobsByUser)
         } catch (error) {
             console.error(error);
         }
@@ -53,11 +53,12 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
                             </h2>
                         </Link>
                         <span>
-                            <EditIcon className="text-primary mr-4 cursor-pointer" />
+                            <Link to={`/job/edit/${job._id}`}><EditIcon className="text-primary mr-4 cursor-pointer" /></Link>
                             <DeleteOutlineIcon className="text-neutral-500 cursor-pointer" onClick={() => handleDeleteJob(token, job._id)} />
                         </span>
                     </span>
                 ))}
+                <button className="w-32 h-12 border-primary border-2 text-primary rounded-md">Refresh <AutorenewIcon /></button>
             </div>
         </>
     )

@@ -1,8 +1,11 @@
 import { useState } from "react"
 import { useForm, Controller } from 'react-hook-form'
 import { FormControl, TextField, Button, Stack } from '@mui/material'
-import { postNewJob } from "../../services/jobs";
-import { useAuth } from "../../context/AuthContext";
+import { updateJob } from "../../services/jobs"
+import { useAuth } from "../../context/AuthContext"
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
+import { useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 type FormData = {
     title: string,
@@ -15,16 +18,14 @@ type FormData = {
     startDate: string,
 };
 
-type CreateJobProps = {
-    onJobCreated: () => void;
-  };
-
-function CreateJob({ onJobCreated }: CreateJobProps ) {
+function EditJobForm() {
     const { token } = useAuth();
+    const { id } = useParams();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+    const navigateTo = useNavigate();
 
-    const { handleSubmit, control, reset } = useForm<FormData>({
+    const { handleSubmit, control } = useForm<FormData>({
         defaultValues: {
             title: '',
             company: '',
@@ -41,7 +42,6 @@ function CreateJob({ onJobCreated }: CreateJobProps ) {
         <Controller
             name={name}
             control={control}
-            rules={{ required: `${label} is required` }}
             render={({ field, fieldState }) => (
                 <TextField
                     label={label}
@@ -59,9 +59,11 @@ function CreateJob({ onJobCreated }: CreateJobProps ) {
     const onSubmit = async (data: FormData) => {
         try {
             setIsLoading(true);
-            await postNewJob(token, data.title, data.level, data.company, data.location, data.salary, data.description, data.modality, data.startDate);
-            reset();
-            onJobCreated();
+            const filteredData = Object.fromEntries(
+                Object.entries(data).filter(([_, value]) => value !== '')
+            );
+            await updateJob(token, id, filteredData);
+            navigateTo('/dashboard/c');
         } catch (error) {
             const errorMessage = error instanceof Error
                 ? `${error.message}.`
@@ -74,7 +76,9 @@ function CreateJob({ onJobCreated }: CreateJobProps ) {
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <h1 className="text-primary text-2xl font-bold mb-4">Update Job Information <AutoAwesomeIcon /></h1>
+            <span className="text-neutral-600">You're not required to fill in every field.<br />Update only the necessary information.</span>
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
                 <FormControl>
                     <Stack spacing={2} className='w-72 lg:w-96'>
                         {renderTextField("title", "Job Title")}
@@ -87,7 +91,7 @@ function CreateJob({ onJobCreated }: CreateJobProps ) {
                         {renderTextField("startDate", "Start date")}
                         <span>{errorMessage}</span>
                         <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
-                            {isLoading ? 'Posting...' : 'Post'}
+                            {isLoading ? 'Updating...' : 'Update'}
                         </Button>
                     </Stack>
                 </FormControl>
@@ -96,4 +100,4 @@ function CreateJob({ onJobCreated }: CreateJobProps ) {
     );
 }
 
-export default CreateJob
+export default EditJobForm

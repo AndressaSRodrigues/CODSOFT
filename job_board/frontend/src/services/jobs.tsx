@@ -115,3 +115,20 @@ export const deleteJobById = (token: string, jobId: string | undefined): Promise
             throw new Error();
         });
 };
+
+export const updateJob = (token: string, jobId: string | undefined, data: object): Promise<JobDetailsProps[]> => {
+    return fetch(`${URL}job/${jobId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .catch(() => {
+            throw new Error();
+        });
+};
