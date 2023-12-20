@@ -26,8 +26,16 @@ export default function LoginForm() {
         try {
             setIsLoading(true);
             const response = await userLogin(data.email, data.password);
+            const role = response.user.role;
             localStorage.setItem('token', response.token);
-            navigateTo('/');
+            localStorage.setItem('id', response.user._id)
+            console.log(response.token, response.user)
+            switch (role) {
+                case 'person': navigateTo('/dashboard/p');
+                    break;
+                case 'company': navigateTo('/dashboard/c');
+                    break;
+            }
         } catch (error) {
             const errorMessage = error instanceof Error 
             ? `${error.message}. Please, check your credentials.` 
