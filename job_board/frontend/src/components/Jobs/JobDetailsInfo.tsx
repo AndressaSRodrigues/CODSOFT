@@ -19,6 +19,7 @@ function JobDetailsInfo() {
             try {
                 const jobDetails = await getJobDetails(id);
                 setJob(jobDetails);
+                console.log(jobDetails)
             } catch (error) {
                 console.error(error);
             }

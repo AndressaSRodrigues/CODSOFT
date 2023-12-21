@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { Job } = require('./jobs');
 
 const ApplicationSchema = new mongoose.Schema({
     userId: {
@@ -11,7 +10,8 @@ const ApplicationSchema = new mongoose.Schema({
         default: Date.now
     },
     jobId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Job',
     },
     resume: {
         type: Buffer,

@@ -14,11 +14,6 @@ export const userLogin = async (email: string, password: string): Promise<UserLo
         })
     })
         .then((response) => {
-            if (!response.ok) {
-                return response.json().then((data) => {
-                    throw new Error(data.error);
-                });
-            }
             return response.json() as Promise<UserLoginProps>;
         })
         .catch(() => {
@@ -40,11 +35,6 @@ export const userRegister = async (role: string, name: string, email: string, pa
         })
     })
         .then((response) => {
-            if (!response.ok) {
-                return response.json().then((data) => {
-                    throw new Error(data.error);
-                });
-            }
             return response.json() as Promise<UserLoginProps>;
         })
         .catch((error) => {
