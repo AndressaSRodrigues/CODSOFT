@@ -11,11 +11,6 @@ export const getJobs = (): Promise<JobCardProps[]> => {
         },
     })
         .then((response) => {
-            if (!response.ok) {
-                return response.json().then((data) => {
-                    throw new Error(data.error);
-                });
-            }
             return response.json() as Promise<JobCardProps[]>;
         })
         .catch(() => {

@@ -22,7 +22,7 @@ const checkUserRole = (allowedRole) => {
                 return res.status(403).json({ message: 'Forbidden: Unauthorized access.' });
             }
         } catch (error) {
-            return res.status(500).json({ message: `${error}` });
+            return res.status(500).json({ message: `This is the error: ${error}` });
         }
     };
 };

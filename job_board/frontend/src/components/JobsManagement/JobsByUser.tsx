@@ -58,7 +58,10 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
                         </span>
                     </span>
                 ))}
-                <button className="w-32 h-12 border-primary border-2 text-primary rounded-md">Refresh <AutorenewIcon /></button>
+                <button
+                    className="w-32 h-12 border-primary border-2 text-primary rounded-md"
+                    onClick={fetchJobsByUser}
+                >Refresh <AutorenewIcon /></button>
             </div>
         </>
     )

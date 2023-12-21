@@ -4,24 +4,21 @@ const ApplicationSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
     },
     date: {
         type: Date,
         default: Date.now
     },
-    job: {
+    jobId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Job',
-        required: true
     },
     resume: {
-        type: String,
+        type: Buffer,
         required: true
     },
     companyEmail: {
         type: String,
-        required: true,
     },
 });
 
@@ -31,8 +28,8 @@ async function findByQuery(query = {}) {
     return Application.find(query).exec();
 }
 
-async function create(job) {
-    return Application.create(job);
+async function create(jobApplication) {
+    return Application.create(jobApplication);
 }
 
 async function deleteById(id) {
