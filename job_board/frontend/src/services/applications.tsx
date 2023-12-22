@@ -4,16 +4,16 @@ const URL = 'http://localhost:3000/';
 
 export const sendNewApplication = async (
     token: string,
-    jobId: string,
+    jobId: string | null,
     userId: string,
     resume: File | null,
-    companyEmail: string,
+    companyEmail: string | null,
 ): Promise<JobApplicationProps> => {
     const formData = new FormData();
     formData.append('userId', userId);
-    formData.append('jobId', jobId);
+    formData.append('jobId', jobId || '');
     formData.append('resume', resume || '');
-    formData.append('companyEmail', companyEmail);
+    formData.append('companyEmail', companyEmail || '');
 
     return fetch(`${URL}send`, {
         method: 'POST',
@@ -27,6 +27,6 @@ export const sendNewApplication = async (
         })
         .catch((error) => {
             console.error(error)
-            throw new Error('Unable to post job');
+            throw new Error('Failed to send application');
         });
 };
