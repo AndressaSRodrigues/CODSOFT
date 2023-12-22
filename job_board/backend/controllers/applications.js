@@ -1,5 +1,12 @@
-const { Application, create } = require('../models/applications');
-const { sendConfirmationEmail, sendCVToCompany } = require('../utils/nodemailer');
+const {
+    Application,
+    create,
+    findByQuery
+} = require('../models/applications');
+const {
+    sendConfirmationEmail,
+    sendCVToCompany
+} = require('../utils/nodemailer');
 
 const sendApplication = async (req, res) => {
     try {
@@ -31,11 +38,24 @@ const sendApplication = async (req, res) => {
 
         return res.status(201).json({ message: 'Application submitted successfully.', newApplication });
     } catch (error) {
+        return res.status(500).json({ message: 'Internal server error.' });
+    }
+};
+
+const getApplicationsByUser = async (req, res) => {
+    try {
+        const { userEmail } = req.params;
+
+        const applications = await findByQuery({ userEmail });
+
+        res.status(200).json({ applications });
+    } catch (error) {
         console.error('Error applying for job:', error);
         return res.status(500).json({ message: 'Internal server error.' });
     }
 };
 
 module.exports = {
-    sendApplication
+    sendApplication,
+    getApplicationsByUser
 };
