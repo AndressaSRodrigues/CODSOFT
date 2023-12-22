@@ -22,7 +22,6 @@ function JobDetailsInfo() {
                 const jobDetails = await getJobDetails(id);
                 setJob(jobDetails);
                 setJobDetails(jobDetails._id, jobDetails.title, jobDetails.company, jobDetails.companyEmail)
-                console.log(jobDetails)
             } catch (error) {
                 console.error(error);
             }

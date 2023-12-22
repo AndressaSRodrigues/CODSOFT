@@ -1,4 +1,3 @@
-import { useJobDetails } from '../../context/JobDetailsContext';
 import SendApplicationModal from '../Applications/SendApplicationModal';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
@@ -8,8 +7,6 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function JobDetailsActions() {
-    const { jobId, jobTitle, companyName, companyEmail } = useJobDetails();
-    console.log(jobId, jobTitle, companyName, companyEmail)
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const handleOpenModal = () => setIsModalOpen(true);
