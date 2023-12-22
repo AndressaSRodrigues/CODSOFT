@@ -2,6 +2,7 @@ import { JobDetailsProps } from "../../interfaces/JobDetailsProps"
 import { getJobDetails } from "../../services/jobs";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react"
+import { useJobDetails } from "../../context/JobDetailsContext";
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ApartmentIcon from '@mui/icons-material/Apartment';
@@ -10,6 +11,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PublicIcon from '@mui/icons-material/Public';
 
 function JobDetailsInfo() {
+    const { setJobDetails } = useJobDetails();
     const [job, setJob] = useState<JobDetailsProps | null>(null);
 
     const id = useParams<{ id?: string }>()?.id || "";
@@ -19,6 +21,7 @@ function JobDetailsInfo() {
             try {
                 const jobDetails = await getJobDetails(id);
                 setJob(jobDetails);
+                setJobDetails(jobDetails._id, jobDetails.title, jobDetails.company, jobDetails.companyEmail)
                 console.log(jobDetails)
             } catch (error) {
                 console.error(error);
