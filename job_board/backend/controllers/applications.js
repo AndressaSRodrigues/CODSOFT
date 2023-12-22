@@ -21,12 +21,13 @@ const sendApplication = async (req, res) => {
             companyEmail,
         });
 
+        const applicationDetails = `A new job application has been received from ${userEmail}. For the job http://localhost:5173/job/${jobId}`;
+
         await create(newApplication);
 
-        // Pass userEmail to the sendConfirmationEmail function
-        await sendConfirmationEmail(userEmail);
+        await sendConfirmationEmail(userEmail, companyEmail);
 
-        await sendCVToCompany(companyEmail, resumeBuffer);
+        await sendCVToCompany(companyEmail, resumeBuffer, applicationDetails);
 
         return res.status(201).json({ message: 'Application submitted successfully.', newApplication });
     } catch (error) {

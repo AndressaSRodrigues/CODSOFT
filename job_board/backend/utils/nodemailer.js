@@ -12,12 +12,12 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const sendConfirmationEmail = async (userEmail) => {
+const sendConfirmationEmail = async (userEmail, companyEmail) => {
     const mailOptions = {
         from: applicationEmail,
         to: userEmail,
         subject: 'Application Confirmation',
-        text: 'Thank you for submitting your application. We have forwarded your CV to the company.',
+        text: `Thank you for submitting your application. We have forwarded your CV to ${companyEmail}.`,
     };
 
     try {
@@ -28,12 +28,12 @@ const sendConfirmationEmail = async (userEmail) => {
     }
 };
 
-const sendCVToCompany = async (companyEmail, resumeBuffer) => {
+const sendCVToCompany = async (companyEmail, resumeBuffer, applicationDetails) => {
     const mailOptions = {
         from: applicationEmail,
         to: companyEmail,
         subject: 'New Job Application',
-        text: 'A new job application has been received. Please find the attached CV.',
+        text: `${applicationDetails}. Please find the attached CV.`,
         attachments: [
             {
                 filename: 'resume.pdf',
