@@ -1,15 +1,20 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useAuth } from "../../context/AuthContext"
+import { useAuth } from "../../context/AuthContext";
 
 function NavbarMenu() {
   const { userId, userRole, setUserRole } = useAuth();
+  const navigate = useNavigate();
 
-  const logOut = (): void => {
+  const logOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('userRole');
     localStorage.removeItem('userName');
+    navigate('/');
+    if (window.location.pathname === '/') {
+      window.location.reload();
+    }
   };
 
   useEffect(() => {
@@ -19,7 +24,7 @@ function NavbarMenu() {
       setUserRole(storedUserRole || '');
     }
 
-  }, [userRole, setUserRole])
+  }, [userRole, setUserRole]);
 
   return (
     <>
@@ -37,7 +42,7 @@ function NavbarMenu() {
         }
       </div>
     </>
-  )
+  );
 }
 
-export default NavbarMenu
+export default NavbarMenu;

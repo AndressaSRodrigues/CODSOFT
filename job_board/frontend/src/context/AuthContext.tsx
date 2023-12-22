@@ -9,10 +9,12 @@ interface AuthContextProps {
   userId: string;
   userRole: string;
   userName: string;
+  userEmail: string;
   setToken: Dispatch<SetStateAction<string>>;
   setUserId: Dispatch<SetStateAction<string>>;
   setUserRole: Dispatch<SetStateAction<string>>;
   setUserName: Dispatch<SetStateAction<string>>;
+  setUserEmail: Dispatch<SetStateAction<string>>;
 }
 
 const AuthContext = createContext<AuthContextProps>({
@@ -20,10 +22,12 @@ const AuthContext = createContext<AuthContextProps>({
   userId: '',
   userRole: '',
   userName: '',
-  setToken: () => {},
-  setUserId: () => {},
-  setUserRole: () => {},
-  setUserName: () => {},
+  userEmail: '',
+  setToken: () => { },
+  setUserId: () => { },
+  setUserRole: () => { },
+  setUserName: () => { },
+  setUserEmail: () => { },
 });
 
 export function AuthProvider({ children }: AuthProviderProps) {
@@ -31,9 +35,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [userId, setUserId] = useState(localStorage.getItem('userId') || '');
   const [userRole, setUserRole] = useState(localStorage.getItem('userRole') || '');
   const [userName, setUserName] = useState(localStorage.getItem('userName') || '');
+  const [userEmail, setUserEmail] = useState(localStorage.getItem('userEmail') || '');
 
   return (
-    <AuthContext.Provider value={{ token, userId, userRole, userName, setToken, setUserId, setUserRole, setUserName }}>
+    <AuthContext.Provider
+      value={{
+        token,
+        userId,
+        userRole,
+        userName,
+        userEmail,
+        setToken,
+        setUserId,
+        setUserRole,
+        setUserName,
+        setUserEmail
+      }}>
       {children}
     </AuthContext.Provider>
   );

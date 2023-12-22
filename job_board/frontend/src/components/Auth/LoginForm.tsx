@@ -30,11 +30,14 @@ export default function LoginForm() {
             const id = response.user._id;
             const role = response.user.role;
             const userName = response.user.name;
-            console.log(token, id, role, userName)
+            const userEmail = response.user.email;
+            console.log(response)
             localStorage.setItem('token', token);
             localStorage.setItem('userId', id);
             localStorage.setItem('userRole', role);
             localStorage.setItem('userName', userName);
+            localStorage.setItem('userEmail', userEmail);
+            console.log(userEmail)
             switch (role) {
                 case 'person': navigateTo('/dashboard/p');
                     break;

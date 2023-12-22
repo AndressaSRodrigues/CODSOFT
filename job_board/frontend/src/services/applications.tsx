@@ -5,12 +5,13 @@ const URL = 'http://localhost:3000/';
 export const sendNewApplication = async (
     token: string,
     jobId: string | null,
-    userId: string,
+    userEmail: string,
     resume: File | null,
     companyEmail: string | null,
 ): Promise<JobApplicationProps> => {
     const formData = new FormData();
-    formData.append('userId', userId);
+    formData.append('token', token)
+    formData.append('userEmail', userEmail);
     formData.append('jobId', jobId || '');
     formData.append('resume', resume || '');
     formData.append('companyEmail', companyEmail || '');
