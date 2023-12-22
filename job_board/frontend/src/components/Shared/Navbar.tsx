@@ -44,13 +44,14 @@ function Navbar() {
                     }
                     {!userId &&
                         <div className='cursor-pointer'>
+                            <Link to={'/create-account'} className='mx-4'>Create Account</Link>
                             <Link to={'/login'} className='mx-4'>Log In</Link>
                         </div>
                     }
                 </div>
             </div>
             {isMenuOpen &&
-                <div className='absolute right-0'>
+                <div className='absolute right-0 z-10'>
                     <NavbarMenu />
                 </div>
             }

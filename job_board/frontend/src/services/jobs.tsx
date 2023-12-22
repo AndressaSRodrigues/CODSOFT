@@ -49,7 +49,7 @@ export const postNewJob = async (
     modality: string,
     startDate: string,
 ): Promise<JobDetailsProps> => {
-    return fetch(`${URL}job`, {
+    return fetch(`${URL}jobs`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
