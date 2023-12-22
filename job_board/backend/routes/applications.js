@@ -6,5 +6,5 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 module.exports = (app) => {
-    app.post('/send', upload.single('resume'), sendApplication);
+    app.post('/send', isPerson, upload.single('resume'), sendApplication);
 };

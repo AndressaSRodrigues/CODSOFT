@@ -59,8 +59,7 @@ function CreateJob({ onJobCreated }: CreateJobProps ) {
     const onSubmit = async (data: FormData) => {
         try {
             setIsLoading(true);
-            const response = await postNewJob(token, data.title, data.level, data.company, data.location, data.salary, data.description, data.modality, data.startDate);
-            console.log(response)
+            await postNewJob(token, data.title, data.level, data.company, data.location, data.salary, data.description, data.modality, data.startDate);
             reset();
             onJobCreated();
         } catch (error) {

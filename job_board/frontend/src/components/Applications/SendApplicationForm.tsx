@@ -13,7 +13,7 @@ type ResumeFormData = {
 };
 
 function SendApplicationForm() {
-  const { token, userId } = useAuth();
+  const { token, userId, userRole } = useAuth();
   const { jobId, companyEmail } = useJobDetails();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
@@ -24,10 +24,9 @@ function SendApplicationForm() {
   const handleResumeSubmit = async (data: ResumeFormData) => {
     try {
       setIsLoading(true);
-      const response = await sendNewApplication(token, jobId, userId, data.resume[0], companyEmail);
-      console.log(data.resume)
-      console.log('Resume uploaded:', response);
+      await sendNewApplication(token, jobId, userId, data.resume[0], companyEmail);
       setSuccessMessage(true);
+      console.log(userRole, token)
     } catch (error) {
       const errorMessage = error instanceof Error
         ? `${error.message}. Please, check your file.`
@@ -39,6 +38,7 @@ function SendApplicationForm() {
   };
 
   const successMessageStyle = 'flex flex-col justify-center items-center';
+  const navigationButtonsStyle = 'w-fit h-8 p-1 rounded-md shadow-sm text-sm text-primary';
 
   return (
     <div>
@@ -69,7 +69,7 @@ function SendApplicationForm() {
 
       {successMessage && (
         <div className={successMessageStyle}>
-          <div className={`${successMessageStyle} text-primary font-bold text-lg my-8`}>
+          <div className={`${successMessageStyle} text-primary text-center font-bold text-lg my-8`}>
             <span>Your application has been sent!</span>
             <span>Good luck <AutoAwesome /></span>
           </div>
@@ -77,17 +77,17 @@ function SendApplicationForm() {
             <EastIcon className='text-primary mt-1'/>
             <Link
               to={'/'}
-              className="w-fit h-8 p-1 rounded-md shadow-sm text-sm text-primary">
+              className={navigationButtonsStyle}>
               Home
             </Link>
             <Link
               to={'/browse-jobs'}
-              className="w-fit h-8 p-1 rounded-md shadow-sm text-sm text-primary">
-              Browse More Jobs
+              className={navigationButtonsStyle}>
+              Jobs
             </Link>
             <Link
               to={'/dashboard/p'}
-              className="w-fit h-8 p-1 rounded-md shadow-sm text-sm text-primary">
+              className={navigationButtonsStyle}>
               Dashboard
             </Link>
           </div>

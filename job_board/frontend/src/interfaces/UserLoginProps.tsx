@@ -4,7 +4,6 @@ export interface UserLoginProps {
         _id: string,
         name: string,
         email: string,
-        password: string,
         role: string,
     }
     error?: string;

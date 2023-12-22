@@ -108,7 +108,7 @@ function RegisterForm() {
                         />
                         <span>{errorMessage}</span>
                         <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
-                            {isLoading ? 'Loggin in...' : 'Login'}
+                            {isLoading ? 'Creating account...' : 'Create my account'}
                         </Button>
                     </Stack>
                 </FormControl>
