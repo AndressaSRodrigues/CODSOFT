@@ -1,4 +1,5 @@
 export interface JobDetailsProps {
+    _id: string;
     title: string;
     level: string;
     company: string;

@@ -1,4 +1,4 @@
-/* import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { FormControl, Button, Stack } from '@mui/material';
 import { useState } from 'react';
 import { sendNewApplication } from '../../services/applications';
@@ -43,6 +43,7 @@ function SendApplicationForm() {
                 <input
                   type="file"
                   onChange={(e) => field.onChange(e.target.files)}
+                  className='text-primary text-sm'
                 />
               )}
             />
@@ -57,4 +58,4 @@ function SendApplicationForm() {
   );
 }
 
-export default SendApplicationForm */
+export default SendApplicationForm
