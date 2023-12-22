@@ -1,17 +1,11 @@
 const mongoose = require('mongoose');
 
 const ApplicationSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    },
-    date: {
-        type: Date,
-        default: Date.now
+    userEmail: {
+        type: String,
     },
     jobId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Job',
+        type: String,
     },
     resume: {
         type: Buffer,
@@ -19,6 +13,10 @@ const ApplicationSchema = new mongoose.Schema({
     },
     companyEmail: {
         type: String,
+    },
+    date: {
+        type: Date,
+        default: Date.now
     },
 });
 

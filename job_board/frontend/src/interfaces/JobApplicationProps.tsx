@@ -1,5 +1,5 @@
 export interface JobApplicationProps {
-    userId: string;
+    userEmail: string;
     resume: File;
     companyEmail: string;
 }
