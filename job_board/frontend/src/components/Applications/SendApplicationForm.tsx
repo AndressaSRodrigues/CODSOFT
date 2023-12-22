@@ -3,13 +3,15 @@ import { FormControl, Button, Stack } from '@mui/material';
 import { useState } from 'react';
 import { sendNewApplication } from '../../services/applications';
 import { useAuth } from '../../context/AuthContext';
+import { useJobDetails } from '../../context/JobDetailsContext';
 
 type ResumeFormData = {
-  resume: File;
+  resume: FileList;
 };
 
 function SendApplicationForm() {
   const { token, userId } = useAuth();
+  const { jobId, companyEmail } = useJobDetails();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
@@ -18,7 +20,8 @@ function SendApplicationForm() {
   const handleResumeSubmit = async (data: ResumeFormData) => {
     try {
       setIsLoading(true);
-      const response = await sendNewApplication(token, jobId, userId, data.resume, companyEmail);
+      const response = await sendNewApplication(token, jobId, userId, data.resume[0], companyEmail);
+      console.log(data.resume)
       console.log('Resume uploaded:', response);
     } catch (error) {
       const errorMessage = error instanceof Error

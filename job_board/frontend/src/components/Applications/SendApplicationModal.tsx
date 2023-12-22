@@ -1,6 +1,7 @@
 import SendApplicationForm from './SendApplicationForm';
 import CloseIcon from '@mui/icons-material/Close';
 import EmailIcon from '@mui/icons-material/Email';
+import { useJobDetails } from '../../context/JobDetailsContext';
 
 interface SendApplicationModalProps {
     open: boolean;
@@ -8,6 +9,7 @@ interface SendApplicationModalProps {
 }
 
 function SendApplicationModal({ open, onClose }: SendApplicationModalProps) {
+    const { jobTitle, companyName } = useJobDetails();
     const modalStyle = `
         w-fit
         h-fit
@@ -45,8 +47,9 @@ function SendApplicationModal({ open, onClose }: SendApplicationModalProps) {
                             <CloseIcon className="text-primary cursor-pointer" onClick={onClose} />
                         </div>
                         <div className='flex flex-col justify-start'>
-                            <span className="text-lg">Please, upload your resume.</span>
-                            <span className="mb-4">Your information you'll be shared with the company.</span>
+                            <span className="text-lg mb-4">You're applying to {jobTitle} at {companyName}.</span>
+                            <span className="text-sm">Please, upload your CV.</span>
+                            <span className="text-sm mb-4">Your information you'll be shared with the company.</span>
                             <SendApplicationForm />
                         </div>
                     </div>
@@ -57,4 +60,3 @@ function SendApplicationModal({ open, onClose }: SendApplicationModalProps) {
 }
 
 export default SendApplicationModal;
-

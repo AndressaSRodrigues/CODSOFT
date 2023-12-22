@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 function JobDetailsActions() {
     const { jobId, jobTitle, companyName, companyEmail } = useJobDetails();
-    console.log(jobId, jobTitle, companyName, companyEmail )
+    console.log(jobId, jobTitle, companyName, companyEmail)
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const handleOpenModal = () => setIsModalOpen(true);
@@ -41,7 +41,11 @@ function JobDetailsActions() {
                     Report
                 </Link>
             </div>
-            {isModalOpen && <SendApplicationModal open={isModalOpen} onClose={handleCloseModal} />}
+            {isModalOpen &&
+                <SendApplicationModal
+                    open={isModalOpen}
+                    onClose={handleCloseModal}
+                />}
         </>
     )
 }
