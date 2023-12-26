@@ -10,7 +10,7 @@ const {
 
 const sendApplication = async (req, res) => {
     try {
-        const { userEmail, jobId, companyEmail } = req.body;
+        const { userEmail, jobId, jobTitle, companyName, companyEmail } = req.body;
 
         if (!req.file || !req.file.buffer || req.file.buffer.length === 0) {
             return res.status(400).json({ message: 'Resume file is required.' });
@@ -24,11 +24,13 @@ const sendApplication = async (req, res) => {
         const newApplication = new Application({
             userEmail,
             jobId,
+            jobTitle,
             resume: resumeBuffer,
+            companyName,
             companyEmail,
         });
 
-        const applicationDetails = `A new job application has been received from ${userEmail}. For the job http://localhost:5173/job/${jobId}`;
+        const applicationDetails = `A new job application has been received from ${userEmail}. For the job ${jobTitle}: http://localhost:5173/job/${jobId}`;
 
         await create(newApplication);
 
