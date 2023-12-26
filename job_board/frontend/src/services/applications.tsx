@@ -47,7 +47,7 @@ export const getApplicationsByUser = async (userEmail: string): Promise<JobAppli
         }
 
         const data = await response.json();
-        return data.applications || []; // Adjust the parsing logic
+        return data.applications || [];
     } catch (error) {
         console.error(error);
         throw new Error('Failed to fetch applications');

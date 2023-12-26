@@ -9,6 +9,7 @@ import DashboardPerson from "./views/DashboardPerson";
 import DashboardCompany from "./views/DashboardCompany";
 import { AuthProvider } from "./context/AuthContext";
 import EditJob from "./views/EditJob";
+import UserProfile from "./views/UserProfile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="create-account" element={<CreateAccount />} />
+          <Route path="profile/:id" element={<UserProfile />} />
           <Route path="dashboard/p" element={<DashboardPerson />} />
           <Route path="dashboard/c" element={<DashboardCompany />} />
           <Route path="job/:id" element={<JobDetails />} />
