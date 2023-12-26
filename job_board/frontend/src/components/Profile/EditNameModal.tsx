@@ -10,7 +10,7 @@ type FormData = {
     name: string;
 };
 
-function EditNameModal({ open, onClose }: ModalProps) {
+function EditNameModal({ title, open, onClose }: ModalProps) {
     const { token, userId, userRole, userEmail, setUser } = useAuth();
     const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
@@ -34,7 +34,7 @@ function EditNameModal({ open, onClose }: ModalProps) {
         <div>
             {open && (
                 <>
-                    <Modal title='Edit Name' open={open} onClose={onClose}>
+                    <Modal title={title} open={open} onClose={onClose}>
                         {!successMessage && (
                             <>
                                 <div className='flex flex-col justify-start'>
