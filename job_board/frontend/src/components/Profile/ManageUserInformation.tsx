@@ -25,7 +25,6 @@ function ManageUserInformation() {
   const initialModalState = {
     isDeleteModalOpen: false,
     isEditNameModalOpen: false,
-    isChangeRoleModalOpen: false,
     isChangePasswordModalOpen: false,
   };
 
@@ -48,9 +47,6 @@ function ManageUserInformation() {
         <span onClick={() => handleOpenModal("isEditNameModalOpen")} className={hoverStyle}>
           Edit Name
         </span>
-        <span onClick={() => handleOpenModal("isChangeRoleModalOpen")} className={hoverStyle}>
-          Change Role
-        </span>
         <span onClick={() => handleOpenModal("isChangePasswordModalOpen")} className={hoverStyle}>
           Change Password
         </span>
@@ -58,8 +54,8 @@ function ManageUserInformation() {
           Delete my account
         </span>
       </div>
-      {modalState.isDeleteModalOpen && <DeleteUserModal open={true} onClose={() => handleCloseModal("isDeleteModalOpen")} />}
-      {modalState.isEditNameModalOpen && <EditNameModal open={true} onClose={() => handleCloseModal("isEditNameModalOpen")}/> }
+      {modalState.isDeleteModalOpen && <DeleteUserModal title='Delete Account' open={true} onClose={() => handleCloseModal("isDeleteModalOpen")} children={null} />}
+      {modalState.isEditNameModalOpen && <EditNameModal title='Edit Name' open={true} onClose={() => handleCloseModal("isEditNameModalOpen")} children={null} /> }
     </>
   );
 }

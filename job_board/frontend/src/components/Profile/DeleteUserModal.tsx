@@ -5,7 +5,7 @@ import { ModalProps } from '../../interfaces/ModalProps';
 import { deleteUserByEmail } from '../../services/users';
 import Modal from '../Shared/Modal';
 
-function DeleteUserModal({ open, onClose }: ModalProps) {
+function DeleteUserModal({ title, open, onClose }: ModalProps) {
     const { token, userEmail } = useAuth();
     const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
@@ -26,7 +26,7 @@ function DeleteUserModal({ open, onClose }: ModalProps) {
         <div>
             {open && (
                 <>
-                    <Modal title='Delete Account' open={open} onClose={onClose}>
+                    <Modal title={title} open={open} onClose={onClose}>
                     {!successMessage && (
                         <>
                             <div className='flex flex-col justify-start'>
