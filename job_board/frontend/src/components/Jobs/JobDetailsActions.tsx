@@ -1,6 +1,5 @@
 import SendApplicationModal from '../Applications/SendApplicationModal';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
-import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import SendIcon from '@mui/icons-material/Send';
 import FlagIcon from '@mui/icons-material/Flag';
 import { Link } from 'react-router-dom';
@@ -26,11 +25,6 @@ function JobDetailsActions() {
                     onClick={handleOpenModal}
                     disabled={isUserCompany}
                 >Apply  <SendIcon />
-                </button>
-                <button
-                    className={`${buttonStyle} ${isUserCompany ? 'bg-neutral-400 cursor-not-allowed' : ''}`}
-                    disabled={isUserCompany}
-                >Save  <BookmarkAddedIcon />
                 </button>
                 <Link to={'/'}>
                     <button

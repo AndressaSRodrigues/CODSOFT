@@ -7,9 +7,15 @@ const ApplicationSchema = new mongoose.Schema({
     jobId: {
         type: String,
     },
+    jobTitle: {
+        type: String,
+    },
     resume: {
         type: Buffer,
         required: true
+    },
+    companyName: {
+        type: String,
     },
     companyEmail: {
         type: String,
