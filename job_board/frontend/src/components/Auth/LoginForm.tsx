@@ -3,6 +3,7 @@ import { FormControl, TextField, Button, Stack } from '@mui/material';
 import { useState } from 'react';
 import { userLogin } from '../../services/auth';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 type FormData = {
     email: string;
@@ -12,6 +13,7 @@ type FormData = {
 export default function LoginForm() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+    const { setUser } = useAuth();
 
     const navigateTo = useNavigate();
 
@@ -31,17 +33,13 @@ export default function LoginForm() {
             const role = response.user.role;
             const userName = response.user.name;
             const userEmail = response.user.email;
-            console.log(response)
-            localStorage.setItem('token', token);
-            localStorage.setItem('userId', id);
-            localStorage.setItem('userRole', role);
-            localStorage.setItem('userName', userName);
-            localStorage.setItem('userEmail', userEmail);
-            console.log(userEmail)
+            setUser(token, id, role, userName, userEmail);
             switch (role) {
                 case 'person': navigateTo('/dashboard/p');
                     break;
                 case 'company': navigateTo('/dashboard/c');
+                    break;
+                default:
                     break;
             }
         } catch (error) {

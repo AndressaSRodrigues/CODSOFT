@@ -11,7 +11,7 @@ type FormData = {
 };
 
 function EditNameModal({ open, onClose }: ModalProps) {
-    const { token, userEmail } = useAuth();
+    const { token, userId, userRole, userEmail, setUser } = useAuth();
     const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
     const { handleSubmit, control } = useForm<FormData>({
@@ -22,8 +22,8 @@ function EditNameModal({ open, onClose }: ModalProps) {
 
     const onSubmit = async (data: FormData) => {
         try {
-            const response = await updateUserInfo(token, userEmail, data)
-            console.log(response)
+            await updateUserInfo(token, userEmail, data)
+            setUser(token, userId, userRole, data.name, userEmail);
             setSuccessMessage(true);
         } catch (error) {
             console.log(error);

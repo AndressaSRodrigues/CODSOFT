@@ -9,8 +9,10 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PublicIcon from '@mui/icons-material/Public';
+import { useAuth } from "../../context/AuthContext";
 
 function JobDetailsInfo() {
+    const { token } = useAuth();
     const { setJobDetails } = useJobDetails();
     const [job, setJob] = useState<JobDetailsProps | null>(null);
 
@@ -43,6 +45,9 @@ function JobDetailsInfo() {
                 <span className="font-bold">Description</span>
                 <span>{job?.description}</span>
             </article>
+            {token === '' && (
+            <span className="text-primary text-lg font-bold text-center">Create an account and login to apply!</span>
+        )}
         </>
     )
 }

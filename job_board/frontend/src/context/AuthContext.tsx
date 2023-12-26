@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -10,25 +10,19 @@ interface AuthContextProps {
   userRole: string;
   userName: string;
   userEmail: string;
-  setToken: Dispatch<SetStateAction<string>>;
-  setUserId: Dispatch<SetStateAction<string>>;
-  setUserRole: Dispatch<SetStateAction<string>>;
-  setUserName: Dispatch<SetStateAction<string>>;
-  setUserEmail: Dispatch<SetStateAction<string>>;
+  setUser: (accessToken: string, id: string, role: string, name: string, email: string) => void;
 }
 
-const AuthContext = createContext<AuthContextProps>({
+const defaultValues: AuthContextProps = {
   token: '',
   userId: '',
   userRole: '',
   userName: '',
   userEmail: '',
-  setToken: () => { },
-  setUserId: () => { },
-  setUserRole: () => { },
-  setUserName: () => { },
-  setUserEmail: () => { },
-});
+  setUser: () => {},
+};
+
+const AuthContext = createContext<AuthContextProps>(defaultValues);
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -37,20 +31,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [userName, setUserName] = useState(localStorage.getItem('userName') || '');
   const [userEmail, setUserEmail] = useState(localStorage.getItem('userEmail') || '');
 
+  const setUser = (
+    accessToken: string,
+    id: string,
+    role: string,
+    name: string,
+    email: string
+  ) => {
+    setToken(accessToken);
+    setUserId(id);
+    setUserRole(role);
+    setUserName(name);
+    setUserEmail(email);
+
+    // Updating local storage for data persistence
+    localStorage.setItem('token', accessToken);
+    localStorage.setItem('userId', id);
+    localStorage.setItem('userRole', role);
+    localStorage.setItem('userName', name);
+    localStorage.setItem('userEmail', email);
+  };
+
   return (
     <AuthContext.Provider
-      value={{
-        token,
-        userId,
-        userRole,
-        userName,
-        userEmail,
-        setToken,
-        setUserId,
-        setUserRole,
-        setUserName,
-        setUserEmail
-      }}>
+      value={{ token, userId, userRole, userName, userEmail, setUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
