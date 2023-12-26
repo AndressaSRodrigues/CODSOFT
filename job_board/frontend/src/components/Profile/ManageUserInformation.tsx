@@ -25,7 +25,6 @@ function ManageUserInformation() {
   const initialModalState = {
     isDeleteModalOpen: false,
     isEditNameModalOpen: false,
-    isChangeRoleModalOpen: false,
     isChangePasswordModalOpen: false,
   };
 
@@ -47,9 +46,6 @@ function ManageUserInformation() {
         <h1 className="text-primary text-2xl font-bold mb-4">Manage Account</h1>
         <span onClick={() => handleOpenModal("isEditNameModalOpen")} className={hoverStyle}>
           Edit Name
-        </span>
-        <span onClick={() => handleOpenModal("isChangeRoleModalOpen")} className={hoverStyle}>
-          Change Role
         </span>
         <span onClick={() => handleOpenModal("isChangePasswordModalOpen")} className={hoverStyle}>
           Change Password
