@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import DeleteUserModal from "./DeleteUserModal";
 import EditNameModal from "./EditNameModal";
+import ChangePassword from "./ChangePassword";
 
 const OPEN_MODAL = "OPEN_MODAL";
 const CLOSE_MODAL = "CLOSE_MODAL";
@@ -56,6 +57,7 @@ function ManageUserInformation() {
       </div>
       {modalState.isDeleteModalOpen && <DeleteUserModal title='Delete Account' open={true} onClose={() => handleCloseModal("isDeleteModalOpen")} children={null} />}
       {modalState.isEditNameModalOpen && <EditNameModal title='Edit Name' open={true} onClose={() => handleCloseModal("isEditNameModalOpen")} children={null} /> }
+      {modalState.isChangePasswordModalOpen && <ChangePassword title='Change Password' open={true} onClose={() => handleCloseModal("isChangePasswordModalOpen")} children={null} />}
     </>
   );
 }
