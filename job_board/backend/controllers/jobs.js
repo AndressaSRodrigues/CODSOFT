@@ -1,4 +1,4 @@
-const { Job, find, create, findByQuery, findById, deleteById, updateById } = require("../models/jobs");
+const { Job, find, create, findByQuery, findById, deleteById, updateById, findByCompany } = require("../models/jobs");
 
 const getJobs = async (req, res) => {
     try {
@@ -56,7 +56,7 @@ const getJobById = async (req, res) => {
 const getJobsByCompany = async (req, res) => {
     try {
         const { company } = req.params;
-        const jobs = await findByQuery({ createdBy: company });
+        const jobs = await findByCompany({ createdBy: company });
         return res.status(200).json(jobs)
     } catch (error) {
         return res.status(500).json({ message: `${error}` });

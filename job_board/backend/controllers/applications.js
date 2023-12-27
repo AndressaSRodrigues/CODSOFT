@@ -18,9 +18,6 @@ const sendApplication = async (req, res) => {
 
         const resumeBuffer = req.file.buffer;
 
-        console.log('resumeBuffer:', resumeBuffer);
-        console.log(userEmail);
-
         const newApplication = new Application({
             userEmail,
             jobId,
