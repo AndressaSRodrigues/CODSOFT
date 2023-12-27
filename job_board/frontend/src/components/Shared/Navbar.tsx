@@ -23,6 +23,7 @@ function Navbar() {
                     }
                 </div>
                 <div className='flex flex-row items-center justify-center mr-4'>
+                <Link to={'/jobs'} className='mr-8'>All Jobs</Link>
                     {token &&
                         <div onClick={toggleMenu} className='cursor-pointer'>
                             <AccountCircleIcon />

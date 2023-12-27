@@ -56,9 +56,10 @@ async function findById(id) {
     return Job.findById({ _id: id });
 }
 
-async function findByQuery(query = {}) {
-    return Job.find(query).exec();
-}
+const findByQuery = async (query = {}) => {
+    const regex = new RegExp(query.title, 'i');
+    return Job.find({ title: regex }).exec();
+};
 
 async function create(job) {
     return Job.create(job);

@@ -95,6 +95,21 @@ export const getJobsByUser = (userId: string): Promise<JobCardProps[]> => {
         });
 };
 
+export const getJobsByQuery = (query: string): Promise<JobCardProps[]> => {
+    return fetch(`${URL}jobs/search/${query}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch jobs by query');
+            }
+            return response.json() as Promise<JobCardProps[]>;
+        });
+};
+
 export const deleteJobById = (token: string, jobId: string | undefined): Promise<JobCardProps[]> => {
     return fetch(`${URL}job/${jobId}`, {
         method: 'DELETE',

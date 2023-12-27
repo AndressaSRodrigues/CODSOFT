@@ -63,6 +63,17 @@ const getJobsByCompany = async (req, res) => {
     }
 };
 
+const getJobsByQuery = async (req, res) => {
+    try {
+        const { query: searchQuery } = req.params;
+        const jobs = await findByQuery({ title: searchQuery });
+        return res.status(200).json(jobs);
+    } catch (error) {
+        console.error('Error:', error);
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 const deleteJob = async (req, res) => {
     try {
         const { id } = req.params;
@@ -94,4 +105,4 @@ const updateJob = async (req, res) => {
     }
 };
 
-module.exports = { getJobs, createJob, getJobsByCompany, getJobById, deleteJob, updateJob };
+module.exports = { getJobs, createJob, getJobsByCompany, getJobsByQuery, getJobById, deleteJob, updateJob };
