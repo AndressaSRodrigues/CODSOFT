@@ -22,7 +22,6 @@ const sendConfirmationEmail = async (userEmail, companyEmail) => {
 
     try {
         await transporter.sendMail(mailOptions);
-        console.log('Confirmation email sent successfully');
     } catch (error) {
         console.error('Error sending confirmation email:', error);
     }
@@ -44,7 +43,6 @@ const sendCVToCompany = async (companyEmail, resumeBuffer, applicationDetails) =
 
     try {
         await transporter.sendMail(mailOptions);
-        console.log('CV sent to company successfully');
     } catch (error) {
         console.error('Error sending CV to company:', error);
     }

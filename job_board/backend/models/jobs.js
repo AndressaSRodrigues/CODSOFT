@@ -61,6 +61,10 @@ const findByQuery = async (query = {}) => {
     return Job.find({ title: regex }).exec();
 };
 
+async function findByCompany(query = {}) {
+    return Job.find(query).exec();
+}
+
 async function create(job) {
     return Job.create(job);
 }
@@ -77,6 +81,7 @@ module.exports = {
     Job,
     find,
     findByQuery,
+    findByCompany,
     findById,
     create,
     deleteById,
