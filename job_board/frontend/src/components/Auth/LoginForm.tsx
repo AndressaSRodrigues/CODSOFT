@@ -1,16 +1,16 @@
-import { useForm, Controller } from 'react-hook-form';
-import { FormControl, TextField, Button, Stack } from '@mui/material';
-import { useState } from 'react';
-import { userLogin } from '../../services/auth';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useForm, Controller } from "react-hook-form";
+import { FormControl, TextField, Button, Stack } from "@mui/material";
+import { useState } from "react";
+import { userLogin } from "../../services/auth";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 type FormData = {
     email: string;
     password: string;
 };
 
-export default function LoginForm() {
+function LoginForm() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
     const { setUser } = useAuth();
@@ -19,8 +19,8 @@ export default function LoginForm() {
 
     const { handleSubmit, control } = useForm<FormData>({
         defaultValues: {
-            email: '',
-            password: '',
+            email: "",
+            password: "",
         },
     });
 
@@ -35,17 +35,17 @@ export default function LoginForm() {
             const userEmail = response.user.email;
             setUser(token, id, role, userName, userEmail);
             switch (role) {
-                case 'person': navigateTo('/dashboard/p');
+                case "person": navigateTo("/dashboard/p");
                     break;
-                case 'company': navigateTo('/dashboard/c');
+                case "company": navigateTo("/dashboard/c");
                     break;
                 default:
                     break;
             }
         } catch (error) {
-            const errorMessage = error instanceof Error 
-            ? `${error.message}. Please, check your credentials.` 
-            : 'An error occurred';
+            const errorMessage = error instanceof Error
+                ? `${error.message}. Please, check your credentials.`
+                : "An error occurred";
             setErrorMessage(errorMessage);
         } finally {
             setIsLoading(false);
@@ -56,17 +56,17 @@ export default function LoginForm() {
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl>
-                    <Stack spacing={2} className='w-72 lg:w-96'>
+                    <Stack spacing={2} className="w-72 lg:w-96">
                         <Controller
                             name="email"
                             control={control}
-                            rules={{ required: 'Email is required', pattern: /^\S+@\S+$/i }}
+                            rules={{ required: "Email is required", pattern: /^\S+@\S+$/i }}
                             render={({ field, fieldState }) => (
                                 <TextField
                                     label="Email"
                                     type="email"
                                     error={!!fieldState.error}
-                                    helperText={fieldState.error ? fieldState.error.message : ''}
+                                    helperText={fieldState.error ? fieldState.error.message : ""}
                                     {...field}
                                 />
                             )}
@@ -74,20 +74,20 @@ export default function LoginForm() {
                         <Controller
                             name="password"
                             control={control}
-                            rules={{ required: 'Password is required' }}
+                            rules={{ required: "Password is required" }}
                             render={({ field, fieldState }) => (
                                 <TextField
                                     label="Password"
                                     type="password"
                                     error={!!fieldState.error}
-                                    helperText={fieldState.error ? fieldState.error.message : ''}
+                                    helperText={fieldState.error ? fieldState.error.message : ""}
                                     {...field}
                                 />
                             )}
                         />
                         <span>{errorMessage}</span>
                         <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
-                            {isLoading ? 'Loggin in...' : 'Login'}
+                            {isLoading ? "Loggin in..." : "Login"}
                         </Button>
                     </Stack>
                 </FormControl>
@@ -95,3 +95,5 @@ export default function LoginForm() {
         </>
     );
 };
+
+export default LoginForm

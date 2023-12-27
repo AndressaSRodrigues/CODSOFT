@@ -2,7 +2,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 interface JobDetailsContextProps {
     children: ReactNode;
-}
+};
 
 interface JobDetailsContextValues {
     jobId: string | null;
@@ -10,7 +10,7 @@ interface JobDetailsContextValues {
     companyName: string | null;
     companyEmail: string | null;
     setJobDetails: (id: string, title: string, company: string, email: string) => void;
-}
+};
 
 const JobDetailsContext = createContext<JobDetailsContextValues | undefined>(undefined);
 
@@ -38,7 +38,7 @@ export const useJobDetails = (): JobDetailsContextValues => {
     const context = useContext(JobDetailsContext);
 
     if (!context) {
-        throw new Error('useJobDetails must be used within a JobDetailsProvider');
+        throw new Error("useJobDetails must be used within a JobDetailsProvider");
     }
 
     return context;

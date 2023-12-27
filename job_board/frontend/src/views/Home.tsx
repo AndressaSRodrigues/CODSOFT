@@ -1,7 +1,7 @@
 
-import DisplayJobCards from '../components/Jobs/DisplayJobCards';
-import HomePage from '../components/HomePage';
-import Navbar from '../components/Shared/Navbar';
+import DisplayJobCards from "../components/Jobs/DisplayJobCards";
+import HomePage from "../components/HomePage";
+import Navbar from "../components/Shared/Navbar";
 
 function Home() {
   return (
@@ -11,6 +11,6 @@ function Home() {
       <DisplayJobCards />
     </>
   )
-}
+};
 
 export default Home

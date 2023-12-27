@@ -1,13 +1,13 @@
 import { User } from "../interfaces/User";
 
-const URL = 'http://localhost:3000/';
+const URL = "http://localhost:3000/";
 
 export const getUserByEmail = async (token: string, userEmail: string): Promise<User> => {
     return fetch(`${URL}user/${userEmail}`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         }
     })
         .then((response) => {
@@ -20,10 +20,10 @@ export const getUserByEmail = async (token: string, userEmail: string): Promise<
 
 export const deleteUserByEmail = async (token: string, userEmail: string): Promise<User> => {
     return fetch(`${URL}user/${userEmail}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         }
     })
         .then((response) => {
@@ -36,10 +36,10 @@ export const deleteUserByEmail = async (token: string, userEmail: string): Promi
 
 export const updateUserInfo = async (token: string, userEmail: string, data: object): Promise<User> => {
     return fetch(`${URL}user/${userEmail}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(data)
     })

@@ -9,12 +9,12 @@ function ConfirmRegistrationModal({ title, open, onClose }: ModalProps) {
                 <div className="flex flex-col items-center justify-center gap-8">
                     <span>Your account has been successfully created!</span>
                     <Link
-                        to={'/login'}
+                        to={"/login"}
                         className="w-44 h-8 p-1 bg-primary rounded-md shadow-sm text-sm text-white">Login into your account</Link>
                 </div>
             </>
         </Modal>
     )
-}
+};
 
 export default ConfirmRegistrationModal

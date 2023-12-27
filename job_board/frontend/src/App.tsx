@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import Home from "./views/Home";
 import CreateAccount from "./views/CreateAccount";
@@ -29,8 +29,7 @@ function App() {
         </Routes>
       </ThemeProvider>
     </AuthProvider>
-
   )
-}
+};
 
 export default App

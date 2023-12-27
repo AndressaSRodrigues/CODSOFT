@@ -1,13 +1,13 @@
-import { JobCardProps } from '../interfaces/JobCardProps';
-import { JobDetailsProps } from '../interfaces/JobDetailsProps';
+import { JobCardProps } from "../interfaces/JobCardProps";
+import { JobDetailsProps } from "../interfaces/JobDetailsProps";
 
-const URL = 'http://localhost:3000/';
+const URL = "http://localhost:3000/";
 
 export const getJobs = (): Promise<JobCardProps[]> => {
     return fetch(`${URL}jobs`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
     })
         .then((response) => {
@@ -20,9 +20,9 @@ export const getJobs = (): Promise<JobCardProps[]> => {
 
 export const getJobDetails = (id: string): Promise<JobDetailsProps> => {
     return fetch(`${URL}job/${id}`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
     })
         .then((response) => {
@@ -50,10 +50,10 @@ export const postNewJob = async (
     startDate: string,
 ): Promise<JobDetailsProps> => {
     return fetch(`${URL}jobs`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
             title: title,
@@ -76,15 +76,15 @@ export const postNewJob = async (
         })
         .catch((error) => {
             console.error(error)
-            throw new Error('Unable to post job');
+            throw new Error("Unable to post job");
         });
 };
 
 export const getJobsByUser = (userId: string): Promise<JobCardProps[]> => {
     return fetch(`${URL}jobs/${userId}`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         },
     })
         .then((response) => {
@@ -97,14 +97,14 @@ export const getJobsByUser = (userId: string): Promise<JobCardProps[]> => {
 
 export const getJobsByQuery = (query: string): Promise<JobCardProps[]> => {
     return fetch(`${URL}jobs/search/${query}`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         },
     })
         .then((response) => {
             if (!response.ok) {
-                throw new Error('Failed to fetch jobs by query');
+                throw new Error("Failed to fetch jobs by query");
             }
             return response.json() as Promise<JobCardProps[]>;
         });
@@ -112,10 +112,10 @@ export const getJobsByQuery = (query: string): Promise<JobCardProps[]> => {
 
 export const deleteJobById = (token: string, jobId: string | undefined): Promise<JobCardProps[]> => {
     return fetch(`${URL}job/${jobId}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
     })
         .then((response) => {
@@ -128,10 +128,10 @@ export const deleteJobById = (token: string, jobId: string | undefined): Promise
 
 export const updateJob = (token: string, jobId: string | undefined, data: object): Promise<JobDetailsProps[]> => {
     return fetch(`${URL}job/${jobId}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(data)
     })

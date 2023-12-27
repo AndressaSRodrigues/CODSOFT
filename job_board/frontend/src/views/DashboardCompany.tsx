@@ -1,9 +1,9 @@
 import { useState } from "react";
-import CreateJob from "../components/JobsManagement/CreateJob"
+import CreateJob from "../components/JobsManagement/CreateJob";
 import JobsByUser from "../components/JobsManagement/JobsByUser";
-import Navbar from "../components/Shared/Navbar"
-import PostAddIcon from '@mui/icons-material/PostAdd'
-import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+import Navbar from "../components/Shared/Navbar";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 
 function DashboardCompany() {
   const [isJobCreated, setIsJobCreated] = useState<boolean>(false);
@@ -12,7 +12,7 @@ function DashboardCompany() {
     setIsJobCreated(true);
   };
 
-  const titleStyle = 'text-primary text-2xl font-bold mb-6';
+  const titleStyle = "text-primary text-2xl font-bold mb-6";
 
   return (
     <>
@@ -29,6 +29,6 @@ function DashboardCompany() {
       </div>
     </>
   )
-}
+};
 
 export default DashboardCompany

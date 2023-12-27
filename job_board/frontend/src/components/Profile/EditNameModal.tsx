@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller } from "react-hook-form";
 import { FormControl, Stack, TextField } from "@mui/material";
 import Modal from "../Shared/Modal";
 import { ModalProps } from "../../interfaces/ModalProps";
@@ -16,8 +16,8 @@ function EditNameModal({ title, open, onClose }: ModalProps) {
 
     const { handleSubmit, control } = useForm<FormData>({
         defaultValues: {
-            name: '',
-        },
+            name: "",
+        }
     });
 
     const onSubmit = async (data: FormData) => {
@@ -38,10 +38,10 @@ function EditNameModal({ title, open, onClose }: ModalProps) {
                     <Modal title={title} open={open} onClose={onClose}>
                         {!successMessage && (
                             <>
-                                <div className='flex flex-col justify-start'>
+                                <div className="flex flex-col justify-start">
                                     <form onSubmit={handleSubmit(onSubmit)}>
                                         <FormControl>
-                                            <Stack spacing={2} className='w-72 lg:w-96'>
+                                            <Stack spacing={2} className="w-72 lg:w-96">
                                                 <Controller
                                                     name="name"
                                                     control={control}
@@ -55,15 +55,15 @@ function EditNameModal({ title, open, onClose }: ModalProps) {
                                                 />
                                             </Stack>
                                         </FormControl>
-                                        <div className='flex flex-row items-end justify-end gap-4 mt-4'>
+                                        <div className="flex flex-row items-end justify-end gap-4 mt-4">
                                             <button
                                                 onClick={onClose}
-                                                className='w-16 h-8 p-1 bg-neutral-400 rounded-md shadow-sm text-sm text-white'>
+                                                className="w-16 h-8 p-1 bg-neutral-400 rounded-md shadow-sm text-sm text-white">
                                                 Cancel
                                             </button>
                                             <button
                                                 type="submit"
-                                                className='w-16 h-8 p-1 bg-primary rounded-md shadow-sm text-sm text-white'>
+                                                className="w-16 h-8 p-1 bg-primary rounded-md shadow-sm text-sm text-white">
                                                 Save
                                             </button>
                                         </div>
@@ -72,8 +72,8 @@ function EditNameModal({ title, open, onClose }: ModalProps) {
                             </>
                         )}
                         {successMessage && (
-                            <div className='flex flex-col items-center justify-center gap-4 p-4'>
-                                <span className='text-lg'>Your name has been edited.</span>
+                            <div className="flex flex-col items-center justify-center gap-4 p-4">
+                                <span className="text-lg">Your name has been edited.</span>
                             </div>
                         )}
                     </Modal>
@@ -81,6 +81,6 @@ function EditNameModal({ title, open, onClose }: ModalProps) {
             )}
         </div>
     );
-}
+};
 
 export default EditNameModal

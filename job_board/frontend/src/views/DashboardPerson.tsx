@@ -1,11 +1,8 @@
-import Navbar from "../components/Shared/Navbar"
+import Navbar from "../components/Shared/Navbar";
 import DisplayApplicationsByUser from "../components/Applications/DisplayApplicationsByUser";
 import { JobDetailsProvider } from "../context/JobDetailsContext";
 
 function DashboardPerson() {
-
-
-
   return (
     <>
       <Navbar />
@@ -18,6 +15,6 @@ function DashboardPerson() {
       </div>
     </>
   )
-}
+};
 
 export default DashboardPerson

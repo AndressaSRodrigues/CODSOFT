@@ -17,8 +17,8 @@ function DisplayUserInformation() {
             })
     }, []);
 
-    const titleStyle = 'text-primary font-bold';
-    const spanStyle = 'flex flex-col text-md lg:text-lg';
+    const titleStyle = "text-primary font-bold";
+    const spanStyle = "flex flex-col text-md lg:text-lg";
 
     return (
         <>
@@ -36,7 +36,7 @@ function DisplayUserInformation() {
                             <span className={titleStyle}>
                                 Goal
                             </span>
-                            {userInfo.role === 'person' ? 'I am looking for a job.' : 'I am looking for talent.'}
+                            {userInfo.role === "person" ? "I am looking for a job." : "I am looking for talent."}
                         </span>
                         <span className={spanStyle}>
                             <span className={titleStyle}>
@@ -49,6 +49,6 @@ function DisplayUserInformation() {
             </div>
         </>
     )
-}
+};
 
 export default DisplayUserInformation

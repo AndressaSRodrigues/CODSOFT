@@ -1,6 +1,6 @@
 import { JobDetailsProvider } from "../context/JobDetailsContext";
 import JobDetailsInfo from "../components/Jobs/JobDetailsInfo";
-import Navbar from "../components/Shared/Navbar"
+import Navbar from "../components/Shared/Navbar";
 import JobDetailsActions from "../components/Jobs/JobDetailsActions";
 
 function JobDetails() {
@@ -15,6 +15,6 @@ function JobDetails() {
             </div>
         </>
     )
-}
+};
 
 export default JobDetails

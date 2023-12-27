@@ -1,9 +1,9 @@
-import { useForm, Controller } from 'react-hook-form';
-import { FormControl, FormControlLabel, RadioGroup, Radio, Typography, TextField, Button, Stack } from '@mui/material';
-import { useState } from 'react';
-import { userRegister } from '../../services/auth';
-import ConfirmRegistrationModal from './ConfirmRegistrationModal';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { useForm, Controller } from "react-hook-form";
+import { FormControl, FormControlLabel, RadioGroup, Radio, Typography, TextField, Button, Stack } from "@mui/material";
+import { useState } from "react";
+import { userRegister } from "../../services/auth";
+import ConfirmRegistrationModal from "./ConfirmRegistrationModal";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 type FormData = {
     name: string,
@@ -20,11 +20,11 @@ function RegisterForm() {
 
     const { handleSubmit, control } = useForm<FormData>({
         defaultValues: {
-            name: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-            role: '',
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            role: "",
         },
     });
 
@@ -32,39 +32,39 @@ function RegisterForm() {
         try {
             setIsLoading(true);
             if (data.password !== data.confirmPassword) {
-                setErrorMessage('Passwords do not match.');
+                setErrorMessage("Passwords do not match.");
                 return
             }
             const response = await userRegister(data.role, data.name, data.email, data.password);
-            localStorage.setItem('token', response.token);
+            localStorage.setItem("token", response.token);
             setIsModalOpen(true);
         } catch (error) {
             const errorMessage = error instanceof Error
                 ? `${error.message}. Please, check your credentials.`
-                : 'An error occurred';
+                : "An error occurred";
             setErrorMessage(errorMessage);
         } finally {
             setIsLoading(false);
         }
     };
-    
+
     const handleCloseModal = () => setIsModalOpen(false);
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)} className='mb-4'>
+            <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
                 <FormControl>
-                    <Stack spacing={2} className='w-72 lg:w-96'>
+                    <Stack spacing={2} className="w-72 lg:w-96">
                         <Controller
                             name="name"
                             control={control}
-                            rules={{ required: 'Name is required' }}
+                            rules={{ required: "Name is required" }}
                             render={({ field, fieldState }) => (
                                 <TextField
                                     label="Full Name"
                                     type="text"
                                     error={!!fieldState.error}
-                                    helperText={fieldState.error ? fieldState.error.message : ''}
+                                    helperText={fieldState.error ? fieldState.error.message : ""}
                                     {...field}
                                 />
                             )}
@@ -72,13 +72,13 @@ function RegisterForm() {
                         <Controller
                             name="email"
                             control={control}
-                            rules={{ required: 'Email is required', pattern: /^\S+@\S+$/i }}
+                            rules={{ required: "Email is required", pattern: /^\S+@\S+$/i }}
                             render={({ field, fieldState }) => (
                                 <TextField
                                     label="Email"
                                     type="email"
                                     error={!!fieldState.error}
-                                    helperText={fieldState.error ? fieldState.error.message : ''}
+                                    helperText={fieldState.error ? fieldState.error.message : ""}
                                     {...field}
                                 />
                             )}
@@ -86,13 +86,13 @@ function RegisterForm() {
                         <Controller
                             name="password"
                             control={control}
-                            rules={{ required: 'Password is required' }}
+                            rules={{ required: "Password is required" }}
                             render={({ field, fieldState }) => (
                                 <TextField
                                     label="Password"
                                     type="password"
                                     error={!!fieldState.error}
-                                    helperText={fieldState.error ? fieldState.error.message : ''}
+                                    helperText={fieldState.error ? fieldState.error.message : ""}
                                     {...field}
                                 />
                             )}
@@ -100,13 +100,13 @@ function RegisterForm() {
                         <Controller
                             name="confirmPassword"
                             control={control}
-                            rules={{ required: 'Password confirmation is required' }}
+                            rules={{ required: "Password confirmation is required" }}
                             render={({ field, fieldState }) => (
                                 <TextField
                                     label="Confirm Password"
                                     type="password"
                                     error={!!fieldState.error}
-                                    helperText={fieldState.error ? fieldState.error.message : ''}
+                                    helperText={fieldState.error ? fieldState.error.message : ""}
                                     {...field}
                                 />
                             )}
@@ -114,7 +114,7 @@ function RegisterForm() {
                         <Controller
                             name="role"
                             control={control}
-                            rules={{ required: 'Type is required' }}
+                            rules={{ required: "Type is required" }}
                             render={({ field, fieldState }) => (
                                 <>
                                     <RadioGroup
@@ -127,7 +127,7 @@ function RegisterForm() {
                                         <FormControlLabel value="company" control={<Radio />} label="I'm looking for talent." />
                                     </RadioGroup>
                                     {fieldState.error && (
-                                        <Typography style={{ color: 'red' }} variant="caption" color="textSecondary">{fieldState.error.message}</Typography>
+                                        <Typography style={{ color: "red" }} variant="caption" color="textSecondary">{fieldState.error.message}</Typography>
                                     )}
                                 </>
                             )}
@@ -136,12 +136,12 @@ function RegisterForm() {
                             <span className="text-primary mt-2 text-center"><ErrorOutlineIcon /> {errorMessage}</span>
                         )}
                         <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
-                            {isLoading ? 'Creating account...' : 'Create my account'}
+                            {isLoading ? "Creating account..." : "Create my account"}
                         </Button>
                     </Stack>
                 </FormControl>
             </form>
-            {isModalOpen && <ConfirmRegistrationModal title='Account Created!' open={isModalOpen} onClose={handleCloseModal} children={null} />}
+            {isModalOpen && <ConfirmRegistrationModal title="Account Created!" open={isModalOpen} onClose={handleCloseModal} children={null} />}
         </>
     );
 };
