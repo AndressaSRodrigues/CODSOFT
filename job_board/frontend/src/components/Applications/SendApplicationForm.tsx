@@ -13,7 +13,7 @@ type ResumeFormData = {
 };
 
 function SendApplicationForm() {
-  const { token, userEmail, userRole } = useAuth();
+  const { token, userEmail } = useAuth();
   const { jobId, jobTitle, companyName, companyEmail } = useJobDetails();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
@@ -24,10 +24,8 @@ function SendApplicationForm() {
   const handleResumeSubmit = async (data: ResumeFormData) => {
     try {
       setIsLoading(true);
-      const response = await sendNewApplication(token, jobId, jobTitle, userEmail, data.resume[0], companyName, companyEmail);
-      console.log(response)
+      await sendNewApplication(token, jobId, jobTitle, userEmail, data.resume[0], companyName, companyEmail);
       setSuccessMessage(true);
-      console.log(userRole, token, userEmail)
     } catch (error) {
       const errorMessage = error instanceof Error
         ? `${error.message}. Please, check your file.`

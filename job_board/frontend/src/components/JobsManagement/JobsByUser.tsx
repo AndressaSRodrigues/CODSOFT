@@ -14,11 +14,15 @@ type JobsByUserProps = {
 
 function JobsByUser({ isJobCreated }: JobsByUserProps) {
     const [jobs, setJobs] = useState<JobCardProps[]>([]);
+    const [message, setMessage] = useState<boolean>(false);
     const { token, userId } = useAuth();
 
     const fetchJobsByUser = async () => {
         try {
             const allJobsByUser = await getJobsByUser(userId);
+            if (allJobsByUser.length === 0){
+                setMessage(true);
+            }
             setJobs(allJobsByUser);
         } catch (error) {
             console.error(error);
@@ -58,6 +62,9 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
                         </span>
                     </span>
                 ))}
+                {message && (
+                    <span className="bg-neutral-200 p-12 rounded-md shadow-sm text-center text-lg">You haven't added any job posts yet.</span>
+                )}
                 <button
                     className="w-32 h-12 border-primary border-2 text-primary rounded-md"
                     onClick={fetchJobsByUser}

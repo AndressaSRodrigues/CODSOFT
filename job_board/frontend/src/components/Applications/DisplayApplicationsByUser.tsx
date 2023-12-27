@@ -14,10 +14,8 @@ function DisplayApplicationsByUser() {
             .then((data) => {
                 if (data && Array.isArray(data)) {
                     setApplications(data);
-                    console.log(data);
                 } else if (Array.isArray(data)) {
                     setApplications(data);
-                    console.log(data);
                 } else {
                     console.error("Invalid data format:", data);
                 }

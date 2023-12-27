@@ -32,7 +32,7 @@ function ChangePassword({ title, open, onClose }: ModalProps) {
             await updateUserInfo(token, userEmail, data)
             setSuccessMessage(true);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
 
