@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { useForm, Controller } from 'react-hook-form'
-import { FormControl, TextField, Button, Stack } from '@mui/material'
+import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { FormControl, TextField, Button, Stack } from "@mui/material";
 import { postNewJob } from "../../services/jobs";
 import { useAuth } from "../../context/AuthContext";
 
@@ -17,23 +17,23 @@ type FormData = {
 
 type CreateJobProps = {
     onJobCreated: () => void;
-  };
+};
 
-function CreateJob({ onJobCreated }: CreateJobProps ) {
+function CreateJob({ onJobCreated }: CreateJobProps) {
     const { token } = useAuth();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
     const { handleSubmit, control, reset } = useForm<FormData>({
         defaultValues: {
-            title: '',
-            company: '',
-            level: '',
-            location: '',
-            modality: '',
-            description: '',
-            salary: '',
-            startDate: '',
+            title: "",
+            company: "",
+            level: "",
+            location: "",
+            modality: "",
+            description: "",
+            salary: "",
+            startDate: "",
         },
     });
 
@@ -49,7 +49,7 @@ function CreateJob({ onJobCreated }: CreateJobProps ) {
                     multiline={multiline}
                     rows={multiline ? 5 : 1}
                     error={!!fieldState.error}
-                    helperText={fieldState.error ? fieldState.error.message : ''}
+                    helperText={fieldState.error ? fieldState.error.message : ""}
                     {...field}
                 />
             )}
@@ -65,7 +65,7 @@ function CreateJob({ onJobCreated }: CreateJobProps ) {
         } catch (error) {
             const errorMessage = error instanceof Error
                 ? `${error.message}.`
-                : 'An error occurred';
+                : "An error occurred";
             setErrorMessage(errorMessage);
         } finally {
             setIsLoading(false);
@@ -76,7 +76,7 @@ function CreateJob({ onJobCreated }: CreateJobProps ) {
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl>
-                    <Stack spacing={2} className='w-72 lg:w-96'>
+                    <Stack spacing={2} className="w-72 lg:w-96">
                         {renderTextField("title", "Job Title")}
                         {renderTextField("level", "Level (Internship, Junior, Mid, Senior)")}
                         {renderTextField("company", "Company")}
@@ -87,13 +87,13 @@ function CreateJob({ onJobCreated }: CreateJobProps ) {
                         {renderTextField("startDate", "Start date")}
                         <span>{errorMessage}</span>
                         <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
-                            {isLoading ? 'Posting...' : 'Post'}
+                            {isLoading ? "Posting..." : "Post"}
                         </Button>
                     </Stack>
                 </FormControl>
             </form>
         </>
     );
-}
+};
 
 export default CreateJob

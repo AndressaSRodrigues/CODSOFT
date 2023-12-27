@@ -39,7 +39,7 @@ function ManageUserInformation() {
     dispatchModal({ type: CLOSE_MODAL, modalName });
   };
 
-  const hoverStyle = 'cursor-pointer hover:bg-primary hover:text-white hover:rounded-md hover:px-2';
+  const hoverStyle = "cursor-pointer hover:bg-primary hover:text-white hover:rounded-md hover:px-2";
 
   return (
     <>
@@ -55,11 +55,11 @@ function ManageUserInformation() {
           Delete my account
         </span>
       </div>
-      {modalState.isDeleteModalOpen && <DeleteUserModal title='Delete Account' open={true} onClose={() => handleCloseModal("isDeleteModalOpen")} children={null} />}
-      {modalState.isEditNameModalOpen && <EditNameModal title='Edit Name' open={true} onClose={() => handleCloseModal("isEditNameModalOpen")} children={null} /> }
-      {modalState.isChangePasswordModalOpen && <ChangePassword title='Change Password' open={true} onClose={() => handleCloseModal("isChangePasswordModalOpen")} children={null} />}
+      {modalState.isDeleteModalOpen && <DeleteUserModal title="Delete Account" open={true} onClose={() => handleCloseModal("isDeleteModalOpen")} children={null} />}
+      {modalState.isEditNameModalOpen && <EditNameModal title="Edit Name" open={true} onClose={() => handleCloseModal("isEditNameModalOpen")} children={null} />}
+      {modalState.isChangePasswordModalOpen && <ChangePassword title="Change Password" open={true} onClose={() => handleCloseModal("isChangePasswordModalOpen")} children={null} />}
     </>
   );
-}
+};
 
 export default ManageUserInformation;

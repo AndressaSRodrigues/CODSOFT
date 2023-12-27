@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import { JobCardProps } from '../interfaces/JobCardProps';
-import { getJobs, getJobsByQuery } from '../services/jobs';
-import SearchIcon from '@mui/icons-material/Search';
-import Navbar from '../components/Shared/Navbar';
-import JobCard from '../components/Jobs/JobCard';
+import { useEffect, useState } from "react";
+import { JobCardProps } from "../interfaces/JobCardProps";
+import { getJobs, getJobsByQuery } from "../services/jobs";
+import SearchIcon from "@mui/icons-material/Search";
+import Navbar from "../components/Shared/Navbar";
+import JobCard from "../components/Jobs/JobCard";
 
 function AllJobs() {
     const [jobs, setJobs] = useState<JobCardProps[]>([]);
-    const [searchQuery, setSearchQuery] = useState<string>('');
+    const [searchQuery, setSearchQuery] = useState<string>("");
     const [noMatchesMessage, setNoMatchesMessage] = useState<boolean>(false);
 
     useEffect(() => {
-        if (searchQuery.trim() === '') {
+        if (searchQuery.trim() === "") {
             getJobs()
                 .then((data) => {
                     setJobs(data);
@@ -25,7 +25,7 @@ function AllJobs() {
             getJobsByQuery(encodedQuery)
                 .then((data) => {
                     setJobs(data);
-                    if(data.length === 0) {
+                    if (data.length === 0) {
                         setNoMatchesMessage(true);
                     }
                 })
@@ -38,22 +38,22 @@ function AllJobs() {
     return (
         <>
             <Navbar />
-            <div className='flex flex-col text-left m-4 lg:m-4'>
-                <div className='flex flex-col justify-between items-center mb-4 lg:flex lg:flex-row'>
-                    <h1 className='text-primary text-2xl p-4 font-extrabold'>Browse Job Listings</h1>
-                    <div className='w-fit h-8 flex flex-row justify-between items-center p-2 border-neutral-200 border-2 rounded-md shadow-sm'>
+            <div className="flex flex-col text-left m-4 lg:m-4">
+                <div className="flex flex-col justify-between items-center mb-4 lg:flex lg:flex-row">
+                    <h1 className="text-primary text-2xl p-4 font-extrabold">Browse Job Listings</h1>
+                    <div className="w-fit h-8 flex flex-row justify-between items-center p-2 border-neutral-200 border-2 rounded-md shadow-sm">
                         <input
-                            type='search'
-                            placeholder='Search...'
-                            className='px-1 focus:outline-none'
+                            type="search"
+                            placeholder="Search..."
+                            className="px-1 focus:outline-none"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
-                        <SearchIcon className='text-primary' />
+                        <SearchIcon className="text-primary" />
                     </div>
                 </div>
 
-                <div className='w-full bg-neutral-200 flex flex-col items-center justify-center p-4 rounded-md lg:flex lg:flex-row lg:flex-wrap md:flex md:flex-row md:flex-wrap'>
+                <div className="w-full bg-neutral-200 flex flex-col items-center justify-center p-4 rounded-md lg:flex lg:flex-row lg:flex-wrap md:flex md:flex-row md:flex-wrap">
                     {jobs.map((job) => (
                         <JobCard
                             key={job._id}
@@ -74,4 +74,4 @@ function AllJobs() {
     );
 }
 
-export default AllJobs;
+export default AllJobs

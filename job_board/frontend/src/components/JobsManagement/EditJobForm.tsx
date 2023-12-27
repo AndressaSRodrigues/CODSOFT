@@ -1,11 +1,11 @@
-import { useState } from "react"
-import { useForm, Controller } from 'react-hook-form'
-import { FormControl, TextField, Button, Stack } from '@mui/material'
-import { updateJob } from "../../services/jobs"
-import { useAuth } from "../../context/AuthContext"
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
-import { useParams } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { FormControl, TextField, Button, Stack } from "@mui/material";
+import { updateJob } from "../../services/jobs";
+import { useAuth } from "../../context/AuthContext";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type FormData = {
     title: string,
@@ -27,14 +27,14 @@ function EditJobForm() {
 
     const { handleSubmit, control } = useForm<FormData>({
         defaultValues: {
-            title: '',
-            company: '',
-            level: '',
-            location: '',
-            modality: '',
-            description: '',
-            salary: '',
-            startDate: '',
+            title: "",
+            company: "",
+            level: "",
+            location: "",
+            modality: "",
+            description: "",
+            salary: "",
+            startDate: "",
         },
     });
 
@@ -49,7 +49,7 @@ function EditJobForm() {
                     multiline={multiline}
                     rows={multiline ? 5 : 1}
                     error={!!fieldState.error}
-                    helperText={fieldState.error ? fieldState.error.message : ''}
+                    helperText={fieldState.error ? fieldState.error.message : ""}
                     {...field}
                 />
             )}
@@ -60,14 +60,14 @@ function EditJobForm() {
         try {
             setIsLoading(true);
             const filteredData = Object.fromEntries(
-                Object.entries(data).filter(([_, value]) => value !== '')
+                Object.entries(data).filter(([_, value]) => value !== "")
             );
             await updateJob(token, id, filteredData);
-            navigateTo('/dashboard/c');
+            navigateTo("/dashboard/c");
         } catch (error) {
             const errorMessage = error instanceof Error
                 ? `${error.message}.`
-                : 'An error occurred';
+                : "An error occurred";
             setErrorMessage(errorMessage);
         } finally {
             setIsLoading(false);
@@ -77,10 +77,10 @@ function EditJobForm() {
     return (
         <>
             <h1 className="text-primary text-2xl font-bold mb-4">Update Job Information <AutoAwesomeIcon /></h1>
-            <span className="text-neutral-600">You're not required to fill in every field.<br />Update only the necessary information.</span>
+            <span className="text-neutral-600">You"re not required to fill in every field.<br />Update only the necessary information.</span>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
                 <FormControl>
-                    <Stack spacing={2} className='w-72 lg:w-96'>
+                    <Stack spacing={2} className="w-72 lg:w-96">
                         {renderTextField("title", "Job Title")}
                         {renderTextField("level", "Level (Internship, Junior, Mid, Senior)")}
                         {renderTextField("company", "Company")}
@@ -91,13 +91,13 @@ function EditJobForm() {
                         {renderTextField("startDate", "Start date")}
                         <span>{errorMessage}</span>
                         <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
-                            {isLoading ? 'Updating...' : 'Update'}
+                            {isLoading ? "Updating..." : "Update"}
                         </Button>
                     </Stack>
                 </FormControl>
             </form>
         </>
     );
-}
+};
 
 export default EditJobForm

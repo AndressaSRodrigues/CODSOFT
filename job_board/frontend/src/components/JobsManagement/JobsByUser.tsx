@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react"
-import { useAuth } from "../../context/AuthContext"
-import { getJobsByUser } from "../../services/jobs"
-import { JobCardProps } from "../../interfaces/JobCardProps"
-import { Link } from "react-router-dom"
-import { deleteJobById } from "../../services/jobs"
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import AutorenewIcon from '@mui/icons-material/Autorenew'
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { getJobsByUser } from "../../services/jobs";
+import { JobCardProps } from "../../interfaces/JobCardProps";
+import { Link } from "react-router-dom";
+import { deleteJobById } from "../../services/jobs";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import AutorenewIcon from "@mui/icons-material/Autorenew";
 
 type JobsByUserProps = {
     isJobCreated: boolean;
@@ -43,7 +43,7 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
 
     return (
         <>
-            <div className='w-full flex flex-col items-start justify-center gap-8'>
+            <div className="w-full flex flex-col items-start justify-center gap-8">
                 <span>You can view, edit or delete your job posts.</span>
                 {jobs.map((job) => (
                     <span key={job._id} className="w-full flex flex-row justify-between gap-4">
@@ -65,6 +65,6 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
             </div>
         </>
     )
-}
+};
 
 export default JobsByUser

@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom"
-import { JobCardProps } from "../../interfaces/JobCardProps"
+import { Link } from "react-router-dom";
+import { JobCardProps } from "../../interfaces/JobCardProps";
 
 function JobCard({ _id, title, level, company, location, salary }: JobCardProps) {
     return (
         <>
-            <div className='w-72 h-60 flex flex-col bg-neutral-100 rounded-md shadow-md m-2 p-4'>
-                <div className='h-56 flex flex-col gap-1'>
+            <div className="w-72 h-60 flex flex-col bg-neutral-100 rounded-md shadow-md m-2 p-4">
+                <div className="h-56 flex flex-col gap-1">
                     <h2 className="font-bold text-lg">
                         {title}
                     </h2>
@@ -23,6 +23,6 @@ function JobCard({ _id, title, level, company, location, salary }: JobCardProps)
             </div>
         </>
     )
-}
+};
 
 export default JobCard

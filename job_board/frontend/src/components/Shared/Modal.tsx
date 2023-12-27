@@ -1,6 +1,6 @@
-import React from 'react';
-import { ModalProps } from '../../interfaces/ModalProps';
-import CloseIcon from '@mui/icons-material/Close';
+import React from "react";
+import { ModalProps } from "../../interfaces/ModalProps";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Modal: React.FC<ModalProps> = ({ title, open, onClose, children }) => {
     const modalStyle = `
@@ -19,6 +19,7 @@ const Modal: React.FC<ModalProps> = ({ title, open, onClose, children }) => {
     p-4
     backdrop-filter backdrop-blur-sm
     pointer-events-auto
+    z-10
   `;
 
     const backdropStyle = `

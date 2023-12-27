@@ -1,12 +1,12 @@
-import SendApplicationForm from './SendApplicationForm';
-import CloseIcon from '@mui/icons-material/Close';
-import EmailIcon from '@mui/icons-material/Email';
-import { useJobDetails } from '../../context/JobDetailsContext';
+import SendApplicationForm from "./SendApplicationForm";
+import CloseIcon from "@mui/icons-material/Close";
+import EmailIcon from "@mui/icons-material/Email";
+import { useJobDetails } from "../../context/JobDetailsContext";
 
 interface SendApplicationModalProps {
     open: boolean;
     onClose: () => void;
-}
+};
 
 function SendApplicationModal({ open, onClose }: SendApplicationModalProps) {
     const { jobTitle, companyName } = useJobDetails();
@@ -43,10 +43,10 @@ function SendApplicationModal({ open, onClose }: SendApplicationModalProps) {
                     <div className={backdropStyle}></div>
                     <div className={modalStyle}>
                         <div className="flex flex-row justify-between">
-                            <h1 className="text-primary text-2xl font-bold mb-6"><EmailIcon className='mb-1' /> Job Application</h1>
+                            <h1 className="text-primary text-2xl font-bold mb-6"><EmailIcon className="mb-1" /> Job Application</h1>
                             <CloseIcon className="text-primary cursor-pointer" onClick={onClose} />
                         </div>
-                        <div className='flex flex-col justify-start'>
+                        <div className="flex flex-col justify-start">
                             <span className="text-lg mb-4">You're applying to {jobTitle} at {companyName}.</span>
                             <span className="text-sm">Please, upload your CV.</span>
                             <span className="text-sm mb-4">Your information you'll be shared with the company.</span>
@@ -57,6 +57,6 @@ function SendApplicationModal({ open, onClose }: SendApplicationModalProps) {
             )}
         </>
     );
-}
+};
 
 export default SendApplicationModal;

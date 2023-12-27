@@ -6,8 +6,8 @@ function NavbarMenu() {
   const navigate = useNavigate();
 
   const logOut = () => {
-    setUser('', '', '', '', '');
-    navigate('/');
+    setUser("", "", "", "", "");
+    navigate("/");
   };
 
   return (
@@ -16,20 +16,20 @@ function NavbarMenu() {
         <>
           <div className="w-40 h-26 flex flex-col gap-2 bg-neutral-100 rounded-sm shadow-md p-2">
             <button><Link to={`/profile/${userId}`}>Profile</Link></button>
-            {userRole === 'company' && (
-              <button><Link to={'/dashboard/c'}>Dashboard</Link></button>
+            {userRole === "company" && (
+              <button><Link to={"/dashboard/c"}>Dashboard</Link></button>
             )}
-            {userRole === 'person' && (
-              <button><Link to={'/dashboard/p'}>Dashboard</Link></button>
+            {userRole === "person" && (
+              <button><Link to={"/dashboard/p"}>Dashboard</Link></button>
             )}
             {userId &&
-              <button onClick={logOut}><Link to={'/'}>Log Out</Link></button>
+              <button onClick={logOut}><Link to={"/"}>Log Out</Link></button>
             }
           </div>
         </>
       )}
     </>
   );
-}
+};
 
 export default NavbarMenu;

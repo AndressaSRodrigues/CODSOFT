@@ -1,15 +1,15 @@
-import { JobDetailsProps } from "../../interfaces/JobDetailsProps"
+import { JobDetailsProps } from "../../interfaces/JobDetailsProps";
 import { getJobDetails } from "../../services/jobs";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { useJobDetails } from "../../context/JobDetailsContext";
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import PublicIcon from '@mui/icons-material/Public';
-import HireHubIcon from '../../assets/HireHubIcon.png';
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import PublicIcon from "@mui/icons-material/Public";
+import HireHubIcon from "../../assets/HireHubIcon.png";
 import { useAuth } from "../../context/AuthContext";
 
 function JobDetailsInfo() {
@@ -46,17 +46,17 @@ function JobDetailsInfo() {
                 <span className="font-bold">Description</span>
                 <span>{job?.description}</span>
             </article>
-            {token === '' && (
+            {token === "" && (
                 <>
-                <div className="flex flex-col items-center gap-4 bg-neutral-100 p-4 rounded-md shadow-md">
-                     <img src={HireHubIcon} alt="HireHub Icon" width="100vw" />
-                    <span className="text-primary text-lg font-bold text-center">Create an account and login to apply!</span>
-                </div>
-                   
+                    <div className="flex flex-col items-center gap-4 bg-neutral-100 p-4 rounded-md shadow-md">
+                        <img src={HireHubIcon} alt="HireHub Icon" width="100vw" />
+                        <span className="text-primary text-lg font-bold text-center">Create an account and login to apply!</span>
+                    </div>
+
                 </>
             )}
         </>
     )
-}
+};
 
 export default JobDetailsInfo
