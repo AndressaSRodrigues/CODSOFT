@@ -35,8 +35,7 @@ function RegisterForm() {
                 setErrorMessage("Passwords do not match.");
                 return
             }
-            const response = await userRegister(data.role, data.name, data.email, data.password);
-            localStorage.setItem("token", response.token);
+            await userRegister(data.role, data.name, data.email, data.password);
             setIsModalOpen(true);
         } catch (error) {
             const errorMessage = error instanceof Error
