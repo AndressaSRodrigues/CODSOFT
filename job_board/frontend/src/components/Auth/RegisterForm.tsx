@@ -56,7 +56,7 @@ function RegisterForm() {
                             rules={{ required: 'Name is required' }}
                             render={({ field, fieldState }) => (
                                 <TextField
-                                    label="Name"
+                                    label="Full Name"
                                     type="text"
                                     error={!!fieldState.error}
                                     helperText={fieldState.error ? fieldState.error.message : ''}
@@ -98,7 +98,7 @@ function RegisterForm() {
                             rules={{ required: 'Password confirmation is required' }}
                             render={({ field, fieldState }) => (
                                 <TextField
-                                    label="Password"
+                                    label="Confirm Password"
                                     type="password"
                                     error={!!fieldState.error}
                                     helperText={fieldState.error ? fieldState.error.message : ''}
