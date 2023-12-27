@@ -9,6 +9,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PublicIcon from '@mui/icons-material/Public';
+import HireHubIcon from '../../assets/HireHubIcon.png';
 import { useAuth } from "../../context/AuthContext";
 
 function JobDetailsInfo() {
@@ -31,7 +32,7 @@ function JobDetailsInfo() {
 
         fetchJobDetails();
     }, [id]);
-    
+
     return (
         <>
             <article className="w-fit h-fit bg-neutral-100 flex flex-col justify-center rounded-md shadow-md p-4 gap-4 lg:mr-4">
@@ -46,8 +47,14 @@ function JobDetailsInfo() {
                 <span>{job?.description}</span>
             </article>
             {token === '' && (
-            <span className="text-primary text-lg font-bold text-center">Create an account and login to apply!</span>
-        )}
+                <>
+                <div className="flex flex-col items-center gap-4 bg-neutral-100 p-4 rounded-md shadow-md">
+                     <img src={HireHubIcon} alt="HireHub Icon" width="100vw" />
+                    <span className="text-primary text-lg font-bold text-center">Create an account and login to apply!</span>
+                </div>
+                   
+                </>
+            )}
         </>
     )
 }
