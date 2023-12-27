@@ -36,20 +36,15 @@ export const sendNewApplication = async (
         });
 };
 
-export const getApplicationsByUser = async (userEmail: string): Promise<JobApplicationProps[]> => {
-    try {
-        const response = await fetch(`${URL}applications/${userEmail}`, {
-            method: "GET"
+export const getApplicationsByUser = async (userEmail: string): Promise<{ applications: JobApplicationProps[]}> => {
+    return fetch(`${URL}applications/${userEmail}`, {
+        method: "GET"
+    })
+        .then((response) => {
+            return response.json() as Promise<{ applications: JobApplicationProps[] }>;
+        })
+        .catch((error) => {
+            console.error(error)
+            throw new Error("Failed to send application");
         });
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch applications");
-        }
-
-        const data = await response.json();
-        return data.applications || [];
-    } catch (error) {
-        console.error(error);
-        throw new Error("Failed to fetch applications");
-    }
 };
