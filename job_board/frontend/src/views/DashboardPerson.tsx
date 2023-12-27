@@ -6,7 +6,7 @@ function DashboardPerson() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col items-center justify-center m-12 gap-4 lg:flex lg:flex-row lg:items-start lg:m-16 lg:mx-52">
+      <div className="flex flex-col items-start justify-start m-12 gap-4 lg:flex lg:flex-row lg:items-start lg:m-16 lg:mx-52">
         <div>
           <JobDetailsProvider>
             <DisplayApplicationsByUser />
