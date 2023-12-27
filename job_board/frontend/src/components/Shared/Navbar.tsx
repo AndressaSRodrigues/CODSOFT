@@ -19,20 +19,34 @@ function Navbar() {
                 <div className='flex flex-row text-sm items-center justify-center'>
                     <Link to={'/'} className='ml-4'><img src={Icon} alt='HireHub Icon' width='40vw' /></Link>
                     {userName &&
-                        <span className='ml-12'>Welcome, {userName}!</span>
+                        <span className='ml-12'>
+                            Welcome, {userName}!
+                        </span>
                     }
                 </div>
                 <div className='flex flex-row items-center justify-center mr-4'>
-                <Link to={'/jobs'} className='mr-8'>All Jobs</Link>
+
+                    <Link to={'/jobs'}
+                        className='text-sm mx-4'>
+                        All Jobs
+                    </Link>
+
                     {token &&
                         <div onClick={toggleMenu} className='cursor-pointer'>
                             <AccountCircleIcon />
                         </div>
                     }
+
                     {!token &&
                         <div className='cursor-pointer'>
-                            <Link to={'/create-account'} className='mx-4'>Create Account</Link>
-                            <Link to={'/login'} className='mx-4'>Log In</Link>
+                            <Link to={'/create-account'}
+                                className='text-sm mx-4'>
+                                Create Account
+                            </Link>
+                            <Link to={'/login'}
+                                className='text-sm mx-4'>
+                                Log In
+                            </Link>
                         </div>
                     }
                 </div>

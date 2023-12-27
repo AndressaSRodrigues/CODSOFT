@@ -19,6 +19,7 @@ const Modal: React.FC<ModalProps> = ({ title, open, onClose, children }) => {
     p-4
     backdrop-filter backdrop-blur-sm
     pointer-events-auto
+    z-10
   `;
 
     const backdropStyle = `

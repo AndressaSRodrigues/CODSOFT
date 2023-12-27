@@ -2,6 +2,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { FormControl, FormControlLabel, RadioGroup, Radio, Typography, TextField, Button, Stack } from '@mui/material';
 import { useState } from 'react';
 import { userRegister } from '../../services/auth';
+import ConfirmRegistrationModal from './ConfirmRegistrationModal';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 type FormData = {
@@ -15,6 +16,7 @@ type FormData = {
 function RegisterForm() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const { handleSubmit, control } = useForm<FormData>({
         defaultValues: {
@@ -35,6 +37,7 @@ function RegisterForm() {
             }
             const response = await userRegister(data.role, data.name, data.email, data.password);
             localStorage.setItem('token', response.token);
+            setIsModalOpen(true);
         } catch (error) {
             const errorMessage = error instanceof Error
                 ? `${error.message}. Please, check your credentials.`
@@ -44,6 +47,8 @@ function RegisterForm() {
             setIsLoading(false);
         }
     };
+    
+    const handleCloseModal = () => setIsModalOpen(false);
 
     return (
         <>
@@ -136,6 +141,7 @@ function RegisterForm() {
                     </Stack>
                 </FormControl>
             </form>
+            {isModalOpen && <ConfirmRegistrationModal title='Account Created!' open={isModalOpen} onClose={handleCloseModal} children={null} />}
         </>
     );
 };
