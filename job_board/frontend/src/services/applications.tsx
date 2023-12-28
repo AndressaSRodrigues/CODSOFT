@@ -38,13 +38,30 @@ export const sendNewApplication = async (
 
 export const getApplicationsByUser = async (userEmail: string): Promise<{ applications: JobApplicationProps[]}> => {
     return fetch(`${URL}applications/${userEmail}`, {
-        method: "GET"
+        method: "GET",
     })
         .then((response) => {
             return response.json() as Promise<{ applications: JobApplicationProps[] }>;
         })
         .catch((error) => {
             console.error(error)
-            throw new Error("Failed to send application");
+            throw new Error("Failed to fetch application");
         });
+};
+
+export const deleteJobApplication = async (token: string, id: string): Promise<{ applications: JobApplicationProps[]}> => {
+    return fetch(`${URL}application/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    })
+    .then((response) => {
+        return response.json();
+    })
+    .catch((error) => {
+        console.error(error)
+        throw new Error("Failed to delete application");
+    });
 };

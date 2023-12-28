@@ -1,7 +1,8 @@
 const {
     Application,
     create,
-    findByQuery
+    findByQuery,
+    deleteById
 } = require('../models/applications');
 const {
     sendConfirmationEmail,
@@ -37,7 +38,7 @@ const sendApplication = async (req, res) => {
 
         return res.status(201).json({ message: 'Application submitted successfully.', newApplication });
     } catch (error) {
-        return res.status(500).json({ message: 'Internal server error.' });
+        return res.status(500).json({ message: `${error}` });
     }
 };
 
@@ -49,12 +50,22 @@ const getApplicationsByUser = async (req, res) => {
 
         res.status(200).json({ applications });
     } catch (error) {
-        console.error('Error applying for job:', error);
-        return res.status(500).json({ message: 'Internal server error.' });
+        return res.status(500).json({ message: `${error}` });
+    }
+};
+
+const deleteApplicationByUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await deleteById(id);
+        return res.status(200).json({ message: 'Application deleted.' })
+    } catch (error) {
+        return res.status(500).json({ message: `${error}` });
     }
 };
 
 module.exports = {
     sendApplication,
-    getApplicationsByUser
+    getApplicationsByUser,
+    deleteApplicationByUser
 };
