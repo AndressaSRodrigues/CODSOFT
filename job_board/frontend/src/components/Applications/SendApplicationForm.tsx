@@ -21,14 +21,25 @@ function SendApplicationForm() {
 
   const { handleSubmit, control } = useForm<ResumeFormData>();
 
+  const validateFileType = (file: FileList) => {
+    const allowedTypes = ["application/pdf"];
+    if (file.length > 0 && allowedTypes.includes(file[0].type)) {
+      return true;
+    }
+    return false;
+  };
+
   const handleResumeSubmit = async (data: ResumeFormData) => {
     try {
       setIsLoading(true);
+      if (!validateFileType(data.resume)) {
+        throw new Error("Invalid file type. Please upload a PDF file.");
+      }
       await sendNewApplication(token, jobId, jobTitle, userEmail, data.resume[0], companyName, companyEmail);
       setSuccessMessage(true);
     } catch (error) {
       const errorMessage = error instanceof Error
-        ? `${error.message}. Please, check your file.`
+        ? `${error.message}`
         : "An error occurred";
       setErrorMessage(errorMessage);
     } finally {
