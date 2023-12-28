@@ -1,5 +1,4 @@
 import RegisterForm from "../components/Auth/RegisterForm";
-import Navbar from "../components/Shared/Navbar";
 import HomePagePhoto from "../assets/Home.png";
 import Logo from "../assets/HireHub.png";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
@@ -7,8 +6,7 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 function CreateAccount() {
   return (
     <>
-      <Navbar />
-      <div className="lg:w-fit h-fit flex flex-col text-center items-center mt-8 lg:flex lg:flex-row lg:mt-12 lg:mb-0">
+      <div className="lg:w-fit h-fit flex flex-col text-center items-center mt-4 lg:flex lg:flex-row lg:mt-4 lg:mb-0">
         <div className="w-1/2 flex justify-center">
           <img src={HomePagePhoto} alt="Home Page Picture" className="lg:w-[60%]" />
         </div>
