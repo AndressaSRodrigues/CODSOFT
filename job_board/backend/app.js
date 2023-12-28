@@ -17,7 +17,10 @@ app.set('pkg', pkg);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(cors());
+
+app.options('*', cors());
 
 authRoutes(app);
 userRoutes(app);
@@ -25,7 +28,7 @@ jobsRoutes(app);
 applicationRoutes(app);
 
 app.listen(port, () => {
-    console.log('Server listening on port', port)
+    console.log('Server listening on port', port);
 });
 
 mongoose.Promise = Promise;
