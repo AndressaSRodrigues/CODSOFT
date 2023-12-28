@@ -12,12 +12,12 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const sendConfirmationEmail = async (userEmail, companyEmail) => {
+const sendConfirmationEmail = async (userEmail, companyName) => {
     const mailOptions = {
         from: applicationEmail,
         to: userEmail,
         subject: 'Application Confirmation',
-        text: `Thank you for submitting your application. We have forwarded your CV to ${companyEmail}.`,
+        text: `Thank you for submitting your application. We have forwarded your CV to ${companyName}.`,
     };
 
     try {
