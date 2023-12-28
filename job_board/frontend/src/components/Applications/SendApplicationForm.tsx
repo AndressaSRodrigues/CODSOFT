@@ -80,7 +80,7 @@ function SendApplicationForm() {
               Home
             </Link>
             <Link
-              to={"/browse-jobs"}
+              to={"/jobs"}
               className={navigationButtonsStyle}>
               Jobs
             </Link>

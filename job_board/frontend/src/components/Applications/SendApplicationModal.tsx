@@ -1,7 +1,6 @@
-import SendApplicationForm from "./SendApplicationForm";
-import CloseIcon from "@mui/icons-material/Close";
-import EmailIcon from "@mui/icons-material/Email";
 import { useJobDetails } from "../../context/JobDetailsContext";
+import SendApplicationForm from "./SendApplicationForm";
+import Modal from "../Shared/Modal";
 
 interface SendApplicationModalProps {
     open: boolean;
@@ -10,49 +9,20 @@ interface SendApplicationModalProps {
 
 function SendApplicationModal({ open, onClose }: SendApplicationModalProps) {
     const { jobTitle, companyName } = useJobDetails();
-    const modalStyle = `
-        w-fit
-        h-fit
-        absolute
-        top-1/2
-        left-1/2
-        transform -translate-x-1/2 -translate-y-1/2
-        w-400
-        bg-neutral-100
-        border-black
-        shadow-sm
-        shadow-primary
-        rounded-md
-        p-4
-        backdrop-filter backdrop-blur-sm
-        pointer-events-auto
-    `;
-
-    const backdropStyle = `
-        fixed
-        inset-0
-        bg-black
-        opacity-30
-        pointer-events-none
-    `;
 
     return (
         <>
             {open && (
                 <>
-                    <div className={backdropStyle}></div>
-                    <div className={modalStyle}>
-                        <div className="flex flex-row justify-between">
-                            <h1 className="text-primary text-2xl font-bold mb-6"><EmailIcon className="mb-1" /> Job Application</h1>
-                            <CloseIcon className="text-primary cursor-pointer" onClick={onClose} />
-                        </div>
+                    <Modal title="Application" open={open} onClose={onClose}>
                         <div className="flex flex-col justify-start">
                             <span className="text-lg mb-4">You're applying to {jobTitle} at {companyName}.</span>
                             <span className="text-sm">Please, upload your CV.</span>
                             <span className="text-sm mb-4">Your information you'll be shared with the company.</span>
                             <SendApplicationForm />
                         </div>
-                    </div>
+                    </Modal>
+
                 </>
             )}
         </>

@@ -31,7 +31,7 @@ const sendApplication = async (req, res) => {
 
         await create(newApplication);
 
-        await sendConfirmationEmail(userEmail, companyEmail);
+        await sendConfirmationEmail(userEmail, companyName);
 
         await sendCVToCompany(companyEmail, resumeBuffer, applicationDetails);
 
