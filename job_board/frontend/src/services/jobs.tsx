@@ -107,6 +107,9 @@ export const getJobsByQuery = (query: string): Promise<JobCardProps[]> => {
                 throw new Error("Failed to fetch jobs by query");
             }
             return response.json() as Promise<JobCardProps[]>;
+        })
+        .catch(() => {
+            throw new Error();
         });
 };
 

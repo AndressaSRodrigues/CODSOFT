@@ -9,8 +9,8 @@ function JobCard({ _id, title, level, company, location, salary }: JobCardProps)
                     <h2 className="font-bold text-lg">
                         {title}
                     </h2>
+                    <span className="italic">{company}</span>
                     <span>{level}</span>
-                    <span>{company}</span>
                     <span>{location}</span>
                     <span>${salary}</span>
                 </div>
