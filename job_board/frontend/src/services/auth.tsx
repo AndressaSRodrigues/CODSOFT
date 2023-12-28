@@ -1,6 +1,6 @@
 import { UserLoginProps } from "../interfaces/UserLoginProps";
 
-const URL = "http://localhost:3000/";
+const URL = "https://hirehub-api.onrender.com/";
 
 export const userLogin = async (email: string, password: string): Promise<UserLoginProps> => {
     return fetch(`${URL}login`, {

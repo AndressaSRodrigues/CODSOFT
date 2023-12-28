@@ -7,6 +7,7 @@ import Modal from "../Shared/Modal";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
+import Loading from "../../assets/Loading.gif";
 
 type JobsByUserProps = {
     isJobCreated: boolean;
@@ -15,6 +16,7 @@ type JobsByUserProps = {
 function JobsByUser({ isJobCreated }: JobsByUserProps) {
     const [jobs, setJobs] = useState<JobCardProps[]>([]);
     const [message, setMessage] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const { token, userId } = useAuth();
 
@@ -23,6 +25,7 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
     const [jobTitleToDelete, setJobTitleToDelete] = useState<string>('');
 
     const fetchJobsByUser = async () => {
+        setLoading(true);
         try {
             const allJobsByUser = await getJobsByUser(userId);
             if (allJobsByUser.length === 0) {
@@ -31,6 +34,8 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
             setJobs(allJobsByUser);
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -67,8 +72,11 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
     return (
         <>
             <div className="w-full flex flex-col items-start justify-center gap-8">
-                <span>You can view, edit or delete your job posts.</span>
-                {jobs.map((job) => (
+                {loading ? (
+                    <div className="flex flex-col justify-center items-center">
+                        <img src={Loading} alt="loading..." width="300vw" />
+                    </div>
+                ) : (jobs.map((job) => (
                     <span key={job._id} className="w-full flex flex-row justify-between gap-2">
                         <Link to={`/job/${job._id}`} target="_blank">
                             <h2 className="text-lg font-bold">
@@ -84,12 +92,13 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
                                 onClick={() => handleDeleteJob(job._id, job.title)} />
                         </span>
                     </span>
-                ))}
+                ))
+                )}
                 {message && (
                     <span className="bg-neutral-200 p-12 rounded-md shadow-sm text-center text-lg">You haven't added any job posts yet.</span>
                 )}
                 <button
-                    className="w-32 h-12 border-primary border-2 text-primary rounded-md"
+                    className="w-32 h-12 bg-primary text-white rounded-md"
                     onClick={fetchJobsByUser}
                 >Refresh <AutorenewIcon /></button>
             </div>

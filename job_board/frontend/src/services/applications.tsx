@@ -1,6 +1,6 @@
 import { JobApplicationProps } from "../interfaces/JobApplicationProps";
 
-const URL = "http://localhost:3000/";
+const URL = "https://hirehub-api.onrender.com/";
 
 export const sendNewApplication = async (
     token: string,
