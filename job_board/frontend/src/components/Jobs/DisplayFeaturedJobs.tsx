@@ -26,7 +26,7 @@ function DisplayFeaturedJobs() {
     return (
         <>
             <div className="flex flex-col text-left m-4 lg:m-4">
-                <h1 className="text-primary text-2xl p-4 font-extrabold">Find your next opportunity</h1>
+                <h1 className="text-primary text-lg p-4 font-extrabold lg:text-2xl">Find your next opportunity</h1>
                 <div className="w-full bg-neutral-200 flex flex-col items-center justify-center p-4 rounded-md lg:flex lg:flex-row lg:flex-wrap md:flex md:flex-row md:flex-wrap">
                     {loading ? (
                         <img src={Loading} alt="loading..." width="300vw" />

@@ -6,7 +6,7 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 function Login() {
     return (
         <>
-            <div className="lg:w-fit h-fit flex flex-col text-center items-center mt-8 lg:flex lg:flex-row lg:mt-12 lg:mb-0">
+            <div className="lg:w-fit h-fit flex flex-col text-center items-center mt-8 mb-32 lg:flex lg:flex-row lg:mt-12">
                 <div className="w-1/2 flex justify-center">
                     <img src={HomePagePhoto} alt="Home Page Picture" className="lg:w-[60%]" />
                 </div>
