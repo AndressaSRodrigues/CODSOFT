@@ -28,7 +28,7 @@ const sendApplication = async (req, res) => {
             companyEmail,
         });
 
-        const applicationDetails = `A new job application has been received from ${userEmail}. For the job ${jobTitle}: http://localhost:5173/job/${jobId}`;
+        const applicationDetails = `A new job application has been received from ${userEmail}. For the job ${jobTitle}: https://hirehub.vercel.app/job/${jobId}`;
 
         await create(newApplication);
 
