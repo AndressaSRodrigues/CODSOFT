@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { getJobsByUser } from "../../services/jobs";
+import { getJobsByUser, deleteJobById } from "../../services/jobs";
 import { JobCardProps } from "../../interfaces/JobCardProps";
 import { Link } from "react-router-dom";
-import { deleteJobById } from "../../services/jobs";
+import Modal from "../Shared/Modal";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
@@ -15,12 +15,17 @@ type JobsByUserProps = {
 function JobsByUser({ isJobCreated }: JobsByUserProps) {
     const [jobs, setJobs] = useState<JobCardProps[]>([]);
     const [message, setMessage] = useState<boolean>(false);
+
     const { token, userId } = useAuth();
+
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [jobIdToDelete, setJobIdToDelete] = useState<string | undefined>('');
+    const [jobTitleToDelete, setJobTitleToDelete] = useState<string>('');
 
     const fetchJobsByUser = async () => {
         try {
             const allJobsByUser = await getJobsByUser(userId);
-            if (allJobsByUser.length === 0){
+            if (allJobsByUser.length === 0) {
                 setMessage(true);
             }
             setJobs(allJobsByUser);
@@ -36,13 +41,27 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
         }
     }, [userId, isJobCreated]);
 
-    const handleDeleteJob = async (token: string, jobId: string) => {
+    const handleDeleteJob = (jobId: string, jobTitle: string) => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        setJobIdToDelete(jobId);
+        setJobTitleToDelete(jobTitle);
+        setShowModal(true);
+    };
+
+    const confirmDeleteJob = async (token: string, jobId: string | undefined) => {
         try {
             await deleteJobById(token, jobId);
+            setShowModal(false);
             fetchJobsByUser();
         } catch (error) {
             console.error(error)
         }
+    };
+
+    const cancelDeleteJob = () => {
+        setShowModal(false);
+        setJobIdToDelete(undefined);
+        setJobTitleToDelete('');
     };
 
     return (
@@ -58,7 +77,9 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
                         </Link>
                         <span>
                             <Link to={`/job/edit/${job._id}`}><EditIcon className="text-primary mr-4 cursor-pointer" /></Link>
-                            <DeleteOutlineIcon className="text-neutral-500 cursor-pointer" onClick={() => handleDeleteJob(token, job._id)} />
+                            <DeleteOutlineIcon
+                                className="text-neutral-500 cursor-pointer"
+                                onClick={() => handleDeleteJob(job._id, job.title)} />
                         </span>
                     </span>
                 ))}
@@ -70,6 +91,26 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
                     onClick={fetchJobsByUser}
                 >Refresh <AutorenewIcon /></button>
             </div>
+            <Modal title="Confirm Delete" open={showModal} onClose={cancelDeleteJob}>
+                <div className="flex flex-col items-center">
+                    <p>Are you sure you want to delete this job?</p>
+                    <span className="font-bold">{jobTitleToDelete}</span>
+                </div>
+
+                <div className="flex flex-row items-end justify-end gap-4 mt-6 text-white text-sm">
+                    <button
+                        onClick={cancelDeleteJob}
+                        className="w-16 h-8 p-1 bg-neutral-400 rounded-md shadow-sm">
+                        No
+                    </button>
+                    <button
+                        onClick={() => confirmDeleteJob(token, jobIdToDelete)}
+                        className="w-32 h-8 p-1 bg-primary rounded-md shadow-sm"
+                    >
+                        Yes, delete it.
+                    </button>
+                </div>
+            </Modal>
         </>
     )
 };
