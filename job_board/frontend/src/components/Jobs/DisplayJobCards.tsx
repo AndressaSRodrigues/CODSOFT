@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { JobCardProps } from "../../interfaces/JobCardProps";
 import { getJobs } from "../../services/jobs";
 import JobCard from "./JobCard";
+import { Link } from "react-router-dom";
+import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 
 function DisplayJobCards() {
     const [jobs, setJobs] = useState<JobCardProps[]>([]);
@@ -9,7 +11,8 @@ function DisplayJobCards() {
     useEffect(() => {
         getJobs()
             .then((data) => {
-                setJobs(data);
+                const featureJobs = data.slice(0, 4);
+                setJobs(featureJobs);
             })
             .catch((error) => {
                 console.error(error);
@@ -32,6 +35,9 @@ function DisplayJobCards() {
                             salary={job.salary}
                         />
                     ))}
+                </div>
+                <div className="w-full bg-neutral-200 flex flex-row items-center justify-center p-4 rounded-md text-primary">
+                    <Link to={'/jobs'}>Browse All Jobs <SavedSearchIcon /></Link>
                 </div>
             </div>
         </>
