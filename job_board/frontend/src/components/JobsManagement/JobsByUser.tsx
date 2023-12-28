@@ -95,7 +95,7 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
                 ))
                 )}
                 {message && (
-                    <span className="bg-neutral-200 p-12 rounded-md shadow-sm text-center text-lg">You haven't added any job posts yet.</span>
+                    <span className="bg-neutral-200 p-8 rounded-md text-center text-lg">You haven't added any job posts yet.</span>
                 )}
                 <button
                     className="w-32 h-12 bg-primary text-white rounded-md"

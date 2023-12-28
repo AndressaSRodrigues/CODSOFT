@@ -22,11 +22,11 @@ function DashboardCompany() {
         </div>
         <div className="mt-8 lg:mt-0">
           <h1 className={titleStyle}><SettingsSuggestIcon /> Manage Jobs</h1>
-          <div className="bg-neutral-200 py-4 px-12 rounded-md shadow-sm">
+          <div className="bg-neutral-200 py-4 px-2 rounded-md shadow-sm lg:px-12">
             <JobsByUser isJobCreated={isJobCreated} />
           </div>
         </div>
-      </div>z
+      </div>
     </>
   )
 };
