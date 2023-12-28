@@ -1,4 +1,4 @@
-# Job Search API
+# HireHub - Job Search API
 
 ## Project Overview
 
@@ -62,6 +62,25 @@ The Job Search API is a backend service designed for a job search website. It fa
     - **Description:** Updates a specific job listing by its ID (requires company role).
     - **Middleware:** `isOwnJob`
 
+7. **Get Jobs by Query**
+    - **Endpoint:** `GET /jobs/search/:query`
+    - **Description:** Retrieves jobs that match the query.
+
+### Applications
+
+1. **Send application**
+    - **Endpoint**: `POST /applications`
+    - **Description:** Sends a job application with the applicant info, sends an email confirmation and sends the CV to the company.
+        - **Middleware:** `isPerson`
+
+2. **Get Users Applications**
+    - **Endpoint:** `GET /applications/:userEmail`
+    - **Description:** Retrieves all the applications the user has sent.
+
+3. **Delete Application**
+    - **Endpoint:** `DELETE /application/:id`
+    - **Description:** Deletes an application by its ID.
+
 ## Models
 
 ### Users Schema
@@ -83,6 +102,16 @@ The Job Search API is a backend service designed for a job search website. It fa
     - Description
     - Salary
     - StartDate
+
+### Applications Schema
+
+1. **Required information to send an application**
+    - User email
+    - Job ID
+    - Job Title
+    - Resume (PDF file)
+    - Company Name
+    - Company Email
 
 ## Middleware
 
