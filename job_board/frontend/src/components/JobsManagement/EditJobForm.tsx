@@ -77,7 +77,7 @@ function EditJobForm() {
     return (
         <>
             <h1 className="text-primary text-2xl font-bold mb-4">Update Job Information <AutoAwesomeIcon /></h1>
-            <span className="text-neutral-600">You"re not required to fill in every field.<br />Update only the necessary information.</span>
+            <span className="text-neutral-600 text-sm">You're not required to fill in every field.<br />Update only the necessary information.</span>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
                 <FormControl>
                     <Stack spacing={2} className="w-72 lg:w-96">

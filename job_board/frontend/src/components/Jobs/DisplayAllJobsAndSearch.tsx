@@ -42,7 +42,7 @@ function DisplayAllJobsAndSearch() {
                     <div className="w-fit h-8 flex flex-row justify-between items-center p-2 border-neutral-200 border-2 rounded-md shadow-sm">
                         <input
                             type="search"
-                            placeholder="Search..."
+                            placeholder="Search job..."
                             className="px-1 focus:outline-none"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
