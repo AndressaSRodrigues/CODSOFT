@@ -1,5 +1,5 @@
 
-import DisplayJobCards from "../components/Jobs/DisplayJobCards";
+import DisplayFeaturedJobs from "../components/Jobs/DisplayFeaturedJobs";
 import HomePage from "../components/HomePage";
 import Navbar from "../components/Shared/Navbar";
 
@@ -8,7 +8,7 @@ function Home() {
     <>
       <Navbar />
       <HomePage />
-      <DisplayJobCards />
+      <DisplayFeaturedJobs />
     </>
   )
 };
