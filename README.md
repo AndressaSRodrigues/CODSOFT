@@ -4,6 +4,5 @@ This repository encompasses two distinct projects: a dynamic job board and an en
 
 **[HireHub](https://hirehub.vercel.app/)**: A Job Search Platform
 HireHub provides a great job search experience, seamlessly connecting talented individuals with exceptional opportunities. The platform boasts a robust backend powered by Node.js, Express, and MongoDB, ensuring efficient data handling and storage. On the frontend, a modern and responsive interface is crafted using React, TypeScript, and Tailwind CSS.
-Explore HireHub at https://hirehub.vercel.app/ to witness the future of job searching.
 
 ![demo-desktop](/job_board/frontend/src/assets/demo-desktop.gif)
