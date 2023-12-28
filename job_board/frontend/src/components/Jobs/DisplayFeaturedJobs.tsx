@@ -5,7 +5,7 @@ import JobCard from "./JobCard";
 import { Link } from "react-router-dom";
 import SavedSearchIcon from '@mui/icons-material/SavedSearch';
 
-function DisplayJobCards() {
+function DisplayFeaturedJobs() {
     const [jobs, setJobs] = useState<JobCardProps[]>([]);
 
     useEffect(() => {
@@ -44,4 +44,4 @@ function DisplayJobCards() {
     )
 };
 
-export default DisplayJobCards
+export default DisplayFeaturedJobs

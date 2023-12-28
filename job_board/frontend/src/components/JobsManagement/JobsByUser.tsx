@@ -69,14 +69,16 @@ function JobsByUser({ isJobCreated }: JobsByUserProps) {
             <div className="w-full flex flex-col items-start justify-center gap-8">
                 <span>You can view, edit or delete your job posts.</span>
                 {jobs.map((job) => (
-                    <span key={job._id} className="w-full flex flex-row justify-between gap-4">
+                    <span key={job._id} className="w-full flex flex-row justify-between gap-2">
                         <Link to={`/job/${job._id}`} target="_blank">
                             <h2 className="text-lg font-bold">
                                 {job.title}
                             </h2>
                         </Link>
                         <span>
-                            <Link to={`/job/edit/${job._id}`}><EditIcon className="text-primary mr-4 cursor-pointer" /></Link>
+                            <Link to={`/job/edit/${job._id}`}>
+                                <EditIcon className="text-primary mr-4 cursor-pointer" />
+                            </Link>
                             <DeleteOutlineIcon
                                 className="text-neutral-500 cursor-pointer"
                                 onClick={() => handleDeleteJob(job._id, job.title)} />
