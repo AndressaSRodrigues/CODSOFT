@@ -3,6 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { JobApplicationProps } from "../../interfaces/JobApplicationProps";
 import { Link } from "react-router-dom";
+import Loading from "../../assets/Loading.gif";
 import SendIcon from "@mui/icons-material/Send";
 
 function DisplayApplicationsByUser() {
@@ -39,7 +40,7 @@ function DisplayApplicationsByUser() {
                 <h1 className={titleStyle}>Applications Sent <SendIcon /></h1>
                 <div className="w-fit bg-neutral-200 flex flex-col items-center justify-center p-4 rounded-md lg:flex lg:flex-row lg:flex-wrap md:flex md:flex-row md:flex-wrap">
                     {loading ? (
-                        <span className="text-primary font-bold">Loading...</span>
+                        <img src={Loading} alt="loading..." width="300vw" />
                     ) : applications.length > 0 ? (
                         applications.map((application) => (
                             <div key={application._id} className="w-60 flex flex-col p-4 m-1 bg-neutral-100 rounded-md shadow-md">

@@ -20,11 +20,13 @@ function DashboardCompany() {
           <h1 className={titleStyle}><PostAddIcon /> New Job</h1>
           <CreateJob onJobCreated={handleJobCreated} />
         </div>
-        <div className="mt-8 lg:ml-32 lg:mt-0">
+        <div className="mt-8 lg:mt-0">
           <h1 className={titleStyle}><SettingsSuggestIcon /> Manage Jobs</h1>
-          <JobsByUser isJobCreated={isJobCreated} />
+          <div className="bg-neutral-200 py-4 px-12 rounded-md shadow-sm">
+            <JobsByUser isJobCreated={isJobCreated} />
+          </div>
         </div>
-      </div>
+      </div>z
     </>
   )
 };

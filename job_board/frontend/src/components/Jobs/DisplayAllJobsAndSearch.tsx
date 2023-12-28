@@ -3,14 +3,17 @@ import { JobCardProps } from "../../interfaces/JobCardProps";
 import { getJobs, getJobsByQuery } from "../../services/jobs";
 import SearchIcon from "@mui/icons-material/Search";
 import JobCard from "../../components/Jobs/JobCard";
+import Loading from "../../assets/Loading.gif";
 
 function DisplayAllJobsAndSearch() {
     const [jobs, setJobs] = useState<JobCardProps[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [noMatchesMessage, setNoMatchesMessage] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         if (searchQuery.trim() === "") {
+            setLoading(true);
             getJobs()
                 .then((data) => {
                     setJobs(data);
@@ -18,18 +21,22 @@ function DisplayAllJobsAndSearch() {
                 })
                 .catch((error) => {
                     console.error(error);
+                })
+                .finally(() => {
+                    setLoading(false);
                 });
         } else {
             const encodedQuery = encodeURIComponent(searchQuery);
             getJobsByQuery(encodedQuery)
                 .then((data) => {
                     setJobs(data);
-                    if (data.length === 0) {
-                        setNoMatchesMessage(true);
-                    }
+                    setNoMatchesMessage(data.length === 0);
                 })
                 .catch((error) => {
                     console.error(error);
+                })
+                .finally(() => {
+                    setLoading(false);
                 });
         }
     }, [searchQuery]);
@@ -52,24 +59,27 @@ function DisplayAllJobsAndSearch() {
                 </div>
 
                 <div className="w-full bg-neutral-200 flex flex-col items-center justify-center p-4 rounded-md lg:flex lg:flex-row lg:flex-wrap md:flex md:flex-row md:flex-wrap">
-                    {jobs.map((job) => (
-                        <JobCard
-                            key={job._id}
-                            _id={job._id}
-                            title={job.title}
-                            level={job.level}
-                            company={job.company}
-                            location={job.location}
-                            salary={job.salary}
-                        />
-                    ))}
-                    {noMatchesMessage && (
-                        <span>There are no matches for this search.</span>
+                    {loading ? (
+                        <img src={Loading} alt="loading..." width="300vw" />
+                    ) : (
+                        jobs.map((job) => (
+                            <JobCard
+                                key={job._id}
+                                _id={job._id}
+                                title={job.title}
+                                level={job.level}
+                                company={job.company}
+                                location={job.location}
+                                salary={job.salary}
+                            />
+                        ))
                     )}
+
+                    {noMatchesMessage && <span>There are no matches for this search.</span>}
                 </div>
             </div>
         </>
     );
-}
+};
 
 export default DisplayAllJobsAndSearch

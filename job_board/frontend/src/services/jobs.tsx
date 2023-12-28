@@ -1,7 +1,7 @@
 import { JobCardProps } from "../interfaces/JobCardProps";
 import { JobDetailsProps } from "../interfaces/JobDetailsProps";
 
-const URL = "http://localhost:3000/";
+const URL = "https://hirehub-api.onrender.com/";
 
 export const getJobs = (): Promise<JobCardProps[]> => {
     return fetch(`${URL}jobs`, {

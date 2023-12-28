@@ -1,6 +1,6 @@
 import { User } from "../interfaces/User";
 
-const URL = "http://localhost:3000/";
+const URL = "https://hirehub-api.onrender.com/";
 
 export const getUserByEmail = async (token: string, userEmail: string): Promise<User> => {
     return fetch(`${URL}user/${userEmail}`, {
