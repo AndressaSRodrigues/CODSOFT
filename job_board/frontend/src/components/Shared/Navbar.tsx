@@ -1,17 +1,16 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Icon from "../../assets/NavIcon.png";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import NavbarMenu from "./NavbarMenu";
 
-function Navbar() {
-    const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
-    const { token, userName } = useAuth();
+interface NavbarProps {
+    isMenuOpen: boolean;
+    toggleMenu: () => void;
+}
 
-    const toggleMenu = (): void => {
-        setMenuOpen((prevMenuOpen) => !prevMenuOpen);
-    };
+function Navbar({ isMenuOpen, toggleMenu }: NavbarProps) {
+    const { token, userName } = useAuth();
 
     return (
         <>
@@ -53,7 +52,7 @@ function Navbar() {
             </div>
             {isMenuOpen &&
                 <div className="absolute right-0 z-10">
-                    <NavbarMenu />
+                    <NavbarMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
                 </div>
             }
         </>
