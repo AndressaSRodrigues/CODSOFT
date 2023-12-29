@@ -24,18 +24,8 @@ async function findByUsername(username) {
     return User.findOne({ username });
 }
 
-async function deleteByUsername(username) {
-    return User.findOneAndDelete({ username });
-}
-
-async function updateByUsername(username, values) {
-    return User.findOneAndUpdate({ username }, values, { new: true });
-}
-
 module.exports = {
     User,
     findUsers,
-    findByUsername,
-    deleteByUsername,
-    updateByUsername
+    findByUsername
 };
