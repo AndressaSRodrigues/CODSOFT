@@ -11,27 +11,34 @@ function DisplayApplicationsByUser() {
     const [applications, setApplications] = useState<JobApplicationProps[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
-    useEffect(() => {
-        getApplicationsByUser(userEmail)
-            .then((data) => {
-                setApplications(data.applications);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error(error);
-                setLoading(false);
-            });
-    }, [userEmail]);
-
-    const handleDeleteApplication = async (token: string, applicationId: string) => {
+    const fetchApplications = async () => {
+        setLoading(true);
         try {
-            await deleteJobApplication(token, applicationId);
-            window.location.reload();
+            const data = await getApplicationsByUser(userEmail);
+            setApplications(data.applications);
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoading(false);
         }
     };
-
+    
+    useEffect(() => {
+        fetchApplications();
+    }, [userEmail]);
+    
+    const handleDeleteApplication = async (token: string, applicationId: string) => {
+        setLoading(true);
+        try {
+            await deleteJobApplication(token, applicationId);
+            await fetchApplications();
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    
     const titleStyle = "text-primary text-2xl font-bold mb-6";
 
     return (
