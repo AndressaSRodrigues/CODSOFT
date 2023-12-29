@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const config = require('./config');
 const cors = require('cors');
+const authRoutes = require('./routes/authRoutes');
 
 const { port, dbUrl } = config;
 const app = express();
@@ -13,9 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.options('*', cors());
 
-app.get('/', (req, res) => {
-    res.send('Hello');
-});
+authRoutes(app);
 
 app.listen(port, () => {
     console.log('Server listening on port', port);
