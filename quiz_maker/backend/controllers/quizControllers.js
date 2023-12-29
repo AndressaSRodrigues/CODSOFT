@@ -4,7 +4,7 @@ const {
     findQuizzes,
     findQuiz,
     deleteQuiz,
-    findQuizzesByUser
+    findQuizzesByQuery
 } = require('../models/quiz');
 
 const getQuizzes = async (req, res, next) => {
@@ -23,7 +23,7 @@ const getQuizzes = async (req, res, next) => {
 
 const createNewQuiz = async (req, res, next) => {
     try {
-        const { title, questions } = req.body;
+        const { title, theme, questions } = req.body;
 
         const formattedQuestions = questions.map(questionData => ({
             text: questionData.text,
@@ -33,6 +33,7 @@ const createNewQuiz = async (req, res, next) => {
 
         const newQuiz = new Quiz({
             title,
+            theme,
             questions: formattedQuestions,
             createdBy: req.user.username,
         });
@@ -84,10 +85,25 @@ const deleteQuizById = async (req, res) => {
 const getQuizzesByUser = async (req, res) => {
     try {
         const { username } = req.params;
-        const quizzes = await findQuizzesByUser({ createdBy: username });
+        const quizzes = await findQuizzesByQuery({ createdBy: username });
 
         if (quizzes.length === 0) {
             return res.status(404).json({ message: `No quizzes by ${username} were found.` });
+        }
+
+        return res.status(200).json(quizzes);
+    } catch (error) {
+        return res.status(500).json({ message: `${error}` });
+    }
+};
+
+const getQuizzesByTheme = async (req, res) => {
+    try {
+        const { theme } = req.params;
+        const quizzes = await findQuizzesByQuery({ theme: theme });
+
+        if (quizzes.length === 0) {
+            return res.status(404).json({ message: `No quizzes about ${theme} were found.` });
         }
 
         return res.status(200).json(quizzes);
@@ -101,5 +117,6 @@ module.exports = {
     getQuizzes,
     getQuizById,
     deleteQuizById,
-    getQuizzesByUser
+    getQuizzesByUser,
+    getQuizzesByTheme
 };

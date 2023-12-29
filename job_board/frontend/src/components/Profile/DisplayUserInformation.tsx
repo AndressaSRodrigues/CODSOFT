@@ -5,21 +5,24 @@ import { User } from "../../interfaces/User";
 import Loading from "../../assets/Loading.gif";
 
 function DisplayUserInformation() {
-    const { token, userEmail } = useAuth();
+    const { token, userEmail, userName } = useAuth();
     const [userInfo, setUserInfo] = useState<User>();
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        setLoading(true);
-        getUserByEmail(token, userEmail)
-            .then((data) => {
-                setUserInfo(data)
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const data = await getUserByEmail(token, userEmail);
+                setUserInfo(data);
+            } catch (error) {
+                console.error(error);
+            } finally {
                 setLoading(false);
-            })
-            .catch((error) => {
-                console.error(error)
-            })
-    }, []);
+            }
+        };
+        fetchData();
+    }, [userName]);
 
     const titleStyle = "text-primary font-bold";
     const spanStyle = "flex flex-col text-md lg:text-lg";

@@ -25,7 +25,6 @@ function EditNameModal({ title, open, onClose }: ModalProps) {
             await updateUserInfo(token, userEmail, data)
             setUser(token, userId, userRole, data.name, userEmail);
             setSuccessMessage(true);
-            window.location.reload();
         } catch (error) {
             console.error(error);
         }

@@ -22,6 +22,11 @@ const QuizSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    theme: {
+        type: String,
+        required: true,
+        enum: ['movies', 'tv shows', 'video games', 'books', 'anime', 'general pop culture']
+    },
     questions: [QuestionSchema],
     createdBy: {
         type: String,
@@ -47,7 +52,7 @@ async function findQuiz(id){
     return Quiz.findById({ _id: id });
 }
 
-async function findQuizzesByUser(query = {}){
+async function findQuizzesByQuery(query = {}){
     return Quiz.find(query).exec();
 }
 
@@ -61,5 +66,5 @@ module.exports = {
     findQuizzes,
     findQuiz,
     deleteQuiz,
-    findQuizzesByUser
+    findQuizzesByQuery
 };
