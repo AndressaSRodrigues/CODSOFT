@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const config = require('./config');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
+const quizRoutes = require('./routes/quizRoutes');
 
 const { port, dbUrl } = config;
 const app = express();
@@ -15,6 +16,7 @@ app.use(cors());
 app.options('*', cors());
 
 authRoutes(app);
+quizRoutes(app);
 
 app.listen(port, () => {
     console.log('Server listening on port', port);
