@@ -25,12 +25,12 @@ function LoginForm() {
         try {
             setIsLoading(true);
             await login(data.username, data.password);
+            navigate('/browse-quizzes');
         } catch (error) {
             const errorMessage = error instanceof Error ? `Invalid credentials.` : 'An error occurred';
             setErrorMessage(errorMessage);
         } finally {
             setIsLoading(false);
-            navigate('/browse-quizzes')
         }
     };
 
@@ -42,20 +42,20 @@ function LoginForm() {
                     control={control}
                     rules={{ required: 'Username is required' }}
                     render={({ field, fieldState }) => (
-                        <input
-                            type="text"
-                            id="username"
-                            className={`border border-primary rounded-md p-2 lg:w-96 ${fieldState.error ? 'border-red-500' : ''}`}
-                            placeholder="Username"
-                            {...field}
-                        />
+                        <div>
+                            <input
+                                type="text"
+                                id="username"
+                                className={'border border-primary rounded-md p-2 w-72'}
+                                placeholder="Username"
+                                {...field}
+                            />
+                            {fieldState.error && (
+                                <p className="text-primary text-sm">{fieldState.error.message}</p>
+                            )}
+                        </div>
                     )}
                 />
-                {errorMessage && (
-                    <span className="text-red-500 mt-2 flex items-center">
-                        <ErrorOutlineIcon className="mr-2" /> {errorMessage}
-                    </span>
-                )}
             </div>
             <div className="mb-4">
                 <Controller
@@ -63,22 +63,32 @@ function LoginForm() {
                     control={control}
                     rules={{ required: 'Password is required' }}
                     render={({ field, fieldState }) => (
-                        <input
-                            type="password"
-                            id="password"
-                            className={`border border-primary rounded-md p-2 w-full ${fieldState.error ? 'border-red-500' : ''}`}
-                            placeholder="Password"
-                            {...field}
-                        />
+                        <div>
+                            <input
+                                type="password"
+                                id="password"
+                                className={'border border-primary rounded-md p-2 w-72'}
+                                placeholder="Password"
+                                {...field}
+                            />
+                            {fieldState.error && (
+                                <p className="text-primary text-sm">{fieldState.error.message}</p>
+                            )}
+                        </div>
                     )}
                 />
             </div>
+            {errorMessage && (
+                <span className="text-primary mt-4 mb-4 flex items-center">
+                    <ErrorOutlineIcon className="mr-2" /> {errorMessage}
+                </span>
+            )}
             <button
                 type="submit"
-                className="w-full bg-primary text-white font-bold p-2 rounded-md border border-primary hover:bg-neutral-200 hover:text-primary "
+                className="w-72 bg-primary text-white font-bold p-2 rounded-md border border-primary hover:bg-neutral-200 hover:text-primary "
                 disabled={isLoading}
             >
-                {isLoading ? 'Logging in...' : 'Login'}
+                {isLoading ? 'Validating your info...' : 'Enter'}
             </button>
         </form>
     );

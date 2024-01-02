@@ -11,7 +11,8 @@ function Login() {
           <img src={HomePhoto} alt="girl" className='rounded-md' />
         </div>
         <div className='lg:w-1/3 flex flex-col items-center m-4 gap-6 text-center lg:gap-12 lg:m-16'>
-          <img src={QuizHub} alt="QuizHub Logo" className='w-52 lg:w-72 mb-6' />
+          <img src={QuizHub} alt="QuizHub Logo" className='w-52 lg:w-72' />
+          <h1 className="text-lg text-primary mb-4">Login</h1>
           <LoginForm />
           <Link
             to={'/create-account'}
