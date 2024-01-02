@@ -40,7 +40,13 @@ function LoginForm() {
                 <Controller
                     name="username"
                     control={control}
-                    rules={{ required: 'Username is required' }}
+                    rules={{
+                        required: 'Username is required',
+                        pattern: {
+                            value: /^(?=.*[A-Za-z])[A-Za-z0-9]{4,}$/,
+                            message: 'Must contain 4 characters, and at least one letter.',
+                        },
+                    }}
                     render={({ field, fieldState }) => (
                         <div>
                             <input
@@ -61,7 +67,13 @@ function LoginForm() {
                 <Controller
                     name="password"
                     control={control}
-                    rules={{ required: 'Password is required' }}
+                    rules={{ 
+                        required: 'Password is required',
+                        minLength: {
+                            value: 8,
+                            message: 'Password must be at least 8 characters long.',
+                        },
+                    }}
                     render={({ field, fieldState }) => (
                         <div>
                             <input
