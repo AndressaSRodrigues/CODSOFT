@@ -5,4 +5,6 @@
 * {
   margin: 0;
   padding: 0;
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
