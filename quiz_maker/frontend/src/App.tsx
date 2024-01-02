@@ -8,18 +8,18 @@ import CreateAccount from "./views/CreateAccount"
 import Footer from "./components/Shared/Footer"
 
 function App() {
-  
+
   return (
     <>
-    <Navbar />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="login" element={<Login />} />
-      <Route path="create-account" element={<CreateAccount />} />
-      <Route path="create-quiz" element={<CreateQuiz />} />
-      <Route path="browse-quizzes" element={<BrowseQuizzes />} />
-    </Routes>
-    <Footer />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="create-account" element={<CreateAccount />} />
+        <Route path="create-quiz" element={<CreateQuiz />} />
+        <Route path="browse-quizzes" element={<BrowseQuizzes />} />
+      </Routes>
+      <Footer />
     </>
   )
 }
