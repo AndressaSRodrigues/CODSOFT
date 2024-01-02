@@ -14,6 +14,11 @@ export const userLogin = async (email: string, password: string): Promise<UserLo
         })
     })
         .then((response) => {
+            if (!response.ok) {
+                return response.json().then((data) => {
+                    throw new Error(data.error);
+                });
+            }
             return response.json() as Promise<UserLoginProps>;
         })
         .catch(() => {
@@ -34,11 +39,18 @@ export const userRegister = async (role: string, name: string, email: string, pa
             password: password
         })
     })
-        .then((response) => {
-            return response.json() as Promise<UserLoginProps>;
-        })
-        .catch((error) => {
-            console.error("Registration error:", error);
-            throw new Error("An error occurred during registration.");
-        });
+    .then(async (response) => {
+        if (!response.ok) {
+            const data = await response.json();
+            if (response.status === 400 && data.message === 'Email already in use.') {
+                throw new Error(data.message);
+            } else {
+                throw new Error("Registration failed. Please check the provided information.");
+            }
+        }
+        return response.json() as Promise<UserLoginProps>;
+    })
+    .catch((error) => {
+        throw error;
+    });
 };

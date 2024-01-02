@@ -4,6 +4,7 @@ import { useState } from "react";
 import { userLogin } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 type FormData = {
     email: string;
@@ -44,7 +45,7 @@ function LoginForm() {
             }
         } catch (error) {
             const errorMessage = error instanceof Error
-                ? `${error.message}. Please, check your credentials.`
+                ? `Invalid credentials.`
                 : "An error occurred";
             setErrorMessage(errorMessage);
         } finally {
@@ -85,7 +86,11 @@ function LoginForm() {
                                 />
                             )}
                         />
-                        <span>{errorMessage}</span>
+                        {errorMessage && (
+                            <span className="text-primary mt-2 text-center">
+                                <ErrorOutlineIcon /> {errorMessage}
+                            </span>
+                        )}
                         <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
                             {isLoading ? "Loggin in..." : "Login"}
                         </Button>

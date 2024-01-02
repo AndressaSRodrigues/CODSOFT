@@ -33,14 +33,13 @@ function RegisterForm() {
             setIsLoading(true);
             if (data.password !== data.confirmPassword) {
                 setErrorMessage("Passwords do not match.");
-                return
+                return;
             }
-            await userRegister(data.role, data.name, data.email, data.password);
+            const response = await userRegister(data.role, data.name, data.email, data.password);
+            console.log(response)
             setIsModalOpen(true);
         } catch (error) {
-            const errorMessage = error instanceof Error
-                ? `${error.message}. Please, check your credentials.`
-                : "An error occurred";
+            const errorMessage = `${error}`;
             setErrorMessage(errorMessage);
         } finally {
             setIsLoading(false);
@@ -132,7 +131,9 @@ function RegisterForm() {
                             )}
                         />
                         {errorMessage && (
-                            <span className="text-primary mt-2 text-center"><ErrorOutlineIcon /> {errorMessage}</span>
+                            <span className="text-primary mt-2 text-center">
+                                <ErrorOutlineIcon /> {errorMessage}
+                            </span>
                         )}
                         <Button type="submit" variant="contained" color="primary" disabled={isLoading}>
                             {isLoading ? "Creating account..." : "Create my account"}
