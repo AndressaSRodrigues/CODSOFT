@@ -27,7 +27,10 @@ function LoginForm() {
         try {
             setIsLoading(true);
             const response = await login(data.username, data.password);
-            setUser(response.token, response.user._id, response.user.username);
+            const token = response.token;
+            const userId = response.user._id;
+            const username = response.user.username;
+            setUser(token, userId, username);
             navigate('/browse-quizzes');
         } catch (error) {
             const errorMessage = error instanceof Error ? `Invalid credentials.` : 'An error occurred';

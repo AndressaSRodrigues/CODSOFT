@@ -3,19 +3,21 @@ import { Link } from "react-router-dom";
 import QuizCard from "../components/Quizzes/QuizCard";
 import { getQuizzes } from "../services/quizzes";
 import { QuizProps } from "../interfaces/QuizProps";
+import { useAuth } from "../context/AuthContext";
 
 function BrowseQuizzes() {
+  const { token } = useAuth();
   const [quizzes, setQuizzes] = useState<QuizProps[]>([])
 
   useEffect(() => {
-    getQuizzes()
+    getQuizzes(token)
       .then((data) => {
         setQuizzes(data);
       })
       .catch((error) => {
         console.error(error);
       })
-  }, [])
+  }, [token])
 
   return (
     <>
