@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import QuizHub from '../../assets/QuizHub.png'
 import { useAuth } from '../../context/AuthContext'
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 
 function Navbar() {
-  const { token, logout } = useAuth();
+  const { token, username, logout } = useAuth();
 
   const handleLogout = () => {
     logout('', '', '');
@@ -15,16 +16,19 @@ function Navbar() {
         <div>
           <img src={QuizHub} alt='QuizHub Brand' width='100vw' />
         </div>
-        <div>
+        <div className='text-sm'>
+        {token && (
+            <span className='mr-10'><EmojiPeopleIcon /> Hello, {username}!</span>
+          )}
           {!token && (
             <Link to={'/login'}>
-              LogIn
+              Login
             </Link>
           )}
           {token && (
             <Link to={'/'}>
               <button onClick={handleLogout}>
-                LogOut
+                Logout
               </button>
             </Link>
           )}
