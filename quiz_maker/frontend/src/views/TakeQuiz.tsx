@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 import { getQuizById } from "../services/quizzes";
 import { useAuth } from "../context/AuthContext";
@@ -52,6 +53,16 @@ const TakeQuiz = () => {
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
+  const handlePreviousQuestion = () => {
+    setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
+  };
+
+  const handleRetakeQuiz = () => {
+    setShowResult(false);
+    setUserAnswers([]);
+    setCurrentQuestionIndex(0);
+  };
+
   const renderQuizContent = () => {
     if (!quiz) {
       return <p>Loading...</p>;
@@ -88,22 +99,38 @@ const TakeQuiz = () => {
             ))}
           </ul>
         </div>
+        <div className="flex flex-row justify-between gap-2">
+          {currentQuestionIndex > 0 && (
+          <button
+            className={`w-28 h-10 font-bold border border-neutral-400 p-2 rounded-md mt-12`}
+            onClick={handlePreviousQuestion}
+          >
+            Previous
+          </button>
+        )}
         <button
-          className={`w-32 h-10 font-bold bg-neutral-400 p-2 rounded-md mt-12`}
+          className={`w-28 h-10 font-bold bg-neutral-400 p-2 rounded-md mt-12`}
           onClick={currentQuestionIndex < quiz.questions.length - 1 ? handleNextQuestion : handleFinish}
         >
-          {currentQuestionIndex < quiz.questions.length - 1 ? 'Next Question' : 'Finish'}
+          {currentQuestionIndex < quiz.questions.length - 1 ? 'Next' : 'Finish'}
         </button>
+        </div>
       </>
     );
   };
 
   const renderResult = () => (
-    <div className={`w-72 h-60 bg-${getThemeColor(quiz?.theme || '')} flex flex-col justify-evenly rounded-md shadow-md text-2xl p-4 text-center mt-12 mb-60`}>
+    <div className={`w-72 h-60 bg-${getThemeColor(quiz?.theme || '')} flex flex-col items-center justify-evenly rounded-md shadow-md text-2xl p-4 text-center mt-12 mb-60 font-bold`}>
       <h1 className={`bg-${getThemeColor(quiz?.theme || '')}`}>{quiz?.title}</h1>
-      <span className={`bg-${getThemeColor(quiz?.theme || '')} font-bold`}>
+      <span className={`bg-${getThemeColor(quiz?.theme || '')} mb-4`}>
         You got {calculateScore()} answers right out of {quiz?.questions.length}.
       </span>
+      <button
+      onClick={handleRetakeQuiz}
+      className="w-1/2 bg-neutral-200 p-2 text-sm rounded-md shadow-md"
+      >
+        Retake Quiz <ReplayIcon />
+      </button>
     </div>
   );
 
