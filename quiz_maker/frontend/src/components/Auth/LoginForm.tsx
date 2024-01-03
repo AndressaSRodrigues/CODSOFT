@@ -1,6 +1,7 @@
 import { useForm, Controller } from 'react-hook-form';
 import { useState } from 'react';
 import { login } from '../../services/auth';
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
@@ -12,6 +13,7 @@ type FormData = {
 function LoginForm() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+    const { setUser } = useAuth();
     const navigate = useNavigate();
 
     const { handleSubmit, control } = useForm<FormData>({
@@ -24,7 +26,8 @@ function LoginForm() {
     const onSubmit = async (data: FormData) => {
         try {
             setIsLoading(true);
-            await login(data.username, data.password);
+            const response = await login(data.username, data.password);
+            setUser(response.token, response.user._id, response.user.username);
             navigate('/browse-quizzes');
         } catch (error) {
             const errorMessage = error instanceof Error ? `Invalid credentials.` : 'An error occurred';
