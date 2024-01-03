@@ -4,6 +4,7 @@ import QuizCard from "../components/Quizzes/QuizCard";
 import { getQuizzes } from "../services/quizzes";
 import { QuizProps } from "../interfaces/QuizProps";
 import { useAuth } from "../context/AuthContext";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 function BrowseQuizzes() {
   const { token } = useAuth();
@@ -17,25 +18,29 @@ function BrowseQuizzes() {
       .catch((error) => {
         console.error(error);
       })
-  }, [token])
+  }, [token]);
 
   return (
     <>
-        <h1 className="text-primary text-3xl text-center my-4 font-bold lg:my-8">
-          All Quizzes
-        </h1>
-        <div className="flex flex-col items-center justify-center gap-4 lg:flex lg:flex-row lg:flex-wrap lg:gap-8">
-          {quizzes.map((quiz) => (
-            <Link to={`/take-quiz/${quiz._id}`} target="_blank">
-              <QuizCard
-                title={quiz.title}
-                theme={quiz.theme}
-                questions={quiz.questions.length}
-                author={quiz.createdBy}
-              />
-            </Link>
-          ))}
-        </div>
+      <div className="w-full flex flex-row m-6 text-neutral-400 text-sm font-bold lg:m-12">
+        <Link to={'/create-quiz'}
+          className="hover:italic"
+        >
+          <KeyboardArrowRightIcon /> Create a New Quiz
+        </Link>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-4 lg:flex lg:flex-row lg:flex-wrap lg:gap-8">
+        {quizzes.map((quiz) => (
+          <Link to={`/take-quiz/${quiz._id}`}>
+            <QuizCard
+              title={quiz.title}
+              theme={quiz.theme}
+              questions={quiz.questions.length}
+              author={quiz.createdBy}
+            />
+          </Link>
+        ))}
+      </div>
     </>
   )
 }
