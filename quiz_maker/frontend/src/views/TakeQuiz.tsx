@@ -1,8 +1,10 @@
 import { getQuizById } from "../services/quizzes";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { QuizProps } from "../interfaces/QuizProps";
 import { useAuth } from "../context/AuthContext";
+import getThemeColor from "../utils/themeColor";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 function TakeQuiz() {
   const [quiz, setQuiz] = useState<QuizProps>();
@@ -39,58 +41,74 @@ function TakeQuiz() {
     setShowResult(true)
   };
 
+
   return (
-    <div className="flex flex-col items-start justify-start mx-12 my-8">
-      {!showResult && (
-        <>
-          {quiz ? (
-            <>
-              <h2 className="text-2xl text-primary font-bold mb-4">{quiz.title}</h2>
-              <div className="flex flex-row gap-4 text-sm italic mb-4">
-                <p>{quiz.theme}</p>
-                <p className="text-neutral-400">{quiz.createdBy}</p>
-              </div>
-              <ul className="mb-8">
-                {quiz.questions.map((question, index) => (
-                  <div className="my-4" key={index}>
-                    <li key={index}>
-                      <p className="bg-neutral-300 p-4 rounded-md">{question.text}</p>
-                      <ul className="p-4">
-                        {question.options.map((option, optionIndex) => (
-                          <li key={optionIndex}>
-                            <label>
-                              <input
-                                type="radio"
-                                name={`question${index}`} //ensures that radio buttons within the same question are grouped together
-                                value={optionIndex} //represents the index of the current option for the current question
-                                checked={userAnswers[index] === optionIndex} //if userAnswers is not equal to the current checked option, it updates
-                                onChange={() => handleOptionChange(index, optionIndex)} //updates the setUsersAnswers according to the checked options
-                              />
-                              {option}
-                            </label>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  </div>
-                ))}
-              </ul>
-              <button
-                className="w-44 text-white font-bold bg-primary ml-14 p-4 rounded-md"
-                onClick={handleFinish}
-              >
-                Finish
-              </button>
-            </>
-          ) : (
-            <p>Loading...</p>
-          )}
-        </>
-      )}
-      {showResult && (
-        <span>Your score: {calculateScore()} out of {quiz?.questions.length}.</span>
-      )}
-    </div>
+    <>
+      <div className="flex flex-row mt-4 ml-8 gap-6 text-neutral-400 text-sm font-bold">
+        <Link to={'/browse-quizzes'}
+          className="hover:italic"
+        >
+          <KeyboardArrowRightIcon /> Browse Quizzes
+        </Link>
+        <Link to={'/create-quiz'}
+          className="hover:italic"
+        >
+          <KeyboardArrowRightIcon /> Create a New Quiz
+        </Link>
+      </div>
+      <div className="flex flex-col items-center justify-center mx-12 my-8 text-neutral-700">
+        {!showResult && (
+          <>
+            {quiz ? (
+              <>
+                <h2 className="text-2xl font-bold mb-4">{quiz.title}</h2>
+                <div className="flex flex-row gap-4 text-sm italic mb-4">
+                  <p>{quiz.theme}</p>
+                  <p className="text-neutral-400">{quiz.createdBy}</p>
+                </div>
+                <ul className="mb-8">
+                  {quiz.questions.map((question, index) => (
+                    <div className="my-4" key={index}>
+                      <li key={index}>
+                        <p className={`bg-${getThemeColor(quiz.theme)} p-4 rounded-md font-semibold`}>{question.text}</p>
+                        <ul className="p-4">
+                          {question.options.map((option, optionIndex) => (
+                            <li key={optionIndex}>
+                              <label>
+                                <input
+                                  type="radio"
+                                  name={`question${index}`} //ensures that radio buttons within the same question are grouped together
+                                  value={optionIndex} //represents the index of the current option for the current question
+                                  checked={userAnswers[index] === optionIndex} //if userAnswers is not equal to the current checked option, it updates
+                                  onChange={() => handleOptionChange(index, optionIndex)} //updates the setUsersAnswers according to the checked options
+                                  className="mr-2"
+                                />
+                                {option}
+                              </label>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    </div>
+                  ))}
+                </ul>
+                <button
+                  className={`w-44 text-white font-bold bg-${getThemeColor(quiz.theme)} p-4 rounded-md`}
+                  onClick={handleFinish}
+                >
+                  Finish
+                </button>
+              </>
+            ) : (
+              <p>Loading...</p>
+            )}
+          </>
+        )}
+        {showResult && (
+          <span>Your score: {calculateScore()} out of {quiz?.questions.length}.</span>
+        )}
+      </div>
+    </>
   );
 }
 

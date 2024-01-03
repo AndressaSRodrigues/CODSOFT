@@ -25,7 +25,7 @@ const QuizSchema = new mongoose.Schema({
     theme: {
         type: String,
         required: true,
-        enum: ['environment', 'technology', 'literature', 'cinema and tv', 'culture and geography', 'general knowledge']
+        enum: ['Environment', 'Technology', 'Literature', 'Cinema', 'Geography', 'History']
     },
     questions: [QuestionSchema],
     createdBy: {
