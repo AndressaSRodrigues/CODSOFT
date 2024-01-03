@@ -22,7 +22,7 @@ function BrowseQuizzes() {
 
   return (
     <>
-      <div className="w-full flex flex-row m-6 text-neutral-400 text-sm font-bold lg:m-12">
+      <div className="flex flex-row m-6 text-neutral-400 text-sm font-bold lg:m-12">
         <Link to={'/create-quiz'}
           className="hover:italic"
         >

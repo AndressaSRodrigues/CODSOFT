@@ -43,3 +43,26 @@ export const getQuizById = async (token: string, id: string | undefined): Promis
             throw new Error();
         });
 };
+
+export const createQuiz = (token: string, data: object): Promise<QuizProps> => {
+    return fetch(`${URL}quiz`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+    })
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then((errorData) => {
+                    throw new Error(`Failed to create quiz: ${errorData.message}`);
+                });
+            }
+            return response.json() as Promise<QuizProps>;
+        })
+        .catch((error) => {
+            console.error("createQuiz failed:", error);
+            throw error;
+        });
+};
