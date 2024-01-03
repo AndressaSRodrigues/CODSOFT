@@ -8,5 +8,5 @@ export default function getThemeColor(theme: string): string {
         'Geography': 'orange',
     };
 
-    return themeColors[theme] || 'bg-neutral-400';
+    return themeColors[theme] || 'neutral-400';
 };
