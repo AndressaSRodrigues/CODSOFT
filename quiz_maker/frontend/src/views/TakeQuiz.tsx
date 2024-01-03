@@ -2,13 +2,15 @@ import { getQuizById } from "../services/quizzes";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { QuizProps } from "../interfaces/QuizProps";
+import { useAuth } from "../context/AuthContext";
 
 function TakeQuiz() {
   const [quiz, setQuiz] = useState<QuizProps>();
+  const { token } = useAuth();
   const { id } = useParams();
 
   useEffect(() => {
-    getQuizById(id)
+    getQuizById(token, id)
       .then((data) => {
         setQuiz(data);
       })

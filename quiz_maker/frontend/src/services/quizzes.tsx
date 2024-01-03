@@ -2,11 +2,12 @@ import { QuizProps } from "../interfaces/QuizProps";
 
 const URL = 'http://localhost:3000/';
 
-export const getQuizzes = async (): Promise<QuizProps[]> => {
+export const getQuizzes = async (token: string): Promise<QuizProps[]> => {
     return fetch(`${URL}quiz`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
         }
     })
         .then((response) => {
@@ -22,11 +23,12 @@ export const getQuizzes = async (): Promise<QuizProps[]> => {
         });
 };
 
-export const getQuizById = async (id: string | undefined): Promise<QuizProps> => {
+export const getQuizById = async (token: string, id: string | undefined): Promise<QuizProps> => {
     return fetch(`${URL}quiz/${id}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         }
     })
         .then((response) => {

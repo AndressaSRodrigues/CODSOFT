@@ -8,14 +8,16 @@ interface AuthContextProps {
     token: string;
     userId: string;
     username: string;
-    setUser: (token: string, userId: string, username: string) => void
+    setUser: (token: string, userId: string, username: string) => void;
+    logout: (token: string, userId: string, username: string) => void;
 }
 
 const defaultValues: AuthContextProps = {
     token: '',
     userId: '',
     username: '',
-    setUser: () => { }
+    setUser: () => { },
+    logout: () => { }
 }
 
 const AuthContext = createContext<AuthContextProps>(defaultValues);
@@ -39,9 +41,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
         localStorage.setItem("username", username);
     };
 
+    const logout = () => {
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("userId");
+        sessionStorage.removeItem("username");
+
+        setToken("");
+        setUserId("");
+        setUsername("");
+      };
+
     return (
         <AuthContext.Provider
-            value={{ token, userId, username, setUser }}
+            value={{ token, userId, username, setUser, logout }}
         >
             {children}
         </AuthContext.Provider>
