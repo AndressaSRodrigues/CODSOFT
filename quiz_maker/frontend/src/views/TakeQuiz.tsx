@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import ReplayIcon from '@mui/icons-material/Replay';
-
 import { getQuizById } from "../services/quizzes";
 import { useAuth } from "../context/AuthContext";
 import { QuizProps } from "../interfaces/QuizProps";
 import getThemeColor from "../utils/themeColor";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import ReplayIcon from '@mui/icons-material/Replay';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import MoodIcon from '@mui/icons-material/Mood';
 
 function TakeQuiz() {
   const { token } = useAuth();
@@ -74,9 +75,12 @@ function TakeQuiz() {
     return (
       <>
         <h2 className="text-2xl font-bold mb-4">{quiz.title}</h2>
-        <div className="flex flex-row gap-4 text-sm italic mb-4">
-          <p>{quiz.theme}</p>
-          <p className="text-neutral-400">{quiz.createdBy}</p>
+        <div className="flex flex-row gap-4 text-sm text-neutral-400 italic mb-4">
+          <p>
+            <QuestionAnswerIcon /> {quiz.theme}
+          </p>
+          <p>
+            <MoodIcon /> {quiz.createdBy}</p>
         </div>
         <div className="my-4">
           <p className={`w-72 ${themeColor} p-4 rounded-md font-semibold lg:w-96`}>
