@@ -93,7 +93,7 @@ function TakeQuiz() {
                   ))}
                 </ul>
                 <button
-                  className={`w-44 text-white font-bold bg-${getThemeColor(quiz.theme)} p-4 rounded-md`}
+                  className={`w-44 font-bold bg-${getThemeColor(quiz.theme)} p-4 rounded-md`}
                   onClick={handleFinish}
                 >
                   Finish
@@ -105,7 +105,12 @@ function TakeQuiz() {
           </>
         )}
         {showResult && (
-          <span>Your score: {calculateScore()} out of {quiz?.questions.length}.</span>
+          <div className={`w-72 h-60 bg-${getThemeColor(quiz?.theme || '')} flex flex-col justify-evenly rounded-md shadow-md text-2xl p-4 text-center mt-12 mb-60`}>
+            <h1 className={`bg-${getThemeColor(quiz?.theme || '')}`}>{quiz?.title}</h1>
+            <span className={`bg-${getThemeColor(quiz?.theme || '')} font-bold`}>
+              You got {calculateScore()} answers right out of {quiz?.questions.length}.
+            </span>
+          </div>
         )}
       </div>
     </>
