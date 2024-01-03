@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import { QuizProps } from "../interfaces/QuizProps";
 import getThemeColor from "../utils/themeColor";
 
-const TakeQuiz = () => {
+function TakeQuiz() {
   const { token } = useAuth();
   const { id } = useParams();
 
@@ -69,6 +69,7 @@ const TakeQuiz = () => {
     }
 
     const question = quiz.questions[currentQuestionIndex];
+    const themeColor = getThemeColor(quiz.theme);
 
     return (
       <>
@@ -78,7 +79,7 @@ const TakeQuiz = () => {
           <p className="text-neutral-400">{quiz.createdBy}</p>
         </div>
         <div className="my-4">
-          <p className={`w-72 bg-${getThemeColor(quiz.theme)} p-4 rounded-md font-semibold lg:w-96`}>
+          <p className={`w-72 ${themeColor} p-4 rounded-md font-semibold lg:w-96`}>
             {question.text}
           </p>
           <ul className="p-4">
@@ -101,38 +102,42 @@ const TakeQuiz = () => {
         </div>
         <div className="flex flex-row justify-between gap-2">
           {currentQuestionIndex > 0 && (
+            <button
+              className={`w-28 h-10 font-bold border border-neutral-400 p-2 rounded-md mt-12`}
+              onClick={handlePreviousQuestion}
+            >
+              Previous
+            </button>
+          )}
           <button
-            className={`w-28 h-10 font-bold border border-neutral-400 p-2 rounded-md mt-12`}
-            onClick={handlePreviousQuestion}
+            className={`w-28 h-10 font-bold bg-neutral-400 p-2 rounded-md mt-12`}
+            onClick={currentQuestionIndex < quiz.questions.length - 1 ? handleNextQuestion : handleFinish}
           >
-            Previous
+            {currentQuestionIndex < quiz.questions.length - 1 ? 'Next' : 'Finish'}
           </button>
-        )}
-        <button
-          className={`w-28 h-10 font-bold bg-neutral-400 p-2 rounded-md mt-12`}
-          onClick={currentQuestionIndex < quiz.questions.length - 1 ? handleNextQuestion : handleFinish}
-        >
-          {currentQuestionIndex < quiz.questions.length - 1 ? 'Next' : 'Finish'}
-        </button>
         </div>
       </>
     );
   };
 
-  const renderResult = () => (
-    <div className={`w-72 h-60 bg-${getThemeColor(quiz?.theme || '')} flex flex-col items-center justify-evenly rounded-md shadow-md text-2xl p-4 text-center mt-12 mb-60 font-bold`}>
-      <h1 className={`bg-${getThemeColor(quiz?.theme || '')}`}>{quiz?.title}</h1>
-      <span className={`bg-${getThemeColor(quiz?.theme || '')} mb-4`}>
-        You got {calculateScore()} answers right out of {quiz?.questions.length}.
-      </span>
-      <button
-      onClick={handleRetakeQuiz}
-      className="w-1/2 bg-neutral-200 p-2 text-sm rounded-md shadow-md"
-      >
-        Retake Quiz <ReplayIcon />
-      </button>
-    </div>
-  );
+  const renderResult = () => {
+    const themeColor = getThemeColor(quiz?.theme || '');
+
+    return (
+      <div className={`w-72 h-60 ${themeColor} flex flex-col items-center justify-evenly rounded-md shadow-md text-2xl p-4 text-center mt-12 mb-60 font-bold`}>
+        <h1 className={`${themeColor}`}>{quiz?.title}</h1>
+        <span className={`${themeColor} mb-4`}>
+          You got {calculateScore()} answers right out of {quiz?.questions.length}.
+        </span>
+        <button
+          onClick={handleRetakeQuiz}
+          className="w-1/2 bg-neutral-200 p-2 text-sm rounded-md shadow-md"
+        >
+          Retake Quiz <ReplayIcon />
+        </button>
+      </div>
+    );
+  };
 
   return (
     <>
