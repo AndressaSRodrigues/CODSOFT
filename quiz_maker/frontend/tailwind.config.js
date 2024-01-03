@@ -8,12 +8,12 @@ export default {
     extend: {
       colors: {
         'primary': '#CC0066',
-        'blue': '#99CCCC', // Movies
-        'green': '#99cc99', // TV Shows
-        'red': '#CC9999', // Video Games
-        'purple': '#CC99CC', // Books
-        'babyblue': '#9999CC', // Anime
-        'orange': '#FFCC99', // General Pop Culture
+        'blue': '#99CCCC', // Technology
+        'green': '#99cc99', // Environment
+        'red': '#CC9999', // Cinema and TV
+        'purple': '#CC99CC', // Literature
+        'babyblue': '#9999CC', // Culture and Geography
+        'orange': '#FFCC99', // General Knowledge
       }
     },
   },

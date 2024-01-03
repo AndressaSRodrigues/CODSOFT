@@ -6,6 +6,7 @@ import BrowseQuizzes from "./views/BrowseQuizzes"
 import Login from "./views/Login"
 import CreateAccount from "./views/CreateAccount"
 import Footer from "./components/Shared/Footer"
+import TakeQuiz from "./views/TakeQuiz"
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="create-account" element={<CreateAccount />} />
         <Route path="create-quiz" element={<CreateQuiz />} />
         <Route path="browse-quizzes" element={<BrowseQuizzes />} />
+        <Route path="/take-quiz/:id" element={<TakeQuiz />} />
       </Routes>
       <Footer />
     </>
