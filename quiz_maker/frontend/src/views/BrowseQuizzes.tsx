@@ -13,7 +13,9 @@ function BrowseQuizzes() {
   useEffect(() => {
     getQuizzes(token)
       .then((data) => {
-        setQuizzes(data);
+        const sortedQuizzes = data.sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        setQuizzes(sortedQuizzes);
       })
       .catch((error) => {
         console.error(error);
