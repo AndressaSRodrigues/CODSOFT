@@ -13,7 +13,9 @@ function BrowseQuizzes() {
   useEffect(() => {
     getQuizzes(token)
       .then((data) => {
-        setQuizzes(data);
+        const sortedQuizzes = data.sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        setQuizzes(sortedQuizzes);
       })
       .catch((error) => {
         console.error(error);
@@ -31,7 +33,7 @@ function BrowseQuizzes() {
       </div>
       <div className="flex flex-col items-center justify-center gap-4 lg:flex lg:flex-row lg:flex-wrap lg:gap-8">
         {quizzes.map((quiz) => (
-          <Link to={`/take-quiz/${quiz._id}`}>
+          <Link to={`/take-quiz/${quiz._id}`} key={quiz._id}>
             <QuizCard
               title={quiz.title}
               theme={quiz.theme}

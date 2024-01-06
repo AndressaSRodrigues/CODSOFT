@@ -1,4 +1,7 @@
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import { useAuth } from '../../context/AuthContext';
+import { createQuiz } from '../../services/quizzes';
+import { useNavigate } from 'react-router-dom';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
 type FormData = {
@@ -14,6 +17,8 @@ type FormData = {
 const themeOptions = ['Environment', 'Technology', 'Literature', 'Cinema', 'Geography', 'History'];
 
 function CreateQuizForm() {
+    const { token } = useAuth();
+    const navigate = useNavigate();
 
     const { handleSubmit, control, watch } = useForm<FormData>({
         defaultValues: {
@@ -30,8 +35,13 @@ function CreateQuizForm() {
 
     const questionCount = watch('questions')?.length || 0;
 
-    const onSubmit = (data: FormData) => {
-        console.log('sent:', data)
+    const onSubmit = async (data: FormData) => {
+        try {
+            await createQuiz(token, data);
+            navigate('/browse-quizzes');
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
@@ -155,22 +165,24 @@ function CreateQuizForm() {
                         </div>
                     ))}
 
-                    {questionCount < 8 && (
+                    {questionCount < 10 && (
                         <button
                             type="button"
-                            onClick={() => append({ text: '', options: [], correctOptionIndex: 0 })}
+                            onClick={() => append({ text: '', options: ['', '', '', ''], correctOptionIndex: 0 })}
                             className="text-primary my-4">
                             <AddBoxIcon />  Add Question
                         </button>
                     )}
-
                 </div>
-                <button
-                    type="submit"
-                    className="w-72 bg-primary text-white font-bold p-2 rounded-md border border-primary hover:bg-neutral-200 hover:text-primary "
-                >
-                    Done!
-                </button>
+
+                {questionCount >= 5 && (
+                    <button
+                        type="submit"
+                        className="w-72 bg-primary text-white font-bold p-2 rounded-md border border-primary hover:bg-neutral-200 hover:text-primary "
+                    >
+                        Done!
+                    </button>
+                )}
             </form>
         </>
     )
