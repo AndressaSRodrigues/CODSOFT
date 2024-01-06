@@ -158,7 +158,7 @@ function CreateQuizForm() {
                     {questionCount < 8 && (
                         <button
                             type="button"
-                            onClick={() => append({ text: '', options: [], correctOptionIndex: 0 })}
+                            onClick={() => append({ text: '', options: ['', '', '', ''], correctOptionIndex: 0 })}
                             className="text-primary my-4">
                             <AddBoxIcon />  Add Question
                         </button>
