@@ -39,7 +39,7 @@ function Home() {
               <Link to={'/create-quiz'} className='hover:italic'>
                 <KeyboardArrowRightIcon /> Create a New Quiz
               </Link>
-              <Link to={'/take-quiz'} className='hover:italic'>
+              <Link to={'/browse-quizzes'} className='hover:italic'>
                 <KeyboardArrowRightIcon /> Take a Quiz
               </Link>
             </>
