@@ -1,6 +1,6 @@
 import { LoginProps } from "../interfaces/LoginProps";
 
-const URL = 'http://localhost:3000/';
+const URL = 'https://quizhub-api.onrender.com/';
 
 export const login = async (username: string, password: string): Promise<LoginProps> => {
     return fetch(`${URL}login`, {
