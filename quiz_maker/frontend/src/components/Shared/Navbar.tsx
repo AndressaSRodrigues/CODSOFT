@@ -18,12 +18,6 @@ function Navbar() {
           </Link>
         </div>
         <div className='text-sm flex flex-row gap-8'>
-          {token && (
-            <>
-              <Link to={'/browse-quizzes'}>Quizzes</Link>
-              <Link to={'/create-quiz'}>Create</Link>
-            </>
-          )}
           {!token && (
             <Link to={'/login'}>
               Login

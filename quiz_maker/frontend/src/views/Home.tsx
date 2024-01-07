@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import QuizHub from '../assets/QuizHub.png';
 import HomePhoto from '../assets/Home.jpg';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 function Home() {
+  const { token } = useAuth();
+
   return (
     <>
       <div className='flex flex-col items-center justify-center m-4 lg:flex lg:flex-row'>
@@ -21,12 +24,26 @@ function Home() {
             </span>
           </div>
           <div className='flex flex-col items-start gap-4 text-lg text-primary lg:text-2xl'>
-            <Link to={'/login'} className='hover:italic'>
-              <KeyboardArrowRightIcon /> Login
-            </Link>
-            <Link to={'/create-account'} className='hover:italic'>
-              <KeyboardArrowRightIcon /> Create an account
-            </Link>
+            {!token && (
+              <>
+                <Link to={'/login'} className='hover:italic'>
+                  <KeyboardArrowRightIcon /> Login
+                </Link>
+                <Link to={'/create-account'} className='hover:italic'>
+                  <KeyboardArrowRightIcon /> Create an account
+                </Link>
+              </>
+            )}
+            {token && (
+              <>
+              <Link to={'/create-quiz'} className='hover:italic'>
+                <KeyboardArrowRightIcon /> Create a New Quiz
+              </Link>
+              <Link to={'/take-quiz'} className='hover:italic'>
+                <KeyboardArrowRightIcon /> Take a Quiz
+              </Link>
+            </>
+            )}
           </div>
         </div>
       </div>

@@ -1,7 +1,9 @@
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { createQuiz } from '../../services/quizzes';
 import { useNavigate } from 'react-router-dom';
+import QuizRules from './QuizRules';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
 type FormData = {
@@ -19,6 +21,7 @@ const themeOptions = ['Environment', 'Technology', 'Literature', 'Cinema', 'Geog
 function CreateQuizForm() {
     const { token } = useAuth();
     const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
 
     const { handleSubmit, control, watch } = useForm<FormData>({
         defaultValues: {
@@ -42,6 +45,10 @@ function CreateQuizForm() {
         } catch (error) {
             console.error(error);
         }
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
     };
 
     return (
@@ -184,6 +191,8 @@ function CreateQuizForm() {
                     </button>
                 )}
             </form>
+
+            {isModalOpen && <QuizRules open={true} onClose={handleCloseModal} />}
         </>
     )
 }
