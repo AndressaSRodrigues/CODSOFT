@@ -8,6 +8,7 @@ import Login from "./views/Login"
 import CreateAccount from "./views/CreateAccount"
 import Footer from "./components/Shared/Footer"
 import TakeQuiz from "./views/TakeQuiz"
+import ManageQuizzes from "./views/ManageQuizzes"
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="create-quiz" element={<CreateQuiz />} />
           <Route path="browse-quizzes" element={<BrowseQuizzes />} />
           <Route path="/take-quiz/:id" element={<TakeQuiz />} />
+          <Route path="/manage/:username" element={<ManageQuizzes />} />
         </Routes>
         <Footer />
       </>

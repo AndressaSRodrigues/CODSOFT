@@ -10,7 +10,7 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import MoodIcon from '@mui/icons-material/Mood';
 
 function TakeQuiz() {
-  const { token } = useAuth();
+  const { token, username } = useAuth();
   const { id } = useParams();
 
   const [quiz, setQuiz] = useState<QuizProps | null>(null);
@@ -145,12 +145,15 @@ function TakeQuiz() {
 
   return (
     <>
-      <div className="flex flex-row mt-4 ml-8 gap-6 text-neutral-400 text-sm font-bold">
+      <div className="flex flex-row m-6 gap-4 text-neutral-400 text-sm font-bold lg:m-12">
         <Link to="/browse-quizzes" className="hover-italic">
           <KeyboardArrowRightIcon /> Browse Quizzes
         </Link>
         <Link to="/create-quiz" className="hover-italic">
           <KeyboardArrowRightIcon /> Create a New Quiz
+        </Link>
+        <Link to={`/manage/${username}`} className="hover-italic">
+          <KeyboardArrowRightIcon /> My Quizzes
         </Link>
       </div>
       <div className="flex flex-col items-center justify-center mx-6 my-6 text-neutral-700 border border-neutral-300 rounded-md p-4">
