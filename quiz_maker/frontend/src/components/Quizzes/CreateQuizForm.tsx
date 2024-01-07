@@ -109,20 +109,23 @@ function CreateQuizForm() {
                     {fields.map((question, index) => (
                         <div key={question.id} className="mb-2">
                             <div className="flex flex-col items-start gap-2 mb-2">
-                                <label>Question {index + 1}:</label>
+                                <label className='font-bold text-neutral-500'>Question {index + 1}</label>
                                 <Controller
                                     name={`questions.${index}.text`}
                                     control={control}
                                     render={({ field }) => (
                                         <input
-                                            className="border border-primary rounded-md p-2 w-72"
+                                            className="w-60 border border-primary rounded-md p-2 lg:w-72"
                                             type="text"
                                             {...field}
                                             placeholder="Enter question"
                                         />
                                     )}
                                 />
-
+                                <div className='w-full flex flex-row justify-between text-sm text-neutral-500'>
+                                    <span>Options</span>
+                                    <span>Correct</span>
+                                </div>
                                 {Array.from({ length: 4 }).map((_, optionIndex) => (
                                     <div key={optionIndex} className="flex flex-row items-start gap-2">
                                         <Controller
@@ -136,7 +139,7 @@ function CreateQuizForm() {
                                                     type="text"
                                                     {...field}
                                                     placeholder={`Option ${optionIndex + 1}`}
-                                                    className="border border-primary rounded-md p-2 w-72"
+                                                    className="w-60 border border-primary rounded-md p-2 lg:w-72"
                                                 />
                                             )}
                                         />
@@ -159,7 +162,6 @@ function CreateQuizForm() {
                                                     />
                                                 )}
                                             />
-                                            Correct
                                         </label>
                                     </div>
                                 ))}

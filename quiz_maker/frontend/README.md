@@ -1,30 +1,46 @@
-# React + TypeScript + Vite
+# QuizHub - A Quiz Maker and Taker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**QuizHub** is a dynamic and user-friendly platform that empowers users to create, share, and take quizzes on a variety of topics. Whether you're a trivia enthusiast, a knowledge seeker, or just looking for a fun way to test your skills, QuizHub provides an interactive space for everyone.
 
-Currently, two official plugins are available:
+![demo-desktop](scr/assets/demo-desktop.gif)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+### **User-Created Quizzes**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Explore a diverse collection of quizzes created by our vibrant community of users. QuizHub offers a rich selection of quizzes tailored to different interests.
 
-- Configure the top-level `parserOptions` property like this:
+### **Create and Share Your Quizzes**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Unleash your creativity by crafting your own quizzes. Share your knowledge and interests with the community, contributing to the ever-expanding library of user-generated content on QuizHub.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Getting Started
+
+1. **Sign Up**
+   - Create a QuizHub account with a unique username and password.
+
+2. **Log In**
+    - Log into your account to start taking quizzes or creating them.
+
+3. **Explore User-Created Quizzes:**
+   - Dive into the diverse collection of quizzes crafted by the QuizHub community.
+
+4. **Create Your Own Quiz:**
+   - Let your creativity shine by creating and sharing your quizzes.
+
+## Technology Stack
+
+- **Frontend Framework**: [React](https://reactjs.org/) with [TypeScript](https://www.typescriptlang.org/)
+  - Utilizes React Hooks and Context API to enhance component logic and state management.
+  - Leverages TypeScript for static typing, providing improved code reliability and developer productivity.
+
+- **Styling Framework**: [Tailwind CSS](https://tailwindcss.com/)
+  - Employs Tailwind CSS for a utility-first approach to styling, offering a highly customizable and responsive design.
+  - Takes advantage of Tailwind's responsive classes to ensure a seamless user experience across various screen sizes.
+
+- **Form and Icons**: [Material-UI](https://material-ui.com/)
+  - Integrates Material-UI for streamlined form components and a library of icons, enhancing the overall visual consistency and user interface.
+
+## Developers
+
+This project was designed by Andressa Rodrigues during her internship at CODSOFT.
