@@ -1,6 +1,6 @@
 import { QuizProps } from "../interfaces/QuizProps";
 
-const URL = 'http://localhost:3000/';
+const URL = 'https://quizhub-api.onrender.com/';
 
 export const getQuizzes = async (token: string): Promise<QuizProps[]> => {
     return fetch(`${URL}quiz`, {
