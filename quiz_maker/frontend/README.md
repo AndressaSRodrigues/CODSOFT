@@ -2,7 +2,7 @@
 
 **QuizHub** is a dynamic and user-friendly platform that empowers users to create, share, and take quizzes on a variety of topics. Whether you're a trivia enthusiast, a knowledge seeker, or just looking for a fun way to test your skills, QuizHub provides an interactive space for everyone.
 
-![demo-desktop](scr/assets/demo-desktop.gif)
+![demo-desktop](/quiz_maker/frontend/src/assets/demo-desktop.gif)
 
 ## Features
 
