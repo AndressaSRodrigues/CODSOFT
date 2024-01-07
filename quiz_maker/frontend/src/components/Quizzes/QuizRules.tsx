@@ -51,7 +51,6 @@ function QuizRules({ open, onClose }: QuizRulesProps) {
                                         <li>A corrected option must be selected.</li>
                                     </ul>
                                 </li>
-
                                 <li className="my-2 lg:my-4"><span className="text-primary">Language and Content</span>
                                     <ul className="ml-4 list-disc">
                                         <li>Avoid the use of profanity or offensive language.</li>
@@ -70,6 +69,6 @@ function QuizRules({ open, onClose }: QuizRulesProps) {
             )}
         </>
     );
-};
+}
 
 export default QuizRules;

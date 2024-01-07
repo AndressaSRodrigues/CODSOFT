@@ -87,7 +87,6 @@ function DisplayQuizzesByUser() {
                             className={popOverButtonsStyle}
                             onClick={() => handleDeleteQuiz(token, quizToDelete)}>Yes!</button>
                     </div>
-
                 </div>
             )}
         </>
