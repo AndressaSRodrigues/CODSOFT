@@ -15,8 +15,8 @@ function DisplayQuizzesByUser() {
 
     const fetchQuizzesByUser = async (token: string, username: string) => {
         try {
-            const response = await getQuizzesByUser(token, username);
-            setQuizzes(response);
+            const data = await getQuizzesByUser(token, username);
+            setQuizzes(data);
         } catch (error) {
             console.error(error);
         }
@@ -51,6 +51,12 @@ function DisplayQuizzesByUser() {
 
     return (
         <>
+            {quizzes.length <= 0 && (
+                <div className="flex flex-col items-center text-lg text-neutral-500 mt-12">
+                    <span>You haven't created any quizzes yet.</span>
+                    <Link to={'/create-quiz'} className="hover:text-primary">Click here to create your first quiz!</Link>
+                </div>
+            )}
             {quizzes.map((quiz) => (
                 <div
                     key={quiz._id}
