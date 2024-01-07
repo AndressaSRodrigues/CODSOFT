@@ -3,8 +3,8 @@ import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { QuizProps } from "../../interfaces/QuizProps";
 import getThemeColor from "../../utils/themeColor";
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Link } from "react-router-dom";
 
 function DisplayQuizzesByUser() {
@@ -54,12 +54,14 @@ function DisplayQuizzesByUser() {
             {quizzes.map((quiz) => (
                 <div
                     key={quiz._id}
-                    className="w-60 h-fit flex flex-col gap-2 p-2 rounded-md shadow-md">
-                    <Link to={`/take-quiz/${quiz._id}`} className={`${getThemeColor(quiz.theme)} p-2 rounded-md`}>
+                    className={`w-72 h-fit flex flex-col gap-2 p-2 rounded-md shadow-md ${getThemeColor(quiz.theme)}`}>
+                    <span className={`${getThemeColor(quiz.theme)} p-2 rounded-md text-lg text-white font-bold`}>
                         {quiz.title}
-                    </Link>
-                    <div className="flex flex-row items-center justify-between p-2 text-neutral-400 text-sm">
-                        <span><QuestionAnswerIcon /> {quiz.theme}</span>
+                    </span>
+                    <div className="flex flex-row items-center justify-between p-2 text-md text-neutral-400 rounded-md">
+                        <Link to={`/take-quiz/${quiz._id}`}>
+                            <VisibilityIcon /> View
+                        </Link>
                         <span
                             className="cursor-pointer hover:text-primary"
                             onClick={() => handleOpenPopOver(quiz._id)}>
