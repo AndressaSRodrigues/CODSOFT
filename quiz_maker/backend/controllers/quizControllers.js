@@ -97,26 +97,10 @@ const getQuizzesByUser = async (req, res) => {
     }
 };
 
-const getQuizzesByTheme = async (req, res) => {
-    try {
-        const { theme } = req.params;
-        const quizzes = await findQuizzesByQuery({ theme: theme });
-
-        if (quizzes.length === 0) {
-            return res.status(404).json({ message: `No quizzes about ${theme} were found.` });
-        }
-
-        return res.status(200).json(quizzes);
-    } catch (error) {
-        return res.status(500).json({ message: `${error}` });
-    }
-};
-
 module.exports = {
     createNewQuiz,
     getQuizzes,
     getQuizById,
     deleteQuizById,
-    getQuizzesByUser,
-    getQuizzesByTheme
+    getQuizzesByUser
 };
