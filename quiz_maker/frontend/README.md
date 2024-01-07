@@ -1,6 +1,6 @@
 # QuizHub - A Quiz Maker and Taker
 
-**QuizHub** is a dynamic and user-friendly platform that empowers users to create, share, and take quizzes on a variety of topics. Whether you're a trivia enthusiast, a knowledge seeker, or just looking for a fun way to test your skills, QuizHub provides an interactive space for everyone.
+**[QuizHub](https://quizhubmaker.vercel.app/)** is a dynamic and user-friendly platform that empowers users to create, share, and take quizzes on a variety of topics. Whether you're a trivia enthusiast, a knowledge seeker, or just looking for a fun way to test your skills, QuizHub provides an interactive space for everyone.
 
 ![demo-desktop](/quiz_maker/frontend/src/assets/demo-desktop.gif)
 
