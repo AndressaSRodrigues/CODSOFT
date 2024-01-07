@@ -42,9 +42,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     };
 
     const logout = () => {
-        sessionStorage.removeItem("token");
-        sessionStorage.removeItem("userId");
-        sessionStorage.removeItem("username");
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("username");
 
         setToken("");
         setUserId("");
