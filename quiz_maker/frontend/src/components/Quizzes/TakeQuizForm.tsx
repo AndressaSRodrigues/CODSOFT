@@ -6,7 +6,10 @@ import { useAuth } from "../../context/AuthContext";
 import getThemeColor from "../../utils/themeColor";
 import ReplayIcon from '@mui/icons-material/Replay';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import MoodIcon from '@mui/icons-material/Mood';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 
 function TakeQuizForm() {
     const { token } = useAuth();
@@ -79,7 +82,11 @@ function TakeQuizForm() {
                         <QuestionAnswerIcon /> {quiz.theme}
                     </p>
                     <p>
-                        <MoodIcon /> {quiz.createdBy}</p>
+                        <FormatListNumberedIcon /> {quiz.questions.length}
+                    </p>
+                    <p>
+                        <MoodIcon /> {quiz.createdBy}
+                    </p>
                 </div>
                 <div className="my-4">
                     <p className={`w-72 ${themeColor} p-4 rounded-md font-semibold lg:w-96`}>
@@ -127,18 +134,36 @@ function TakeQuizForm() {
         const themeColor = getThemeColor(quiz?.theme || '');
 
         return (
-            <div className={`w-72 h-60 ${themeColor} flex flex-col items-center justify-evenly rounded-md shadow-md text-2xl p-4 text-center mt-12 mb-60 font-bold`}>
-                <h1 className={`${themeColor}`}>{quiz?.title}</h1>
-                <span className={`${themeColor} mb-4`}>
-                    You got {calculateScore()} answers right out of {quiz?.questions.length}.
-                </span>
-                <button
-                    onClick={handleRetakeQuiz}
-                    className="w-1/2 bg-neutral-200 p-2 text-sm rounded-md shadow-md"
-                >
-                    Retake Quiz <ReplayIcon />
-                </button>
-            </div>
+            <>
+                <div className={`w-fit h-fit ${themeColor} flex flex-col items-center justify-evenly rounded-md shadow-md text-2xl p-4 text-center mt-12 mb-60`}>
+                    <h1 className={`${themeColor} font-bold`}>{quiz?.title}</h1>
+                    <p className={`${themeColor} mb-4`}>
+                        You got {calculateScore()} answers right out of {quiz?.questions.length}.
+                    </p>
+                    <div className={`text-left ${themeColor}`}>
+                        {quiz?.questions.map((question, index) => (
+                            <div key={index} className="mb-4 text-sm p-2 rounded-md">
+                                <p>{question.text}</p>
+                                {question.options[userAnswers[index]] === question.options[question.correctOptionIndex] && (
+                                    <p>{question.options[userAnswers[index]]} <CheckIcon className="text-green" /></p>
+                                )}
+                                {question.options[userAnswers[index]] !== question.options[question.correctOptionIndex] && (
+                                    <>
+                                        <p>{question.options[userAnswers[index]]} <ClearIcon className="text-red" /></p>
+                                        <p>Correct Answer: {question.options[question.correctOptionIndex]}</p>
+                                    </>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    <button
+                        onClick={handleRetakeQuiz}
+                        className="w-1/2 bg-neutral-200 p-2 text-sm rounded-md shadow-md mt-4"
+                    >
+                        Retake Quiz <ReplayIcon />
+                    </button>
+                </div>
+            </>
         );
     };
 
