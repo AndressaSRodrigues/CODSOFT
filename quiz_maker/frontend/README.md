@@ -43,4 +43,4 @@ Unleash your creativity by crafting your own quizzes. Share your knowledge and i
 
 ## Developers
 
-This project was designed by Andressa Rodrigues during her internship at CODSOFT.
+This project was designed by Andressa Rodrigues.

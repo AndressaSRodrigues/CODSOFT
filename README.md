@@ -1,6 +1,6 @@
 # CODSOFT
 
-This repository encompasses two distinct projects: a dynamic job board and an engaging quiz maker website. Both initiatives were conceived and implemented during my internship at CODSOFT. Here's a brief overview:
+This repository encompasses two distinct projects: a dynamic job board and an engaging quiz maker website. Both projects were developed with the intent of practicing and learning new skills.
 
 **[HireHub](https://hirehub.vercel.app/)**: A Job Search Platform
 

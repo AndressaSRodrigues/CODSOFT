@@ -74,4 +74,4 @@ Whether you're a job seeker looking for the perfect opportunity or a recruiter s
 
 ## Developers
 
-This project was designed by Andressa Rodrigues during her internship at CODSOFT.
+This project was designed by Andressa Rodrigues.
