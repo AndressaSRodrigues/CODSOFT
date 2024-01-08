@@ -10,6 +10,7 @@ import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import MoodIcon from '@mui/icons-material/Mood';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
+import Loading from "../Shared/Loading";
 
 function TakeQuizForm() {
     const { token } = useAuth();
@@ -68,7 +69,7 @@ function TakeQuizForm() {
 
     const renderQuizContent = () => {
         if (!quiz) {
-            return <p>Loading...</p>;
+            return <Loading />
         }
 
         const question = quiz.questions[currentQuestionIndex];
